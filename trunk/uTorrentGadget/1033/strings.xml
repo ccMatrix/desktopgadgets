@@ -1,0 +1,40 @@
+﻿<strings>
+  <GADGET_NAME>µTorrent Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>µTorrent Gadget. Keep track of your torrents.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>µTorrent
+© 2007 Benjamin Schirmer
+µTorrent Gadget
+
+Use this gadget to keep track of your torrents. 
+This gadget needs µTorrent with enabled Web UI to work.
+You can download µTorrent from www.utorrent.com
+
+Icons used are from famfamfam Silk Icons pack (www.famfamfam.com)
+and from the µTorrent WebUI.</GADGET_ABOUT_TEXT>
+
+  <strLaunchInterface>Launch WebInterface</strLaunchInterface>
+  <menu_complete>Display completed torrents</menu_complete>
+  <menu_stop>Display stopped torrents</menu_stop>
+  <menu_start>Display running torrents</menu_start>
+  <menu_seeding>Display seeding torrents</menu_seeding>
+  <ERROR_CONNECT>Error connecting to web interace. Please check your settings!</ERROR_CONNECT>
+  <OPTION_IP>IP or Hostname</OPTION_IP>
+  <OPTION_PORT>Port</OPTION_PORT>
+  <OPTION_USERNAME>Username</OPTION_USERNAME>
+  <OPTION_PASSWORD>Password</OPTION_PASSWORD>
+
+  <UI_STOP>Stop selected torrent</UI_STOP>
+  <UI_RUN>Start selected torrent</UI_RUN>
+  <UI_ADD>Add new torrent</UI_ADD>
+  <UI_INFO>Information about torrent</UI_INFO>
+
+  <DETAILS_SIZE>Size:</DETAILS_SIZE>
+  <DETAILS_DOWNLOADED>Downloaded:</DETAILS_DOWNLOADED>
+  <DETAILS_UPLOADED>Uploaded:</DETAILS_UPLOADED>
+  <DETAILS_SEEDS>Seeds:</DETAILS_SEEDS>
+  <DETAILS_PEERS>Peers:</DETAILS_PEERS>
+  <DETAILS_AVAILABLE>Availability:</DETAILS_AVAILABLE>
+  <DETAILS_UPSTREAM>Upstream:</DETAILS_UPSTREAM>
+  <DETAILS_DOWNSTREAM>Downstream:</DETAILS_DOWNSTREAM>
+  <DETAILS_ETA>ETA:</DETAILS_ETA>
+</strings>

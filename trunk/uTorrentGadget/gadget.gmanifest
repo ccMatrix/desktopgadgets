@@ -1,0 +1,13 @@
+﻿<gadget minimumGoogleDesktopVersion="4.2006.505.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>plugin_small.gif</smallIcon>
+		<icon>plugin_large.gif</icon>
+		<version>1.3.4.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.googledesktopgadgets.com/index.php?show=utorrent</authorWebsite>
+		<id>071F6212-FAC3-47A8-ACA8-3D7C52ACC128</id>
+		<copyright>©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail><displayAPI usesNotifier="true"></displayAPI></about>
+</gadget>

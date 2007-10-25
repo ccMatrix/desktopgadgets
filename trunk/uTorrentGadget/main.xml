@@ -1,0 +1,64 @@
+﻿<view height="200" resizable="true" width="200" onminimize="onMinimize()"
+  onopen="view_onOpen()" onrestore="onRestore()" onsize="view_onSize()"
+  onsizing="view_onSizing()">
+    <div height="205" hitTest="htclient" name="background" width="202"
+     >
+        <img height="16" name="bgtopleft" width="16" src="images\background_topleft.png"/>
+        <img height="16" name="bgtopright" width="16" x="160" src="images\background_topright.png"/>
+        <img height="10" name="bgbottomleft" width="16" y="160" src="images\background_bottomleft.png"/>
+        <img height="10" name="bgbottomright" width="16" x="160" y="160"
+          src="images\background_bottomright.png"/>
+        <img height="16" name="bgtop" width="100" x="30" src="images\background_top.png"/>
+        <img height="100" name="bgleft" width="16" y="30" src="images\background_left.png"/>
+        <img height="10" name="bgbottom" width="100" x="30" y="160" src="images\background_bottom.png"/>
+        <img height="100" name="bgright" width="16" x="160" y="30" src="images\background_right.png"/>
+        <div height="145" name="bgcenter" width="158" x="22" y="21" background="#101010"/>
+    </div>
+    <div enabled="true" height="16" hitTest="htclient" name="toolbar"
+      width="180" x="4" y="109" onclick="unSelectTorrent()"
+     >
+        <label height="16" name="lblUp" width="40" x="62" y="1" color="#FFFFFF"
+          size="7"/>
+        <label height="16" name="lblDown" width="47" x="9" y="1" color="#FFFFFF"
+          size="7"/>
+        <img height="16" width="16" src="images\arrow_down.png"/>
+        <img height="16" width="16" x="51" src="images\arrow_up.png"/>
+    </div>
+    <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+      name="torrentLogo" width="16" x="174" y="5" onclick="launchInterface()"
+      src="images\utorrent.png"/>
+    <div height="60" name="torrentListDiv" width="180" x="11" y="32"
+     >
+        <listbox height="200" name="torrentList" width="100%" onclick="unSelectTorrent()"
+          itemWidth="100%" itemHeight="32" itemSelectedColor="#808080"
+          itemOverColor="#A0A0A0" onchange="selectTorrent()"/>
+        <div height="60" name="scrollarea" width="10" x="170" background="#000000">
+            <img height="100%" width="9" src="images\scrollbar.png"/>
+            <scrollbar enabled="true" height="100" hitTest="htclient" name="sb" width="8"
+              y="-10" lineStep="10" max="200" orientation="vertical"
+              background="0000000" thumbDownImage="images\scroll.png"
+              thumbImage="images\scroll.png" thumbOverImage="images\scroll.png"
+              onchange="sb_onchange()"/>
+        </div>
+    </div>
+    <div height="17" name="optionbar" width="68" x="6" y="5">
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="btnStop" tooltip="&UI_STOP;" width="16" visible="false"
+          x="32" onclick="stopTorrentUI()" src="images\stop.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="btnRun" tooltip="&UI_RUN;" width="16" visible="false"
+          x="48" onclick="startTorrentUI()" src="images\resultset_next.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="btnAdd" tooltip="&UI_ADD;" width="16" onclick="addTorrentUI()"
+          src="images\add.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="btnInfo" tooltip="&UI_INFO;" width="16" visible="false"
+          x="16" onclick="infoTorrentUI()" src="images\info.png"/>
+    </div>
+    <script src="main.js" />
+    <script src="utorrent.js" />
+    <script src="helper.js" />
+    <script src="options.js" />
+    <script src="detailsview.js" />
+    <script src="json.js" />
+</view>

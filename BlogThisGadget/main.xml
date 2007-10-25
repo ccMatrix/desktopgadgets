@@ -1,0 +1,15 @@
+﻿<view height="45" width="140" onopen="view_onOpen()">
+  <div enabled="true" height="45" hitTest="htclient" name="divBlogThis"
+    width="140" x="0" y="0" onclick="openBlogThis(null)" ondragdrop="blogDragPost()"
+   >
+    <img name="img1" x="16" y="10" src="images\background.png"/>
+    <label height="26" name="labelBlogThis" width="99" x="38" y="9" bold="true"
+      color="#FF6600" font="Arial" size="14">BlogThis!
+    </label>
+    <img hitTest="htclient" name="imgBlogThis" x="5" y="5" src="icon_large.png"
+     />
+    <div height="100%" name="divDrag" opacity="1" width="100%" x="0"
+      y="0" background="#FFFFFF"/>
+  </div>
+  <script src="main.js" />
+</view>

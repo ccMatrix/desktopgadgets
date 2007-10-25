@@ -1,0 +1,13 @@
+﻿<gadget minimumGoogleDesktopVersion="5.1.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.1.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.imagine-interactive.de/tetrisgadget/</authorWebsite>
+		<id>54A81619-C8B2-47E7-88BA-15CC3E46B975</id>
+		<copyright>Ãƒâ€šÃ‚Â©2007 Imagine Interactive</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+</gadget>

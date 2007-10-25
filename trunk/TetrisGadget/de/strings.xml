@@ -1,0 +1,33 @@
+﻿<strings>
+  <GADGET_NAME>Tetris</GADGET_NAME>
+  <GADGET_DESCRIPTION>Spiele Tetris in deiner Seitenleiste oder auf deinem Desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Tetris
+©2007 Imagine Interactive
+Spiele Tetris in deiner Seitenleiste oder auf deinem Desktop.
+
+Gamecode basiert auf "JavaScript Tetris" von Alexei Kourbatov.
+http://www.javascripter.net/games/tetris/game.htm
+
+Block Grafiken von Bijoy Thangaraj. Vielen Dank!
+
+Tetris Musik von Nikolai Alekseevich Nekrasov. Verfügbar auf Wikipedia unter
+http://upload.wikimedia.org/wikipedia/en/f/fe/Korobeiniki.mid
+
+</GADGET_ABOUT_TEXT>
+
+  <strOptionControls>Tastatureinstellungen:</strOptionControls>
+  <strOptionLeft>Links</strOptionLeft>
+  <strOptionRight>Rechts</strOptionRight>
+  <strOptionRotate>Drehen</strOptionRotate>
+  <strOptionDown>Runter</strOptionDown>
+  <strOptionFall>Fallen</strOptionFall>
+  <strOptionMusic>Tetris Musik abspielen</strOptionMusic>
+
+  <strGameOver>Game Over</strGameOver>
+  <strMenuNew>Neues Spiel</strMenuNew>
+  <strStart>Start</strStart>
+  <strPaused>pausiert</strPaused>
+  <strLevel>Level</strLevel>
+  <strLines>Zeilen</strLines>
+
+</strings>

@@ -1,0 +1,39 @@
+﻿<view height="300" resizable="true" width="250" onopen="view_onOpen()"
+  onsize="view_onSize()">
+    <div height="205" hitTest="htclient" name="background" width="202"
+     >
+        <img height="16" name="bgtopleft" width="16" src="images\background_topleft.png"/>
+        <img height="16" name="bgtopright" width="16" x="160" src="images\background_topright.png"/>
+        <img height="10" name="bgbottomleft" width="16" y="160" src="images\background_bottomleft.png"/>
+        <img height="10" name="bgbottomright" width="16" x="160" y="160"
+          src="images\background_bottomright.png"/>
+        <img height="16" name="bgtop" width="100" x="30" src="images\background_top.png"/>
+        <img height="100" name="bgleft" width="16" y="30" src="images\background_left.png"/>
+        <img height="10" name="bgbottom" width="100" x="30" y="160" src="images\background_bottom.png"/>
+        <img height="100" name="bgright" width="16" x="160" y="30" src="images\background_right.png"/>
+        <div height="145" name="bgcenter" width="158" x="22" y="21" background="#101010"/>
+    </div>
+    <div height="200" name="UIGameListDiv" width="200" x="13" y="18"
+     >
+        <div height="200" name="UIGameList" width="100%"/>
+        <div height="180" name="scrollarea" width="9" x="191" background="#B0B0B0">
+            <img height="100%" width="9" src="images\scrollbar.png"/>
+            <scrollbar enabled="true" height="100" hitTest="htclient" name="sb" width="8"
+              y="-10" lineStep="10" max="200" orientation="vertical"
+              background="0000000" thumbDownImage="images\scroll.png"
+              thumbImage="images\scroll.png" thumbOverImage="images\scroll.png"
+              onchange="sb_onchange()"/>
+        </div>
+    </div>
+    <label height="16" name="infoLabel" width="200" x="12" y="200" align="center"
+      bold="true" color="#FFFFFF" size="8"/>
+    <label visible="false" height="130" name="vistaRequired" tooltip="&strVistaRequired;"
+      width="186" x="14" y="17" bold="true" color="#C00000"
+      wordwrap="true">&strVistaRequired;
+    </label>
+    <script src="main.js" />
+    <script src="vistagames.js" />
+    <script src="json.js" />
+    <script src="helper.js" />
+    <script src="oshelper.js" />
+</view>

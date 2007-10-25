@@ -1,0 +1,11 @@
+﻿<view height="65" width="155" onopen="view_onOpen()">
+  <img height="60" name="background" width="150" x="2" y="2" src="images\background.png"
+   />
+  <label height="16" name="heading" width="150" x="0" y="7" align="center"
+    color="#FFFFFF" size="8">Loading ...
+  </label>
+  <label height="30" name="cashCallSum" width="150" x="2" y="27" align="center"
+    bold="true" color="#FFFFFF" size="16"/>
+  <script src="main.js" />
+  <script src="xmlParser.js" />
+</view>

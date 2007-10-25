@@ -1,0 +1,17 @@
+﻿<strings>
+  <GADGET_NAME>Operating System Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>Displays information about the operating system</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Operating System Gadget
+© 2007 Benjamin Schirmer
+The Operating Sytem Gadget will show information about your current operating system.
+</GADGET_ABOUT_TEXT>
+
+  <strVersion>Version:</strVersion>
+  <strServicePack>ServicePack:</strServicePack>
+
+  <menuShowSerial>Show serial number</menuShowSerial>
+  <menuShowVersion>Show system version</menuShowVersion>
+  <menuShowServicePack>Show service pack</menuShowServicePack>
+
+
+</strings>

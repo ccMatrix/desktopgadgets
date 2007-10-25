@@ -1,0 +1,16 @@
+﻿<strings>
+  <GADGET_NAME>Betriebssystem Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>Zeigt informationen über das Betriebssystem an</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Betriebssystem Gadget
+© 2007 Benjamin Schirmer
+Das Betriebssystem Gadget zeigt Informationen zum aktuellen Betriebsystem an.
+</GADGET_ABOUT_TEXT>
+
+  <strVersion>Version:</strVersion>
+  <strServicePack>ServicePack:</strServicePack>
+
+  <menuShowSerial>Zeige Seriennummer</menuShowSerial>
+  <menuShowVersion>Zeige Systemversion</menuShowVersion>
+  <menuShowServicePack>Zeige ServicePack</menuShowServicePack>
+
+</strings>

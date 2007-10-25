@@ -1,0 +1,67 @@
+﻿<view height="280" width="230" onopen="view_onOpen()">
+  <div height="25" width="230" x="0" y="0" background="#397179">
+    <label height="19" name="loadingText" width="217" x="3" y="3" color="#FFFFFF"
+      font="DejaVu Sans Condensed" valign="middle">&strLoading;
+    </label>
+  </div>
+  <img cursor="hand" enabled="true" hitTest="htclient" name="img6"
+    x="0" y="25" onclick="showAtlantis()" src="images\background.png"
+   />
+  <div height="100" name="divTuneIn" width="230" x="0" y="180" background="#397179">
+    <label height="70" name="labelTuneIn" width="200" x="15" y="15" color="#FFFFFF"
+      font="DejaVu Sans Condensed"/>
+  </div>
+  <div cursor="hand" enabled="true" height="25" hitTest="htclient"
+    name="divVideoBlock" width="200" x="15" y="255" onclick="toggleVideoBlock()"
+    background="#397179">
+    <div height="265" name="divVideos" width="200" x="0" y="20" background="#397179">
+      <div cursor="hand" enabled="true" height="115" hitTest="htclient"
+        name="video1" width="190" x="5" y="5" onclick="viewVideo1()"
+        onmouseover="showVideo1()" background="#0C272E">
+        <img height="90" name="img1" width="160" x="10" y="5"/>
+        <label height="16" name="title1" width="180" x="5" y="95" bold="true"
+          color="#FFFFFF" size="8"/>
+      </div>
+      <div cursor="hand" enabled="true" height="115" hitTest="htclient"
+        name="video2" width="190" x="5" y="125" onclick="viewVideo2()"
+        onmouseover="showVideo2()" background="#0C272E">
+        <img height="90" name="img2" width="160" x="10" y="5"/>
+        <label height="16" name="title2" width="180" x="5" y="95" bold="true"
+          color="#FFFFFF" size="8"/>
+      </div>
+      <div cursor="hand" enabled="true" height="115" hitTest="htclient"
+        name="video3" width="190" x="5" y="245" onclick="viewVideo3()"
+        onmouseover="showVideo3()" background="#0C272E">
+        <img height="90" name="img3" width="160" x="10" y="5"/>
+        <label height="16" name="title3" width="180" x="5" y="95" bold="true"
+          color="#FFFFFF" size="8"/>
+      </div>
+      <div cursor="hand" enabled="true" height="115" hitTest="htclient"
+        name="video4" width="190" x="5" y="250" onclick="viewVideo4()"
+        onmouseover="showVideo4()" background="#0C272E">
+        <img height="90" name="img4" width="160" x="10" y="5"/>
+        <label height="16" name="title4" width="180" x="5" y="95" bold="true"
+          color="#FFFFFF" size="8"/>
+      </div>
+      <div cursor="hand" enabled="true" height="115" hitTest="htclient"
+        name="video5" width="190" x="5" y="250" onclick="viewVideo5()"
+        onmouseover="showVideo5()" background="#0C272E">
+        <img height="90" name="img5" width="160" x="10" y="5"/>
+        <label height="16" name="title5" width="180" x="5" y="95" bold="true"
+          color="#FFFFFF" size="8"/>
+      </div>
+    </div>
+    <label height="25" name="labelSGV" width="142" x="5" y="2" bold="true"
+      color="#FFFFFF" font="DejaVu Sans Condensed" valign="middle"
+     >STARGATE ATLANTIS
+    </label>
+    <label height="25" name="labelSGV2" width="50" x="145" y="2" color="#FFFFFF"
+      font="DejaVu Sans Condensed" valign="middle">VIDEOS
+    </label>
+  </div>
+  <script src="main.js" />
+  <script src="xmlParser.js" />
+  <script src="ajax.js" />
+  <script src="trim.js" />
+  <script src="video.js" />
+</view>

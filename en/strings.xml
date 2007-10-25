@@ -1,0 +1,14 @@
+﻿<strings>
+  <GADGET_NAME>Antenne1 Cash Call</GADGET_NAME>
+  <GADGET_DESCRIPTION>The latest Antenne1 Cash Call sum on your desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Antenne1 Cash Call
+© 2007 Imagine Interactive
+The latest Antenne1 Cash Call sum on your desktop.
+All Information without warranty.
+
+The author is not affiliated with Antenne1. All trademarks are properties of their respective owners.</GADGET_ABOUT_TEXT>
+  <strRefresh>Refresh</strRefresh>
+  <strUnknown>Unknown</strUnknown>
+  <strEndToday>No current CashCall</strEndToday>
+  <strGoodDay>See you!</strGoodDay>
+</strings>

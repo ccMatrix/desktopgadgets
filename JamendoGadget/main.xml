@@ -1,0 +1,61 @@
+﻿<view height="300" resizable="true" width="250" ondock="redraw()"
+  onundock="undock()" onopen="view_onOpen()" onpopin="redraw()"
+  onpopout="redraw()" onrestore="redraw()" onsize="redraw()"
+ >
+    <div height="100%" name="designGroup" width="100%">
+        <img height="9" name="design_corner_tl" width="9" src="images\design_corner_tl.png"/>
+        <img height="9" name="design_corner_tr" width="9" x="218" src="images\design_corner_tr.png"/>
+        <img height="9" name="design_corner_bl" width="9" y="266" src="images\design_corner_bl.png"/>
+        <img height="9" name="design_corner_br" width="9" x="216" y="267"
+          src="images\design_corner_br.png"/>
+        <img height="32" name="design_left" width="9" y="134" src="images\design_left.png"/>
+        <img height="32" name="design_right" width="9" x="217" y="124" src="images\design_right.png"/>
+        <img height="9" name="design_top" width="32" x="103" src="images\design_top.png"/>
+        <img height="9" name="design_bottom" width="32" x="110" y="265" src="images\design_bottom.png"/>
+        <img height="293" name="design_center" width="243" x="2" y="5" src="images\design_center.png"/>
+    </div>
+    <div height="227" name="bg_div" width="243" x="4" y="3"/>
+    <edit height="16" name="searchQuery" width="128" x="47" y="8" onkeypress="edit_keypress()"
+      value="ROCK"/>
+    <button height="22" name="search_btn" width="52" x="191" y="5" onclick="jamendo_search()"
+      downImage="stock_images\button_down.png" image="stock_images\button_up.png"
+      overImage="stock_images\button_over.png"/>
+    <label height="16" name="search_btnLabel" width="52" x="191" y="8"
+      align="center">&strSearch;
+    </label>
+    <img cursor="hand" enabled="true" height="50" hitTest="htclient"
+      name="albumcover" width="50" x="7" y="28" onclick="albumWebsite()"
+      src="images\jamendo_logo.png"/>
+    <label height="16" name="name_artist" width="176" x="62" y="33" bold="true"
+      color="#FFFFFF" size="8"/>
+    <label height="16" name="name_album" width="178" x="64" y="56" color="#FFFFFF"
+      size="8"/>
+    <div height="2" name="splitter" width="179" x="61" y="51" background="#FFFFFF"/>
+    <div height="121" name="trackListDiv" width="228" x="11" y="82" background="#0772A4">
+        <listbox height="100%" name="trackList" width="100%" autoscroll="true"
+          background="#FFFFFF" itemWidth="100%" itemHeight="20"
+          itemSelectedColor="#0095D6" itemOverColor="#7AC7E8"
+          onchange="playTrack()"/>
+    </div>
+    <label height="16" name="nowplaying" width="166" x="10" y="208" bold="true"
+      color="#FFFFFF" size="8"/>
+    <label height="16" name="curMode" width="32" x="7" y="9" color="#FFFFFF"
+      size="8">Tag
+    </label>
+    <div height="16" name="controls" width="64" x="174" y="208">
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="controls_play" width="16" onclick="playTrack()"
+          src="images\control_play_blue.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="controls_stop" width="16" x="16" onclick="stopTrack()"
+          src="images\control_stop_blue.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="controls_prev" width="16" x="32" onclick="previousTrack()"
+          src="images\control_rewind_blue.png"/>
+        <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+          name="controls_next" width="16" x="48" onclick="nextTrack()"
+          src="images\control_fastforward_blue.png"/>
+    </div>
+    <script src="main.js" />
+    <script src="ajax.js" />
+</view>

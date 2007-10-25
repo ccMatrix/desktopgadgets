@@ -1,0 +1,73 @@
+﻿<view height="200" resizable="false" width="350" onopen="detailsview_onopen()"
+ >
+    <div height="200" width="350" background="#000000"/>
+    <img height="16" width="16" x="9" y="6" src="images\utorrent.png"/>
+    <label height="16" name="torrentName" width="310" x="29" y="7" color="#FFFFFF"
+     >Label
+    </label>
+    <label height="16" name="lblSize" width="80" x="15" y="42" align="right"
+      color="#FFFFFF" size="9">&DETAILS_SIZE;
+    </label>
+    <div height="2" width="333" x="10" y="33" background="#A0A0A0"/>
+    <label height="16" name="lblDownloaded" width="80" x="15" y="62" align="right"
+      color="#FFFFFF" size="9">&DETAILS_DOWNLOADED;
+    </label>
+    <label height="16" name="lblUploaded" width="80" x="15" y="82" align="right"
+      color="#FFFFFF" size="9">&DETAILS_UPLOADED;
+    </label>
+    <label height="16" name="info_size" width="70" x="100" y="42" color="#FFFFFF"
+     >Label
+    </label>
+    <label height="16" name="info_downloaded" width="70" x="100" y="62"
+      color="#FFFFFF">Label
+    </label>
+    <label height="16" name="info_uploaded" width="70" x="100" y="82" color="#FFFFFF"
+     >Label
+    </label>
+    <label height="16" name="lblSeeds" width="80" x="173" y="42" align="right"
+      color="#FFFFFF" size="9">&DETAILS_SEEDS;
+    </label>
+    <label height="16" name="lblPeers" width="80" x="173" y="62" align="right"
+      color="#FFFFFF" size="9">&DETAILS_PEERS;
+    </label>
+    <label height="16" name="info_seeds" width="70" x="262" y="42" color="#FFFFFF"
+     >Label
+    </label>
+    <label height="16" name="info_peers" width="70" x="262" y="62" color="#FFFFFF"
+     >Label
+    </label>
+    <div height="15" width="320" x="15" y="170">
+        <div height="15" name="progressBar" width="7%" background="#505050"/>
+        <label height="15" name="info_percent" width="100" x="110" align="center"
+          color="#FFFFFF"/>
+    </div>
+    <label height="16" name="lblAvail" width="80" x="173" y="82" align="right"
+      color="#FFFFFF" size="9">&DETAILS_AVAILABLE;
+    </label>
+    <label height="16" name="info_avail" width="70" x="262" y="82" color="#FFFFFF"
+     >Label
+    </label>
+    <label height="16" name="lblDownstream" width="80" x="15" y="102" align="right"
+      color="#FFFFFF" size="9">&DETAILS_DOWNSTREAM;
+    </label>
+    <label height="16" name="lblUpstream" width="80" x="15" y="122" align="right"
+      color="#FFFFFF" size="9">&DETAILS_UPSTREAM;
+    </label>
+    <label height="16" name="lblEta" width="80" x="15" y="142" align="right"
+      color="#FFFFFF" size="9">&DETAILS_ETA;
+    </label>
+    <label height="16" name="info_downstream" width="70" x="100" y="102"
+      color="#FFFFFF">Label
+    </label>
+    <label height="16" name="info_upstream" width="70" x="100" y="122"
+      color="#FFFFFF">Label
+    </label>
+    <label height="16" name="info_eta" width="70" x="100" y="142" color="#FFFFFF"
+     >Label
+    </label>
+    <script src="detailsview.js" />
+    <script src="helper.js" />
+    <script src="utorrent.js" />
+    <script src="options.js" />
+    <script src="json.js" />
+</view>

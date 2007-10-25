@@ -1,0 +1,16 @@
+﻿<strings>
+  <GADGET_NAME>Heroes Fan Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>The latest about your favorite TV show - Heroes</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Heroes Fan Gadget
+©2007 Benjamin Schirmer
+The latest about your favorite TV show Heroes.
+
+The author is not affiliated with NBC. All trademarks are property of their respected owners. This gadget is a fan gadget. 
+</GADGET_ABOUT_TEXT>
+  <strRefresh>Refresh Gadget</strRefresh>
+  <strGadgetPage>Help and more Information</strGadgetPage>
+  <strHeroesPage>Visit Heroes Website</strHeroesPage>
+
+  <strNoInternet>Could not load data</strNoInternet>
+  <strLoading>Loading feed</strLoading>
+</strings>

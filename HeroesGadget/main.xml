@@ -1,0 +1,38 @@
+﻿<view height="240" width="175" onopen="view_onOpen()">
+  <div height="240" name="div1" width="175" x="0" y="0">
+    <img height="240" name="slideImg" width="613" x="0" y="0" src="stock_images\image.png"
+     />
+    <div height="240" name="grayBgLarge" opacity="150" width="175" x="0"
+      y="0"/>
+    <img height="240" name="imgBg" width="175" x="0" y="0" src="images\background.png"
+     />
+    <img height="20" name="topHeader" opacity="200" width="165" x="5"
+      y="5" src="images\header.png"/>
+    <div height="75" name="nextOn" width="165" x="5" y="160">
+      <div height="95" name="grayBgSmall" opacity="120" width="165" x="0"
+        y="0" background="#EDEDED"/>
+      <img height="45" name="nextOnImg" width="80" x="5" y="5" src="stock_images\image.png"
+       />
+      <label height="45" name="labelNextOn" width="59" x="85" y="5" bold="true"
+        size="12" wordwrap="true">NEXT ON:
+      </label>
+      <label height="30" name="nextOnLabel" width="165" x="0" y="50" font="Arial Narrow"
+        size="7" wordwrap="true"/>
+    </div>
+    <img enabled="true" height="43" hitTest="htclient" name="slideThumb3"
+      opacity="200" width="165" x="5" y="115" src="stock_images\image.png"
+     />
+    <img cursor="hand" enabled="true" height="43" hitTest="htclient"
+      name="slideThumb2" opacity="200" width="165" x="5" y="70"
+      src="stock_images\image.png"/>
+    <img cursor="hand" enabled="true" height="43" hitTest="htclient"
+      name="slideThumb1" opacity="200" width="165" x="5" y="25"
+      src="stock_images\image.png"/>
+  </div>
+  <label height="16" name="loadingText" width="150" x="10" y="210">&strLoading;
+  </label>
+  <script src="main.js" />
+  <script src="xmlParser.js" />
+  <script src="ajax.js" />
+  <script src="trim.js" />
+</view>

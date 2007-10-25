@@ -1,0 +1,40 @@
+// RecycleBinDLL.idl : IDL-Quelle für RecycleBinDLL
+//
+
+// Diese Datei wird mit dem MIDL-Tool bearbeitet,
+// um den Quellcode für die Typbibliothek (RecycleBinDLL.tlb) und die Abruffunktionen zu erstellen.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(E3CE57EC-F02D-4920-9728-847FF0D1325C),
+	dual,
+	nonextensible,
+	helpstring("Irecyclebin-Schnittstelle"),
+	pointer_default(unique)
+]
+interface Irecyclebin : IDispatch{
+	[id(1), helpstring("method binStatus")] HRESULT binStatus([out,retval] USHORT* status);
+	[id(2), helpstring("method openRecycleBin")] HRESULT openRecycleBin(void);
+	[id(3), helpstring("method emptyBin")] HRESULT emptyBin(void);
+	[id(4), helpstring("method moveToBin")] HRESULT moveToBin(BSTR* filename);
+};
+[
+	uuid(B36ABF3A-1C20-4FD6-B1F1-03771C58410A),
+	version(1.0),
+	helpstring("RecycleBinDLL 1.0 Typbibliothek")
+]
+library RecycleBinDLLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(48C125EC-C887-4941-9103-DB6F4A24EC42),
+		helpstring("recyclebin Class")
+	]
+	coclass recyclebin
+	{
+		[default] interface Irecyclebin;
+	};
+};

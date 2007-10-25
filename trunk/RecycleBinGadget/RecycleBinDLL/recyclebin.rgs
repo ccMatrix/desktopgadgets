@@ -1,0 +1,27 @@
+HKCR
+{
+	RecycleBinDLL.recyclebin.1 = s 'recyclebin Class'
+	{
+		CLSID = s '{48C125EC-C887-4941-9103-DB6F4A24EC42}'
+	}
+	RecycleBinDLL.recyclebin = s 'recyclebin Class'
+	{
+		CLSID = s '{48C125EC-C887-4941-9103-DB6F4A24EC42}'
+		CurVer = s 'RecycleBinDLL.recyclebin.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {48C125EC-C887-4941-9103-DB6F4A24EC42} = s 'recyclebin Class'
+		{
+			ProgID = s 'RecycleBinDLL.recyclebin.1'
+			VersionIndependentProgID = s 'RecycleBinDLL.recyclebin'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{B36ABF3A-1C20-4FD6-B1F1-03771C58410A}'
+		}
+	}
+}

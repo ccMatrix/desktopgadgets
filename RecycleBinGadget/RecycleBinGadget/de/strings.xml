@@ -1,0 +1,19 @@
+﻿<strings>
+  <GADGET_NAME>Papierkorb</GADGET_NAME>
+  <GADGET_DESCRIPTION>Verwalte den Papierkorb von deiner Sidebar aus</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Papierkorb
+© 2007 Benjamin Schirmer
+
+Verwalte den Papierkorb von deiner Sidebar aus.
+Funktionen:
+* Fahre mit der Maus über den Papierkorb um die Anzahl der gelöschten Objekte zu sehen
+* Klicke doppelt auf den Papierkorb um ihn im Explorer zu öffnen
+* Klicke mit der rechten Maustaste und wähle "Papierkorb leeren" um ihn zu leeren
+</GADGET_ABOUT_TEXT>
+  <strRecycleBin>Papierkorb</strRecycleBin>
+  <strEmptyBin>Papierkorb leeren</strEmptyBin>
+  <strOpenRecycle>Papierkorb öffnen</strOpenRecycle>
+  <strObjects>Objekte</strObjects>
+  <strEmpty>Papierkorb ist leer</strEmpty>
+  <strHelp>Hilfe und mehr Informationen</strHelp>
+</strings>

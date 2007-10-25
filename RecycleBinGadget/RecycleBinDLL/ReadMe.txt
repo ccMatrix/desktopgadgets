@@ -1,0 +1,65 @@
+========================================================================
+    AKTIVE VORLAGENBIBLIOTHEK : RecycleBinDLL-Projektübersicht
+========================================================================
+
+Der Anwendungs-Assistent hat das RecycleBinDLL-Projekt erstellt, um es als Ausgangspunkt
+zum Schreiben Ihrer DLL zu verwenden.
+
+Die Datei enthält eine Zusammenfassung des Inhalts der Dateien für das Projekt.
+
+RecycleBinDLL.vcproj
+    Dies ist die Hauptprojektdatei für VC++-Projekte, die vom Anwendungs-Assistenten
+    erstellt wird. Sie enthält Informationen über die Version von Visual C++, mit der 
+    die Datei generiert wurde, über die Plattformen, Konfigurationen und Projektfeatures,
+    die mit dem Anwendungs-Assistenten ausgewählt wurden.
+
+RecycleBinDLL.idl
+    Diese Datei enthält die IDL-Definitionen der Typbibliothek, Schnittstellen und Co-Klassen,
+    die in Ihrem Projekt definiert sind.
+    Diese Datei wird vom MIDL-Compiler verarbeitet, um Folgendes zu generieren:
+        C++-Schnittstellendefinitionen und GUID-Deklarationen (RecycleBinDLL.h)
+        GUID-Definitionen                                (RecycleBinDLL_i.c)
+        Eine Typbibliothek                                  (RecycleBinDLL.tlb)
+        Marshalingcode                                 (RecycleBinDLL_p.c und dlldata.c)
+
+RecycleBinDLL.h
+    Diese Datei enthält die C++-Schnittstellendefinitionen und GUID-Deklarationen der
+    in RecycleBinDLL.idl definierten Elemente. Sie wird von MIDL während der Kompilierung erneut generiert.
+RecycleBinDLL.cpp
+    Diese Datei enthält die Objekttabelle und die Implementierungen Ihrer DLL-Exporte.
+RecycleBinDLL.rc
+    Hierbei handelt es sich um eine Auflistung aller Ressourcen von Microsoft Windows, die
+ vom Programm verwendet werden.
+
+RecycleBinDLL.def
+    Die Moduldefinitionsdatei enthält die Linkerinformationen über die Exporte, die für die
+    DLL erforderlich sind. Sie enthält Exporte für:
+        DllGetClassObject  
+        DllCanUnloadNow    
+        GetProxyDllInfo    
+        DllRegisterServer	
+        DllUnregisterServer
+
+/////////////////////////////////////////////////////////////////////////////
+Weitere Standarddateien:
+
+StdAfx.h, StdAfx.cpp
+    Mit diesen Dateien werden vorkompilierte Headerdateien (PCH)
+    mit der Bezeichnung RecycleBinDLL.pch und eine vorkompilierte Typdatei mit der Bezeichnung StdAfx.obj erstellt.
+
+Resource.h
+    Dies ist die Standardheaderdatei, die neue Ressourcen-IDs definiert.
+
+/////////////////////////////////////////////////////////////////////////////
+Proxy/Stub-DLL-Projekt und Moduldefinitionsdatei:
+
+RecycleBinDLLps.vcproj
+    Dies ist die Projektdatei zum Erstellen einer Proxy/Stub-DLL.
+	Die IDL-Datei im Hauptprojekt muss mindestens eine Schnittstelle enthalten. Die IDL-Datei 
+	muss vor dem Erstellen der Proxy/Stub-DLL kompiliert werden, um dlldata.c,	 RecycleBinDLL_i.c und RecycleBinDLL_p.c zu generieren, die zum
+	Erstellen der DLL erforderlich sind.
+
+RecycleBinDLLps.def
+    Die Moduldefinitionsdatei enthält die Linkerinformationen über die Exporte, die für den
+    Proxy/Stub erforderlich sind.
+/////////////////////////////////////////////////////////////////////////////

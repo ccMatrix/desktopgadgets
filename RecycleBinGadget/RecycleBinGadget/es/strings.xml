@@ -1,0 +1,17 @@
+﻿<strings>
+  <GADGET_NAME>Papelera de reciclaje</GADGET_NAME>
+  <GADGET_DESCRIPTION>Gestiona la papelera de reciclaje desde la barra lateral.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Papelera de reciclaje
+© 2007 Benjamin Schirmer
+
+Gestiona la papelera de reciclaje desde la barra lateral.
+Características:
+* Coloca el ratón sobre la papelera de reciclaje para ver cuántos objetos tiene
+* Haz doble clic sobre la papelera de reciclaje para abrirla en el explorador
+* Haz clic con el botón derecho y selecciona "Vaciar papelera de reciclaje" para vaciarla
+</GADGET_ABOUT_TEXT>
+
+  <strEmptyBin>Vaciar papelera de reciclaje</strEmptyBin>
+  <strObjects>Objeto(s)</strObjects>
+  <strEmpty>La papelera de reciclaje esta vacía</strEmpty>
+</strings>

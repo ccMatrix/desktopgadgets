@@ -1,0 +1,9 @@
+﻿<view height="96" width="96" onclose="view_onClose()" ondblclick="trash_dblclick()"
+  onopen="view_onOpen()">
+  <img dropTarget="true" height="96" mask="trashcan_mask.png" name="trashPic"
+    tooltip="Elements" width="96" ondblclick="trash_dblclick()"
+    ondragdrop="trash_dragdrop()" src="trashcan_empty.png"
+   />
+  <script src="main.js" />
+  <script src="registry.js" />
+</view>

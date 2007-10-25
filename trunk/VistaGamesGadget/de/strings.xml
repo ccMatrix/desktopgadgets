@@ -1,0 +1,24 @@
+﻿<strings>
+  <GADGET_NAME>VistaGames Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>Dein Vista Spieleexplorer in der Seitenleiste</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>VistaGames Gadget
+© 2007 Benjamin Schirmer
+Das VistaGames Gadget zeigt alle Spiele, die du im Vista Spieleexplorer hast in der Google Desktop Sidebar.
+</GADGET_ABOUT_TEXT>
+
+  <strDisplayList>Liste</strDisplayList>
+  <strDisplayIconSmall>Kleine icons</strDisplayIconSmall>
+  <strDisplayIconLarge>Große icons</strDisplayIconLarge>
+  <strDisplayBoxArt>BoxArt</strDisplayBoxArt>
+  <strDisplayBoxArtLarge>Großes BoxArt</strDisplayBoxArtLarge>
+  <strRefresh>Daten neu laden</strRefresh>
+  <strStatusBar>Statusleiste anzeigen</strStatusBar>
+
+  <strVistaRequired>Dieses Gadget setzt Windows Vista voraus. 
+
+Dein Betriebssystem ist:</strVistaRequired>
+
+  <errorRun>Das Spiel [GAME] konnte nicht gestartet werden. 
+
+Hast du das Spiel deinstalliert und vergessen es aus dem Spieleexplorer zu entfernen?</errorRun>
+</strings>

@@ -1,0 +1,9 @@
+﻿<view height="150" width="250" onopen="view_onOpen()">
+    <img height="32" name="comicImg" width="32"/>
+    <label height="100%" name="loadingText" width="100%" bold="true" wordwrap="true"
+     >&strLoading;
+    </label>
+    <script src="main.js" />
+    <script src="xmlParser.js" />
+    <script src="json.js" />
+</view>

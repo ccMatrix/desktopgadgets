@@ -1,0 +1,17 @@
+﻿<strings>
+  <GADGET_NAME>xkcd Comics</GADGET_NAME>
+  <GADGET_DESCRIPTION>Die neusten xkcd Comics auf deinem Desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>xkcd Comics
+© 2007 Benjamin Schirmer
+Die neuesten xkcd Comics auf deinem Desktop.
+
+Klicke auf ein Bild um http://xkcd.com/ zu besuchen
+
+Weitere information über dieses und meine anderen Gadgets findest du unter
+http://www.imagine-interactive.de/gadgets/
+</GADGET_ABOUT_TEXT>
+  <strTransparency>Transparenz</strTransparency>
+  <strRefresh>Aktualisieren</strRefresh>
+  <strLoading>Lade</strLoading>
+  <strNoInternet>Konnte Bilder nicht laden. Besteht eine Internetverbindung</strNoInternet>
+</strings>

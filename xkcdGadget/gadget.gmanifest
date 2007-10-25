@@ -1,0 +1,13 @@
+﻿<gadget minimumGoogleDesktopVersion="5.1.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.0.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.imagine-interactive.de/xkcdgadget/</authorWebsite>
+		<id>3E2BA391-99DA-4054-A4D3-96BF999DBD2B</id>
+		<copyright>Â©2007 Imagine Interactive</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+</gadget>

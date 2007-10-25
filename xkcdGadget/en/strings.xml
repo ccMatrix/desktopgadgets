@@ -1,0 +1,17 @@
+﻿<strings>
+  <GADGET_NAME>xkcd Comics</GADGET_NAME>
+  <GADGET_DESCRIPTION>Displays the latest xkcd comic on your desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>xkcd Comics
+© 2007 Benjamin Schirmer
+Have the latest xkcd comic on your desktop.
+
+You can click on an image to visit http://xkcd.com/
+
+Get more information about this and my other gadgets at
+http://www.imagine-interactive.de/gadgets/
+</GADGET_ABOUT_TEXT>
+  <strTransparency>Opacity</strTransparency>
+  <strRefresh>Refresh</strRefresh>
+  <strLoading>Loading</strLoading>
+  <strNoInternet>Could not load Feed. Are you connected to the internet?</strNoInternet>
+</strings>

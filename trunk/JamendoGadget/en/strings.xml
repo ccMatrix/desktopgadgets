@@ -1,0 +1,28 @@
+﻿<strings>
+  <GADGET_NAME>Jamendo Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>Enjoy Jamendo from the Sidebar</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Jamendo Gadget
+© 2007 Benjamin Schirmer
+For help and the latest version visit the Jamendo Gadget homepage:
+http://www.imagine-interactive.de/jamendogadget/
+
+This gadget lets you explore the great albums on Jamendo. 
+You can search for albums by tag, album or artist.
+
+Visit www.jamendo.com to download your favorite albums.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Icons from the great FamFamFam Silk Icon Suite
+by Mark James
+http://www.famfamfam.com/lab/icons/silk/
+</GADGET_ABOUT_TEXT>
+  <strHelp>Help and more information</strHelp>
+  <strJamendo>Visit Jamendo.com</strJamendo>
+  <strModes>Searchmode</strModes>
+  <strTag>Tag</strTag>
+  <strSearch>Search</strSearch>
+  <strAlbum>Album</strAlbum>
+  <strArtist>Artist</strArtist>
+  <strNothing>Nothing found</strNothing>
+  <strSearching>Searching, please wait...</strSearching>
+</strings>

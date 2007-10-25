@@ -1,0 +1,28 @@
+﻿<strings>
+  <GADGET_NAME>Jamendo Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>Entdecke Jamendo aus deiner sidebar</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Jamendo Gadget
+© 2007 Benjamin Schirmer
+Für Hilfe und die neueste Version besuche die Jamendo Gadget Webseite:
+http://www.imagine-interactive.de/jamendogadget/
+
+Mit diesem Gadget kannst du die großartigen Alben auf Jamendo entdecken. 
+Du kannst Alben anhand von Tag, Albumname und Künstler finden.
+
+Besuche www.jamendo.com um deine Lieblingsalben herunterzuladen.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Icons aus der tollen FamFamFam Silk Icon Suite
+von Mark James
+http://www.famfamfam.com/lab/icons/silk/
+</GADGET_ABOUT_TEXT>
+  <strHelp>Hilfe und mehr Informationen</strHelp>
+  <strJamendo>Besuche Jamendo.com</strJamendo>
+  <strModes>Suchmodus</strModes>
+  <strTag>Tag</strTag>
+  <strSearch>Suche</strSearch>
+  <strAlbum>Albu,</strAlbum>
+  <strArtist>Künstler</strArtist>
+  <strNothing>Nichts gefunden</strNothing>
+  <strSearching>Suche, bitte warten...</strSearching>
+</strings>

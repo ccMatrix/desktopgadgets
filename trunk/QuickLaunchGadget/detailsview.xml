@@ -1,0 +1,6 @@
+﻿<view height="480" resizable="true" width="640" onopen="detailsview_onopen()"
+  onrestore="resizeImage()" onsize="resizeImage()">
+    <div height="100%" width="100%" background="#000000"/>
+    <img height="480" name="previewImage" width="640" src="stock_images\image.png"/>
+    <script src="detailsview.js" />
+</view>

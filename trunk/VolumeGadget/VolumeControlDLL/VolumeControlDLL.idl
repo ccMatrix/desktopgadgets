@@ -1,0 +1,41 @@
+// VolumeControlDLL.idl : IDL-Quelle für VolumeControlDLL
+//
+
+// Diese Datei wird mit dem MIDL-Tool bearbeitet,
+// um den Quellcode für die Typbibliothek (VolumeControlDLL.tlb) und die Abruffunktionen zu erstellen.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(C28FF508-8AC3-4580-BD8A-9A3C3344CF1A),
+	dual,
+	nonextensible,
+	helpstring("IVolumeControl-Schnittstelle"),
+	pointer_default(unique)
+]
+interface IVolumeControl : IDispatch{
+	[id(1), helpstring("method getVolume")] HRESULT getVolume([out,retval] DWORD* volume);
+	[id(2), helpstring("method setVolume")] HRESULT setVolume([in] SHORT* volume);
+	[id(3), helpstring("method toggleMute")] HRESULT toggleMute();
+	[id(4), helpstring("method isMute")] HRESULT isMute([out,retval] SHORT* ismute);
+	[id(5), helpstring("Methode isWinVista")] HRESULT isWinVista([out,retval] BYTE* vista);
+};
+[
+	uuid(BBAC7EB8-FE2D-4413-A8D4-1F5BBCC08590),
+	version(1.0),
+	helpstring("VolumeControlDLL 1.0 Typbibliothek")
+]
+library VolumeControlDLLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5A409F51-AFFA-4096-95CB-FC4839C96B88),
+		helpstring("VolumeControl Class")
+	]
+	coclass VolumeControl
+	{
+		[default] interface IVolumeControl;
+	};
+};

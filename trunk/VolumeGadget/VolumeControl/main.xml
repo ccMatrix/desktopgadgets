@@ -1,0 +1,15 @@
+﻿<view height="27" resizable="true" width="200" onminimize="view_onminimize()"
+  onopen="view_onOpen()" onsize="redraw()">
+    <img height="27" name="bgcenter" width="37" x="42" src="image\background_center.png"/>
+    <img height="27" name="bgleft" width="37" src="image\background_left.png"/>
+    <img height="27" name="bgright" width="37" x="90" src="image\background_right.png"/>
+    <progressbar enabled="true" height="21" hitTest="htclient" name="volumeSlider"
+      width="120" x="29" y="3" emptyImage="image\volumebg_empty.png"
+      fullImage="image\volumebg.png" thumbDownImage="image\dragImage_down.png"
+      thumbImage="image\dragImage.png" thumbOverImage="image\dragImage_hover.png"
+      onchange="jumpVol()"/>
+    <img cursor="hand" enabled="true" height="16" hitTest="htclient"
+      name="soundIcon" width="16" x="8" y="5" onclick="mute()"
+      src="image\sound.png"/>
+    <script src="main.js" />
+</view>

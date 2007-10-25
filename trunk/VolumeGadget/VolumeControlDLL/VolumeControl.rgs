@@ -1,0 +1,27 @@
+HKCR
+{
+	VolumeControlDLL.VolumeControl.1 = s 'VolumeControl Class'
+	{
+		CLSID = s '{5A409F51-AFFA-4096-95CB-FC4839C96B88}'
+	}
+	VolumeControlDLL.VolumeControl = s 'VolumeControl Class'
+	{
+		CLSID = s '{5A409F51-AFFA-4096-95CB-FC4839C96B88}'
+		CurVer = s 'VolumeControlDLL.VolumeControl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5A409F51-AFFA-4096-95CB-FC4839C96B88} = s 'VolumeControl Class'
+		{
+			ProgID = s 'VolumeControlDLL.VolumeControl.1'
+			VersionIndependentProgID = s 'VolumeControlDLL.VolumeControl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{BBAC7EB8-FE2D-4413-A8D4-1F5BBCC08590}'
+		}
+	}
+}

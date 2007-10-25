@@ -1,0 +1,16 @@
+﻿<strings>
+  <GADGET_NAME>PrisonBreak Fan Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>See the countdown to the next PrisonBreak episode</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>PrisonBreak Fan Gadget
+© 2007 Benjamin Schirmer
+See the countdown to the next PrisonBreak episode.</GADGET_ABOUT_TEXT>
+
+  <strLoading>Loading ...</strLoading>
+  <strNoInternet>Could not load feed</strNoInternet>
+  <strPlaying>Now Playing</strPlaying>
+  <strNoData>visit the web</strNoData>
+
+  <strRefresh>Refresh</strRefresh>
+  <strGadgetPage>Help and more Information</strGadgetPage>
+  <strPrisonBreakPage>Visit PrisonBreak Website</strPrisonBreakPage>
+</strings>

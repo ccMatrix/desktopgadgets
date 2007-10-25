@@ -1,0 +1,52 @@
+﻿<view height="70" width="377" ondock="view_onDock()" onundock="view_onUnDock()"
+  onopen="view_onOpen()">
+  <img cursor="hand" enabled="true" height="70" hitTest="htclient"
+    name="backgroundImage" width="377" x="0" y="0" onclick="goPrisonBreak()"
+    src="images\background.png"/>
+  <div height="36" name="timerDiv" width="140" visible="false" x="0"
+    y="0">
+    <label height="25" name="curDays" width="30" x="0" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">0
+    </label>
+    <label height="25" name="curHours" width="35" x="38" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">00
+    </label>
+    <label height="25" name="curMinutes" width="35" x="73" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">00
+    </label>
+    <label height="25" name="curSeconds" width="35" x="108" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">00
+    </label>
+    <label height="25" name="sep1" width="5" x="35" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">:
+    </label>
+    <label height="25" name="sep2" width="5" x="70" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">:
+    </label>
+    <label height="25" name="sep3" width="5" x="105" y="0" align="center"
+      bold="true" color="#FFFFFF" size="14">:
+    </label>
+    <label height="16" name="labelDays" width="35" x="0" y="22" align="center"
+      bold="true" color="#FFFFFF" font="Arial" size="8">DAYS
+    </label>
+    <label height="16" name="labelHours" width="40" x="35" y="22" align="center"
+      bold="true" color="#FFFFFF" font="Arial" size="8">HOURS
+    </label>
+    <label height="16" name="labelMinutes" width="35" x="73" y="22" align="center"
+      bold="true" color="#FFFFFF" font="Arial" size="8">MIN
+    </label>
+    <label height="16" name="labelSeconds" width="45" x="103" y="22" align="center"
+      bold="true" color="#FFFFFF" font="Arial" size="8">SEC
+    </label>
+  </div>
+  <img height="30" name="prisonBreakLogo" width="180" x="4" y="41"
+    src="images\logo.png"/>
+  <label height="16" name="loadingText" width="134" x="10" y="10" color="#FFFFFF"
+   >&strLoading;
+  </label>
+  <label height="30" name="labelPlaying" width="160" visible="false"
+    x="10" y="5" bold="true" color="#FFFFFF" size="14">&strPlaying;
+  </label>
+  <script src="main.js" />
+  <script src="xmlParser.js" />
+</view>

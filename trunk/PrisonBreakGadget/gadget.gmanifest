@@ -1,0 +1,13 @@
+﻿<gadget minimumGoogleDesktopVersion="5.1.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.0.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.imagine-interactive.de/prisonbreakgadget/</authorWebsite>
+		<id>E43A6E1B-28F6-4FA4-9A34-C44319820DE9</id>
+		<copyright>Ãƒâ€šÃ‚Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+</gadget>

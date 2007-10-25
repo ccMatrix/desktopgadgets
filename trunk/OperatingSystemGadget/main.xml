@@ -1,0 +1,29 @@
+﻿<view height="300" resizable="true" width="250" ondock="view_onDock()"
+  onundock="view_onUndock()" onminimize="view_onMinimize()"
+  onopen="view_onOpen()" onpopin="view_onPopIn()" onpopout="view_onPopOut()"
+  onrestore="view_onRestore()" onsize="view_onSize()" onsizing="view_onSizing()">
+    <div height="205" hitTest="htclient" name="background" width="202"
+      visible="false">
+        <img height="16" name="bgtopleft" width="16" src="images\background_topleft.png"/>
+        <img height="16" name="bgtopright" width="16" x="160" src="images\background_topright.png"/>
+        <img height="10" name="bgbottomleft" width="16" y="160" src="images\background_bottomleft.png"/>
+        <img height="10" name="bgbottomright" width="16" x="160" y="160"
+          src="images\background_bottomright.png"/>
+        <img height="16" name="bgtop" width="100" x="30" src="images\background_top.png"/>
+        <img height="100" name="bgleft" width="16" y="30" src="images\background_left.png"/>
+        <img height="10" name="bgbottom" width="100" x="30" y="160" src="images\background_bottom.png"/>
+        <img height="100" name="bgright" width="16" x="160" y="30" src="images\background_right.png"/>
+        <div height="145" name="bgcenter" width="158" x="22" y="21" background="#101010"/>
+    </div>
+    <label height="16" name="osName" width="40" x="12" y="13" bold="true"
+      color="#FFFFFF" size="8"/>
+    <label height="16" name="osVersion" width="40" x="11" y="52" color="#FFFFFF"
+      size="8"/>
+    <label height="16" name="osServicePack" width="40" x="10" y="67" color="#FFFFFF"
+      size="8"/>
+    <label height="16" name="osSerial" width="40" x="11" y="32" color="#FFFFFF"
+      size="8"/>
+    <script src="main.js" />
+    <script src="json.js" />
+    <script src="oshelper.js" />
+</view>

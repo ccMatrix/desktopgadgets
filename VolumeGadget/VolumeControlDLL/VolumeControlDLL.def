@@ -1,0 +1,9 @@
+; VolumeControlDLL.def : Deklariert die Modulparameter.
+
+LIBRARY      "VolumeControlDLL.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE

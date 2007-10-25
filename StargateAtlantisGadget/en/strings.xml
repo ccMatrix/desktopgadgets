@@ -1,0 +1,16 @@
+﻿<strings>
+  <GADGET_NAME>Stargate Atlantis Fan Gadget</GADGET_NAME>
+  <GADGET_DESCRIPTION>View videos from Stargate Atlantis episodes and the cast.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Stargate Atlantis Fan Gadget
+© 2007 Benjamin Schirmer
+View videos from Stargate Atlantis episodes and the cast.
+
+The author is not affiliated with Sci-Fi. All trademarks are property of their respected owners. This gadget is a fan gadget. 
+</GADGET_ABOUT_TEXT>
+
+  <strRefresh>Refresh</strRefresh>
+  <strLoading>Loading ...</strLoading>
+  <strNoInternet>No Internet Connection</strNoInternet>
+  <strGadgetPage>Visit the gadget website</strGadgetPage>
+  <strAtlantisPage>Visit the Stargate Atlantis website</strAtlantisPage>
+</strings>

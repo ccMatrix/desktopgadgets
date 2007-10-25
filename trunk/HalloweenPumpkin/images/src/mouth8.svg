@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg3862"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\src"
+   sodipodi:docname="mouth8.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs3864">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient3697"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.35623,0,0,0.737338,27.484121,-84.302574)"
+       x1="240.03326"
+       y1="790.48945"
+       x2="240.73974"
+       y2="1053.4808" />
+    <linearGradient
+       id="linearGradient655">
+      <stop
+         offset="0"
+         style="stop-color:#fff7cf;stop-opacity:1;"
+         id="stop2474" />
+      <stop
+         offset="1"
+         style="stop-color:#ffda62;stop-opacity:1;"
+         id="stop2476" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient655"
+       id="radialGradient3657"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4889197,0,0,0.6716279,27.484121,-84.302574)"
+       cx="245.20484"
+       cy="907.81124"
+       fx="245.20484"
+       fy="907.81124"
+       r="83.00951" />
+    <linearGradient
+       id="linearGradient564">
+      <stop
+         offset="0"
+         style="stop-color:#ff6a00;stop-opacity:1;"
+         id="stop2519" />
+      <stop
+         offset="1"
+         style="stop-color:#ff9f00;stop-opacity:1;"
+         id="stop2521" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient3590"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.6012734,0,0,1.663137,27.484121,-84.302574)"
+       x1="537.08882"
+       y1="377.14442"
+       x2="537.78912"
+       y2="391.74753" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient2759"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.6012734,0,0,1.663137,49.221638,-51.298916)"
+       x1="537.08882"
+       y1="377.14442"
+       x2="537.78912"
+       y2="391.74753" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient2763"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.6012734,0,0,1.663137,58.060466,-47.889649)"
+       x1="537.08882"
+       y1="377.14442"
+       x2="537.78912"
+       y2="391.74753" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="441.34793"
+     inkscape:cy="460.86275"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1265"
+     inkscape:window-height="863"
+     inkscape:window-x="1326"
+     inkscape:window-y="46" />
+  <metadata
+     id="metadata3867">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path2583"
+       style="fill:url(#linearGradient3697);fill-rule:evenodd"
+       d="M 265.83312,493.75543 C 275.96012,503.10243 305.08712,524.84043 315.21412,534.18843 C 314.40412,549.76643 313.76312,556.59043 312.29412,572.16943 C 312.29412,572.16943 338.73712,576.75543 344.52112,577.82343 C 345.83912,570.21843 347.93012,556.83943 348.75712,546.92543 C 352.69207,547.2777 366.10161,550.34023 382.63123,552.55065 L 381.59644,578.44445 L 408.7198,581.26103 L 410.37299,554.75875 C 425.37403,554.90746 440.17442,555.03577 455.83639,548.8143 L 456.91581,569.64414 L 477.79376,562.16645 L 479.80866,534.89174 C 492.48762,526.47598 500.18109,516.64377 510.61107,499.49743 C 517.81637,531.57918 508.03047,559.75842 489.29367,582.27442 C 486.95157,585.08892 484.46377,587.79721 481.84437,590.39143 C 479.22497,592.98565 476.97905,596.72848 474.11085,599.08669 L 467.83735,581.2104 L 443.67944,591.26496 L 448.46241,614.26228 C 445.01831,615.81801 438.04547,618.50882 434.46637,619.76559 C 430.88727,621.02235 427.24777,622.1257 423.56207,623.06776 C 419.87637,624.00982 416.14457,624.7906 412.38077,625.40223 C 398.90771,627.59163 386.05629,628.57892 370.63015,624.97652 L 373.57993,600.90157 L 350.7486,594.57968 L 345.44013,615.81083 C 335.67152,612.20366 332.51331,611.61035 323.57748,604.70912 C 296.66181,583.92187 274.98562,548.28018 265.83312,493.75543 z "
+       sodipodi:nodetypes="ccccccccccccccssccccsssccccsc"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png" />
+    <path
+       id="path2619"
+       style="fill:url(#radialGradient3657);fill-rule:evenodd"
+       d="M 275.64612,501.13443 C 285.77312,509.36243 305.08712,522.35343 315.21412,530.58543 C 314.40412,544.29643 314.65312,550.30243 313.18412,564.01643 C 313.18412,564.01643 338.73712,568.05243 344.52112,568.99243 C 345.83912,562.29843 347.93012,550.52343 348.75712,541.79543 C 352.95777,542.12641 365.72983,546.23693 382.88354,549.08109 L 381.79206,576.99834 L 407.92512,579.44182 L 411.11958,552.15026 C 426.8529,552.79502 440.75895,553.50855 456.70954,547.4434 L 457.90689,566.96492 L 476.9962,559.81229 L 479.49735,536.30119 C 493.00704,524.9144 497.58203,518.85793 510.42407,503.07243 C 513.98687,534.56543 499.42297,560.57959 480.24337,578.34385 C 475.44847,582.78492 475.20323,582.96954 469.51093,586.4542 L 466.25227,576.84018 L 435.41037,589.33335 L 437.60557,603.37024 C 424.84537,608.34802 419.61277,607.13712 405.35887,607.89577 C 394.95591,608.44947 387.47883,607.30732 377.23795,605.42748 L 377.1251,595.15857 L 345.93687,586.52023 L 343.44694,596.54105 C 311.05366,580.92367 284.30011,549.31374 275.64612,501.13443 z "
+       sodipodi:nodetypes="ccccccccccccccsccccsccccc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918" />
+    <path
+       id="path2621"
+       style="fill:none;stroke:#d94842;stroke-width:2.15407991;stroke-linecap:round;stroke-opacity:0.70440297"
+       d="M 265.23412,494.97443 C 276.16546,558.89787 309.20337,597.99987 345.43252,615.79342 L 350.43056,594.56572 L 374.06497,600.78886 L 371.21391,624.8913 C 383.54211,627.67436 393.82368,627.6574 406.11307,626.52756 C 420.94577,625.16389 434.91723,621.10842 448.33673,615.06945 L 443.86658,590.30448 L 467.51567,581.48412 L 473.47533,598.7509 C 482.15543,591.08661 490.08357,581.25933 496.29287,570.50752 C 507.49697,551.10661 513.59827,524.76706 510.85107,497.67854"
+       sodipodi:nodetypes="cccccsccccsc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918" />
+    <path
+       id="path2677"
+       style="fill:url(#linearGradient3590);fill-rule:evenodd"
+       d="M 344.93612,569.19643 L 351.96912,562.33943 L 355.06112,542.76143 L 349.04812,541.19043 L 344.93612,569.19643 z "
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918" />
+    <path
+       id="path2757"
+       style="fill:url(#linearGradient2759);fill-rule:evenodd"
+       d="M 407.83736,579.97673 L 414.87036,573.11973 L 417.96236,551.77396 L 410.43413,551.71819 L 407.83736,579.97673 z "
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path2761"
+       style="fill:url(#linearGradient2763);fill-rule:evenodd"
+       d="M 477.53788,560.40503 L 484.57088,553.54803 L 487.1578,529.42434 L 478.61942,535.42949 L 477.53788,560.40503 z "
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\mouth_08.png"
+       inkscape:export-xdpi="63.538918"
+       inkscape:export-ydpi="63.538918"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

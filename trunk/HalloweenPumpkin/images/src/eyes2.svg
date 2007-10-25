@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2402"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\src"
+   sodipodi:docname="eyes2.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2404">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient3690"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.8647545,0,0,1.1563975,-93.520122,37.719426)"
+       x1="419.36551"
+       y1="370.36877"
+       x2="458.83037"
+       y2="503.62054" />
+    <linearGradient
+       id="linearGradient564">
+      <stop
+         offset="0"
+         style="stop-color:#ff6a00;stop-opacity:1;"
+         id="stop2519" />
+      <stop
+         offset="1"
+         style="stop-color:#ff9f00;stop-opacity:1;"
+         id="stop2521" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient564"
+       id="linearGradient3684"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.8647541,0,0,1.1563981,-93.520122,37.719426)"
+       x1="339.42155"
+       y1="377.80927"
+       x2="339.42155"
+       y2="477.75576" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient655"
+       id="linearGradient3678"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9067726,0,0,1.1028123,-93.520122,37.719426)"
+       x1="492.79725"
+       y1="443.67748"
+       x2="546.75533"
+       y2="441.07392" />
+    <linearGradient
+       id="linearGradient655">
+      <stop
+         offset="0"
+         style="stop-color:#fff7cf;stop-opacity:1;"
+         id="stop2474" />
+      <stop
+         offset="1"
+         style="stop-color:#ffda62;stop-opacity:1;"
+         id="stop2476" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient655"
+       id="linearGradient3675"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.8863613,0,0,1.1282081,-93.520122,37.719426)"
+       x1="338.94416"
+       y1="426.9088"
+       x2="218.85221"
+       y2="424.43655" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="299.40131"
+     inkscape:cy="514.82071"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1302"
+     inkscape:window-height="820"
+     inkscape:window-x="1349"
+     inkscape:window-y="69" />
+  <metadata
+     id="metadata2407">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path2589"
+       style="fill:url(#linearGradient3690);fill-rule:evenodd"
+       d="M 332.69912,471.69471 C 312.90851,453.65637 303.2343,446.03979 280.51675,411.76496 L 276.7048,414.39072 C 300.81085,453.36324 306.71116,454.894 325.72936,475.77647 C 307.45292,502.7593 302.18583,516.98863 322.11324,554.60438 C 341.37919,584.19842 354.56972,582.08804 368.52511,585.98089 C 392.90774,584.87274 425.13318,573.30249 432.04206,548.48357 C 446.5257,555.52059 456.816,558.85962 472.09064,560.99388 L 473.13966,556.31782 C 457.51375,553.24779 449.84648,550.18892 432.93384,541.47857 C 367.62133,500.89846 358.7103,495.63446 332.69912,471.69471 z "
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+    <path
+       id="path2593"
+       style="fill:url(#linearGradient3684);fill-rule:evenodd"
+       d="M 242.38664,524.40965 C 211.72468,563.91697 159.36854,579.1225 121.9696,517.34475 C 154.36634,480.11512 208.56728,487.9005 242.38664,524.40965 z "
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+    <path
+       id="path2597"
+       style="fill:url(#linearGradient3678);fill-rule:evenodd"
+       d="M 335.20073,482.12828 C 324.35281,489.38517 312.48153,512.08458 322.32103,538.85424 C 328.64997,556.07296 362.85361,585.0177 393.92976,574.66658 C 411.19891,568.91442 415.29833,564.79611 426.25359,545.83714 C 374.58151,518.59585 359.08569,502.22691 335.20073,482.12828 z "
+       sodipodi:nodetypes="csscc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+    <path
+       id="path2599"
+       style="fill:url(#linearGradient3675);fill-rule:evenodd"
+       d="M 130.03514,515.73661 C 178.12118,497.60445 189.79011,498.03233 230.9881,525.19533 C 204.81647,559.99415 158.71854,562.8584 130.03514,515.73661 z "
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+    <path
+       id="path2605"
+       style="fill:none;stroke:#d94842;stroke-width:2.01046991;stroke-linejoin:bevel;stroke-opacity:0.70440297"
+       d="M 326.13881,476.13771 C 296.05138,512.85839 317.2492,559.63475 342.36935,577.11784 C 365.09216,591.74022 417.34022,586.4156 432.07643,549.03306 C 449.39176,556.78571 453.8612,557.52719 471.94512,561.25807"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+    <path
+       id="path2607"
+       style="fill:none;stroke:#d94842;stroke-width:2.01046991;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.70440297"
+       d="M 121.67399,518.09919 C 146.39554,552.36491 191.0897,584.33007 240.49252,525.55605"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\Eigene Dateien\Gadget Projects\HalloweenPumpkin\images\eyes_02.png.png"
+       inkscape:export-xdpi="51.578728"
+       inkscape:export-ydpi="51.578728" />
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+﻿<view height="335" width="350" onopen="view_onOpen()">
+  <img name="pumpkin" x="0" y="0" src="images\pumpkin.png"/>
+  <img cursor="hand" enabled="true" hitTest="htclient" name="eyes"
+    x="67" y="107" onclick="eyes_onclick()" src="images\eyes_01.png"
+   />
+  <img cursor="hand" enabled="true" hitTest="htclient" name="mouth"
+    x="81" y="218" onclick="mouth_onclick()" src="images\mouth_03.png"
+   />
+  <img cursor="hand" enabled="true" hitTest="htclient" name="nose"
+    x="147" y="191" onclick="nose_onclick()" src="images\nose_01.png"
+   />
+  <script src="main.js" />
+</view>

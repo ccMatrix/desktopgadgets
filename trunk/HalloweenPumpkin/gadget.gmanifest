@@ -1,0 +1,13 @@
+﻿<gadget minimumGoogleDesktopVersion="5.1.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.0.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.googledesktopgadgets.com/index.php?show=pumpkin</authorWebsite>
+		<id>AA124018-1625-4CCB-8696-F3FDC6EF29F3</id>
+		<copyright>Ã‚Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+</gadget>

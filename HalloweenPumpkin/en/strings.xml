@@ -1,0 +1,15 @@
+﻿<strings>
+  <GADGET_NAME>Halloween Pumpkin</GADGET_NAME>
+  <GADGET_DESCRIPTION>Create your own Halloween Pumpkin for your desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Halloween Pumpkin
+© 2007 Benjamin Schirmer
+Create your own Halloween Pumpkin for your desktop.
+
+Graphics based upon 
+http://openclipart.org/clipart/recreation/holiday/pumpkin2_yemu_01.svg
+Sound effects from http://www.ilovewavs.com/
+</GADGET_ABOUT_TEXT>
+
+  <strSounds>play sound effects</strSounds>
+  <strGadget>find more cool gadgets</strGadget>
+</strings>

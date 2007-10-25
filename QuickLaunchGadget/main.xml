@@ -1,0 +1,35 @@
+﻿<view height="100" resizable="true" showCaptionAlways="true" width="200"
+  onopen="view_onOpen()" onsize="view_onSize()" onsizing="view_onSizing()"
+ >
+  <div cursor="hand" height="16" hitTest="htclient" name="toolBar"
+    width="180" x="0" y="0" onclick="toolbar_parentFolder()"
+    background="#FFFFFF">
+    <button height="16" name="tbParent" tooltip="&tipParent;" width="16"
+      x="0" y="0" onclick="toolbar_ParentFolder()" ondblclick="toolbar_GoRoot()"
+      downImage="ql_images\folder_go.png" image="ql_images\folder_go.png"
+      overImage="ql_images\folder_go.png"/>
+    <button height="16" name="tbPrevious" opacity="80" tooltip="&tipPrevious;"
+      width="16" x="148" onclick="toolbar_Previous()" downImage="ql_images\arrow_left.png"
+      image="ql_images\arrow_left.png" overImage="ql_images\arrow_left.png"
+     />
+    <button height="16" name="tbNext" opacity="80" tooltip="&tipNext;" width="16"
+      x="164" onclick="toolbar_Next()" downImage="ql_images\arrow_right.png"
+      image="ql_images\arrow_right.png" overImage="ql_images\arrow_right.png"
+     />
+    <button height="16" name="tbRefresh" tooltip="&tipRefresh;" width="16"
+      x="128" onclick="toolbar_Refresh()" downImage="ql_images\arrow_refresh.png"
+      image="ql_images\arrow_refresh.png" overImage="ql_images\arrow_refresh.png"
+     />
+    <button height="16" name="tbContext" width="16" visible="false" x="112"
+      y="0" downImage="ql_images\context.png" image="ql_images\context.png"
+      overImage="ql_images\context.png"/>
+  </div>
+  <div enabled="true" height="94" hitTest="htclient" name="cnAreaDiv"
+    width="180" x="1" y="29">
+    <contentarea height="100%" name="cnArea" width="100%"/>
+  </div>
+  <img height="32" name="tempImage" width="32" visible="false" x="157"
+    y="162" src="stock_images\image.png"/>
+  <script src="main.js" />
+  <script src="options.js" />
+</view>

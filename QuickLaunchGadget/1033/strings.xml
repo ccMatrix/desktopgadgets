@@ -1,0 +1,32 @@
+﻿<strings>
+  <GADGET_NAME>QuickLaunch</GADGET_NAME>
+  <GADGET_DESCRIPTION>QuickLaunch Version 3 (Preview Version)</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>QuickLaunch V3 Beta
+© 2007 Benjamin Schirmer
+QuickLaunch Gadget</GADGET_ABOUT_TEXT>
+
+  <strDisplayList>List</strDisplayList>
+  <strDisplayIconSmall>small Symbols</strDisplayIconSmall>
+  <strDisplayIconLarge>large Symbols</strDisplayIconLarge>
+  <strDisplayTiles>Tiles</strDisplayTiles>
+  <strDisplayThumb>Thumbnails</strDisplayThumb>
+
+  <tipParent>Parent Folder</tipParent>
+  <tipPrevious>Previous Items</tipPrevious>
+  <tipNext>Next Items</tipNext>
+  <tipRefresh>Refresh</tipRefresh>
+
+  <msgRemove>You have selected to folder:
+%s
+
+Do you want to remove this folder?</msgRemove>
+
+  <strOptionsRoot>Select your QuickLaunch root folders:</strOptionsRoot>
+  <strOptionRevert>Revert to root folder after launch</strOptionRevert>
+  <strOptionSingle>Launch files with single click</strOptionSingle>
+  <strOptionPreview>Preview images and text files</strOptionPreview>
+  <strOptionExtension>Show theses files as text files:</strOptionExtension>
+  <strOptionIconleft>Display icons on the left side</strOptionIconleft>
+  <strOptionContext>Enable filesystem context menu</strOptionContext>
+  <strOptionsNewRoot>Choose new root folder</strOptionsNewRoot>
+</strings>

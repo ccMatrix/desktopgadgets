@@ -1,0 +1,15 @@
+﻿<gadget minimumGoogleDesktopVersion="4.2006.505.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>plugin_small.gif</smallIcon>
+		<icon>plugin_large.gif</icon>
+		<version>3.0.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.imagine-interactive.de/quicklaunchgadget/</authorWebsite>
+		<id>C2CBE5F3-832E-40a4-BF4F-9CC3242EFD2C</id>
+		<copyright>Ã‚Â©2007 Imagine Interactive</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
+</gadget>

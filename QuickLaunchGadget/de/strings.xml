@@ -1,0 +1,32 @@
+﻿<strings>
+  <GADGET_NAME>QuickLaunch</GADGET_NAME>
+  <GADGET_DESCRIPTION>QuickLaunch Version 3 (Preview Version)</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>QuickLaunch V3 Beta
+© 2007 Imagine Interactive
+QuickLaunch Gadget</GADGET_ABOUT_TEXT>
+
+  <strDisplayList>Liste</strDisplayList>
+  <strDisplayIconSmall>kleine Symbole</strDisplayIconSmall>
+  <strDisplayIconLarge>große Symbole</strDisplayIconLarge>
+  <strDisplayTiles>Kacheln</strDisplayTiles>
+  <strDisplayThumb>Miniaturansicht</strDisplayThumb>
+
+  <tipParent>Übergeordnetes Verzeichnis</tipParent>
+  <tipPrevious>Vorherige Objekte</tipPrevious>
+  <tipNext>Weitere Objekte</tipNext>
+  <tipRefresh>Aktualisieren</tipRefresh>
+
+  <msgRemove>Du hast folgendes Verzeichnis ausgewählt:
+%s
+
+Willst du dieses Verzeichnis entfernen?</msgRemove>
+
+  <strOptionsRoot>Wähle deine QuickLaunch Verzeichnisse:</strOptionsRoot>
+  <strOptionRevert>Nach dem Start zum Stammverzeichnis zurück</strOptionRevert>
+  <strOptionSingle>Dateien mit einfachem klick starten</strOptionSingle>
+  <strOptionPreview>Vorschau von Bild- und Textdateien</strOptionPreview>
+  <strOptionExtension>Zeige diese Dateien als Textdateien:</strOptionExtension>
+  <strOptionIconleft>Zeige Icons auf der linken Seite</strOptionIconleft>
+  <strOptionContext>Aktiviere Dateisystem Rechtsklick-Menü</strOptionContext>
+  <strOptionsNewRoot>Wähle das Stammverzeichnis</strOptionsNewRoot>
+</strings>

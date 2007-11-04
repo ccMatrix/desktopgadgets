@@ -1,0 +1,16 @@
+﻿<view height="290" width="240" onclose="view_onClose()" onopen="view_onOpen()"
+ >
+  <img x="15" y="30" src="images\tree.png"/>
+  <div enabled="true" height="290" hitTest="htclient" name="decoration"
+    width="240" x="0" y="0" onmousemove="getCurPos()" onmouseover="resetCurPos()"
+   />
+  <div height="290" name="snowContainer" width="240" x="0" y="0"/>
+  <div enabled="true" height="290" hitTest="htclient" name="overlayTrigger"
+    opacity="1" width="240" x="0" y="0" onmousemove="getCurPos()"
+    onmouseover="resetCurPos()" background="#FFFFFF"/>
+  <script src="point.js" />
+  <script src="main.js" />
+  <script src="options.js" />
+  <script src="json.js" />
+  <script src="snow.js" />
+</view>

@@ -215,7 +215,11 @@ function view_onOpen() {
 
 	snow = new Snow( snowContainer, 10);
 	if (options.getValue("snow")) {
+		snowContainer.visible = true;
 		snowInterval = setInterval("snow.snow()", 25);
+	}
+	else {
+		snowContainer.visible = false;
 	}
 	restorePositions();
 }

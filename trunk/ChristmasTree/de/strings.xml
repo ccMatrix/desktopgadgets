@@ -1,0 +1,50 @@
+﻿<strings>
+  <GADGET_NAME>Weihnachtsbaum</GADGET_NAME>
+  <GADGET_DESCRIPTION>Schmücke deinen Weihnachtsbaum</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Weihnachtsbaum
+© 2007 Benjamin Schirmer
+Schmücke deinen Weihnachtsbaum
+
+Klicke mit der rechten Maustaste auf deinen Baum und wähle aus wie du deinen Baum schmücken willst.</GADGET_ABOUT_TEXT>
+
+	<strAddBalls>Kugeln hinzufügen</strAddBalls>
+	<strBallRed>rote Kugel</strBallRed>
+	<strBallBlue>blaue Kugel</strBallBlue>
+	<strBallGreen>grüne Kugel</strBallGreen>
+	<strBallYellow>gelbe Kugel</strBallYellow>
+	<strBallPurple>lila Kugel</strBallPurple>
+	<strBallOrange>orangene Kugel</strBallOrange>
+
+	<strAddStars>Sterne hinzufügen</strAddStars>
+	<strStarRed>roter Stern</strStarRed>
+	<strStarBlue>blauer Stern</strStarBlue>
+	<strStarGreen>grüner Stern</strStarGreen>
+	<strStarYellow>gelber Stern</strStarYellow>
+	<strStarPurple>lilaner Stern</strStarPurple>
+	<strStarOrange>orangener Stern</strStarOrange>
+
+	<strAddCandles>Kerzen hinzufügen</strAddCandles>
+	<strCandleRed>rote Kerze</strCandleRed>
+	<strCandleBlue>blaue Kerze</strCandleBlue>
+	<strCandleGreen>grüne Kerze</strCandleGreen>
+	<strCandleYellow>gelbe Kerze</strCandleYellow>
+	<strCandlePurple>lilane Kerze</strCandlePurple>
+	<strCandleOrange>orangene Kerze</strCandleOrange>
+
+	<strAddGifts>Geschenke hinzufügen</strAddGifts>
+	<strGiftRed>rotes Geschenk</strGiftRed>
+	<strGiftBlue>blaues Geschenk</strGiftBlue>
+	<strGiftGreen>grünes Geschenk</strGiftGreen>
+	<strGiftYellow>gelbes Geschenk</strGiftYellow>
+	<strGiftPurple>lilanes Geschenk</strGiftPurple>
+	<strGiftOrange>orangenes Geschenk</strGiftOrange>
+
+	<strAddMisc>Dekoration hinzufügen</strAddMisc>
+	<strMiscBell>Glocke hinzufügen</strMiscBell>
+	<strMiscTinsel>Lametta hinzufügen</strMiscTinsel>
+
+
+	<strReset>Neuen Baum anfangen</strReset>
+	<strSnow>Schneeflocken anzeigen</strSnow>
+	<strResetQuest>Willst du wirklich einen neuen Baum anfangen?</strResetQuest>
+</strings>

@@ -1,0 +1,50 @@
+﻿<strings>
+  <GADGET_NAME>Christmas Tree</GADGET_NAME>
+  <GADGET_DESCRIPTION>decorate your christmas tree</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Christmas Tree
+© 2007 Benjamin Schirmer
+Decorate your own christmas tree.
+
+Right click on your tree and select the item you want to add to your tree.</GADGET_ABOUT_TEXT>
+
+	<strAddBalls>Add Baubles</strAddBalls>
+	<strBallRed>Red Bauble</strBallRed>
+	<strBallBlue>Blue Bauble</strBallBlue>
+	<strBallGreen>Green Bauble</strBallGreen>
+	<strBallYellow>Yellow Bauble</strBallYellow>
+	<strBallPurple>Purple Bauble</strBallPurple>
+	<strBallOrange>Orange Bauble</strBallOrange>
+
+	<strAddStars>Add Stars</strAddStars>
+	<strStarRed>Red Star</strStarRed>
+	<strStarBlue>Blue Star</strStarBlue>
+	<strStarGreen>Green Star</strStarGreen>
+	<strStarYellow>Yellow Star</strStarYellow>
+	<strStarPurple>Purple Star</strStarPurple>
+	<strStarOrange>Orange Star</strStarOrange>
+
+	<strAddCandles>Add Candles</strAddCandles>
+	<strCandleRed>Red Candle</strCandleRed>
+	<strCandleBlue>Blue Candle</strCandleBlue>
+	<strCandleGreen>Green Candle</strCandleGreen>
+	<strCandleYellow>Yellow Candle</strCandleYellow>
+	<strCandlePurple>Purple Candle</strCandlePurple>
+	<strCandleOrange>Orange Candle</strCandleOrange>
+
+	<strAddGifts>Add Gifts</strAddGifts>
+	<strGiftRed>Red Gift</strGiftRed>
+	<strGiftBlue>Blue Gift</strGiftBlue>
+	<strGiftGreen>Green Gift</strGiftGreen>
+	<strGiftYellow>Yellow Gift</strGiftYellow>
+	<strGiftPurple>Purple Gift</strGiftPurple>
+	<strGiftOrange>Orange Gift</strGiftOrange>
+
+	<strAddMisc>Add Decoration</strAddMisc>
+	<strMiscBell>Add Bell</strMiscBell>
+	<strMiscTinsel>Add Tinsel</strMiscTinsel>
+
+
+	<strReset>Reset Tree</strReset>
+	<strSnow>Show Snowflakes</strSnow>
+	<strResetQuest>Do you really want to reset your Tree?</strResetQuest>
+</strings>

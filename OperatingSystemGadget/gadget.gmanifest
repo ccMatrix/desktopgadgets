@@ -10,7 +10,4 @@
 		<authorWebsite>http://www.imagine-interactive.de/osgadget/</authorWebsite>
 		<id>C7FCCDDE-3A9D-482F-B7C5-02330A3CF1AB</id>
 		<copyright>Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
-	<install>
-		<object name="VistaGamesObj" clsid="1A48B013-647C-425D-BADD-97308E78A886" src="VistaGamesDLL.dll"/>
-	</install>
 </gadget>

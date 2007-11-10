@@ -17,9 +17,7 @@ class ATL_NO_VTABLE CVolumeControl :
 public:
 	CVolumeControl()
 	{
-		amdInitialize();
-		amdGetMasterVolumeControl();
-		amdGetMasterMuteControl();
+
 	}
 
 DECLARE_REGISTRY_RESOURCEID(IDR_VOLUMECONTROL)
@@ -35,7 +33,6 @@ END_COM_MAP()
 
 	HRESULT FinalConstruct()
 	{
-		amdUninitialize();
 		return S_OK;
 	}
 	

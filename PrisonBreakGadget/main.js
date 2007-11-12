@@ -1,5 +1,6 @@
 ﻿var feed = "http://www.fox.com/prisonbreak/images/xml/event_data.xml";
 var refreshInterval = null;
+var timeout = null;
 var parser = null;
 var isDocked = true;
 
@@ -58,7 +59,7 @@ function requestFeed() {
     }
   };
   req.send(null);
-  refreshInterval = setTimeout("requestFeed()", 3600000);
+  refreshInterval = setInterval("requestFeed()", 3600000);
 }
 
 function displayCountDown() {
@@ -108,6 +109,7 @@ function displayCountDown() {
 
 function displayTimeDiff(countdown)  {
   //gadget.debug.trace("CountDown is: "+countdown);
+  clearTimeout(timeout);
   if (countdown < 0) {
   }
   else {
@@ -127,7 +129,7 @@ function displayTimeDiff(countdown)  {
     curHours.innerText = hours;
     curMinutes.innerText = mins;
     curSeconds.innerText = secs;
-    setTimeout("displayCountDown()", 999);
+    timeout = setTimeout("displayCountDown()", 1000);
   }
 }
 

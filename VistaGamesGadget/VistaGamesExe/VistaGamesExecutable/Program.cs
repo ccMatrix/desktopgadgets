@@ -135,9 +135,29 @@ namespace VistaGamesExecutable
             if (!File.Exists(exePath))
             {
                 String exeFile = getExecutablePathFromGDF((String)gKey.GetValue("ConfigGDFBinaryPath"));
-                exePath = (String)gKey.GetValue("ConfigApplicationPath") + @"\" + exeFile;
+                String exeBasePath = (String)gKey.GetValue("ConfigApplicationPath") + @"\";
+                exePath = exeBasePath + exeFile;
                 exePath = exePath.Replace(@"\\", @"\");
-                //Console.WriteLine("GDF File: " + exePath);
+                if (!File.Exists(exePath))
+                {
+                    String[] parts = exeFile.Split('\\');
+                    for (int i = 0; i < parts.Length; i++)
+                    {
+                        parts[i] = "";
+                        String merged = exeBasePath+String.Join(@"\", parts);
+                        for (int j = 0; j < parts.Length; j++)
+                        {
+                            merged = merged.Replace(@"\\", @"\");
+                        }
+                        if (File.Exists(merged))
+                        {
+                            exePath = merged;
+                            break;
+                        }
+                    }
+                }
+                Console.WriteLine("GDF File: " + exePath);
+                Thread.Sleep(1000);
             }
             if (!File.Exists(exePath))
             {

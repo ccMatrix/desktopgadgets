@@ -1,0 +1,31 @@
+﻿<strings>
+  <GADGET_NAME>GoogleMail Icon</GADGET_NAME>
+  <GADGET_DESCRIPTION>Erhalte eine visuelle E-Mail Benachrichtigung direkt auf deinem Desktop.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>GoogleMail Icon
+© 2007 Benjamin Schirmer
+Erhalte eine visuelle E-Mail Benachrichtigung direkt auf deinem Desktop
+
+Klicke auf den Umschlag um dein GoogleMail Konto im Browser zu öffnen.
+Klicke auf den Zähler um eine Vorschau deiner neuen Mails anzusehen.
+Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
+</GADGET_ABOUT_TEXT>
+
+	<strDetailsTitle>Neue Mails in deinem GoogleMail Konto</strDetailsTitle>
+	<strMore>mehr</strMore>
+	<strUsername>Benutzername:</strUsername>
+	<strPassword>Passwort:</strPassword>
+	<strAccount>Kontoname:</strAccount>
+	
+	<strMoreOptions>Zusätzliche Optionen:</strMoreOptions>
+	<strShowAccount>zeige Kontoname an</strShowAccount>
+	<strAlwaysAccount>Zeige Kontoname bei leerer Mailbox</strAlwaysAccount>
+	<strAppsFix>Dies ist ein Google Apps Konto</strAppsFix>
+	<strInterval>Aktualisiere alle</strInterval>
+	<strMinutes>Minuten</strMinutes>
+
+	<strRefresh>Mails abfragen</strRefresh>
+	<strConfig>konfigurieren</strConfig>
+	<strNoSubject>kein Betreff</strNoSubject>
+	<strNoSummary>leere E-Mail</strNoSummary>
+
+</strings>

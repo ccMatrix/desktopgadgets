@@ -1,0 +1,15 @@
+﻿<gadget minimumGoogleDesktopVersion="5.1.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.0.1.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.googledesktopgadgets.com/gmailicon/</authorWebsite>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+		<id>18593C55-0E24-479C-9564-358848CC23F2</id>
+		<copyright>Â©2007 Benjamin Schirmer</copyright>
+	</about>
+</gadget>

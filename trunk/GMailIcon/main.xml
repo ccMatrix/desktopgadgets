@@ -1,0 +1,30 @@
+﻿<view height="120" width="200" onminimize="view_onMinimize()" onopen="view_onOpen()"
+  onrestore="view_onRestore()">
+  <img cursor="hand" enabled="true" height="123" hitTest="htclient"
+    name="background" width="153" x="25" y="5" onclick="openGmail();"
+    src="images\gmail_envelope.png"/>
+  <div cursor="hand" height="45" hitTest="htclient" name="divTitle"
+    width="142" x="0" y="60">
+    <img name="img1" opacity="200" x="-10" y="0" src="images\titlebg.png"
+     />
+    <label cursor="hand" enabled="true" height="22" hitTest="htclient"
+      name="labelTitle" width="213" x="14" y="11" onclick="gmailDetails();"
+      ondblclick="openGmail();" bold="true" color="#FFFFFF"
+      size="12"/>
+  </div>
+  <div cursor="hand" height="103" hitTest="htclient" name="newMails"
+    width="104" x="104" y="33">
+    <img height="60" name="dot" width="62" x="14" y="20" src="images\reddot.png"
+     />
+    <label cursor="hand" enabled="true" height="31" hitTest="htclient"
+      mask="images\reddot.png" name="newMailCount" width="34"
+      x="27" y="34" onclick="gmailDetails();" ondblclick="openGmail();"
+      align="center" bold="true" color="#FFFFFF" size="18"
+      valign="middle">0
+    </label>
+  </div>
+  <script src="main.js" />
+  <script src="xml2json.js" />
+  <script src="visiturl.js" />
+  <script src="options.js" />
+</view>

@@ -1,0 +1,30 @@
+﻿<strings>
+  <GADGET_NAME>GMail Icon</GADGET_NAME>
+  <GADGET_DESCRIPTION>Get a visual mail notification on your desktop.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>GMail Icon
+© 2007 Benjamin Schirmer
+Get a visual mail notification on your desktop.
+
+Click on the envelope to go to your gmail account.
+Click on the counter to display a preview of the mails.
+Doubleclick the counter to go to your gmail account.
+</GADGET_ABOUT_TEXT>
+
+	<strDetailsTitle>New mails for your account</strDetailsTitle>
+	<strMore>more</strMore>
+	<strUsername>Username:</strUsername>
+	<strPassword>Password:</strPassword>
+	<strAccount>Account title:</strAccount>
+	
+	<strMoreOptions>additional options:</strMoreOptions>
+	<strShowAccount>Show account title</strShowAccount>
+	<strAlwaysAccount>Display account title if mailbox empty</strAlwaysAccount>
+	<strAppsFix>This is a Google Apps mail address</strAppsFix>
+	<strInterval>Update every</strInterval>
+	<strMinutes>minutes</strMinutes>
+
+	<strRefresh>Check Mails</strRefresh>
+	<strConfig>configurate</strConfig>
+	<strNoSubject>no subject</strNoSubject>
+	<strNoSummary>empty mail</strNoSummary>
+</strings>

@@ -1,0 +1,15 @@
+﻿<view height="350" resizable="false" width="450" onopen="detailsview_onopen()"
+  onsize="detailsview_onSize()" onsizing="detailsview_onSize()"
+ >
+  <div height="25" name="divDetailsTitle" width="100%" x="0" y="0"
+    background="#C63114">
+    <label height="16" name="labelTitle" width="332" x="7" y="4" color="#FFFFFF"
+     />
+  </div>
+  <listbox height="325" name="mailList" width="100%" x="0" y="25" background="#FFFFFF"
+    itemWidth="435" itemHeight="60" itemSelectedColor="#CBDEEE"
+    itemOverColor="#DBEEFE" onchange="showMail()" autoscroll="true"
+   />
+  <script src="detailsview.js" />
+  <script src="visiturl.js" />
+</view>

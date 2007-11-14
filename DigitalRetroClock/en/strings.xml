@@ -1,0 +1,11 @@
+﻿<strings>
+  <GADGET_NAME>Digital Retro Clock</GADGET_NAME>
+  <GADGET_DESCRIPTION>Digital retro style clock for your sidebar</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Digital Retro Clock
+© 2007 Benjamin Schirmer
+A digital retro style clock based on the new Digital Clock in KDE4.
+
+Images by the KDE project.</GADGET_ABOUT_TEXT>
+
+	<strMonths>Jan,Feb,Mar,Apr,Jun,Jul,Aug,Sep,Oct,Nov,Dec</strMonths>
+</strings>

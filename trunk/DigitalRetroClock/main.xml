@@ -1,0 +1,28 @@
+﻿<view height="100" width="198" onopen="view_onOpen()">
+  <img x="2" y="2" src="images\background.png"/>
+  <div height="43" name="clockDigits" width="130" x="33" y="23">
+    <img name="d0p1new" x="0" y="0" src="images\e0-p1.png"/>
+    <img name="d0p2old" x="0" y="23" src="images\e0-p2.png"/>
+    <img name="d0p1old" x="0" y="0" src="images\e0-p1.png"/>
+    <img name="d0p2new" x="0" y="23" src="images\e0-p2.png"/>
+    <img name="d1p1new" x="30" y="0" src="images\e0-p1.png"/>
+    <img name="d1p2old" x="30" y="23" src="images\e0-p2.png"/>
+    <img name="d1p1old" x="30" y="0" src="images\e0-p1.png"/>
+    <img name="d1p2new" x="30" y="23" src="images\e0-p2.png"/>
+    <img name="d2p1new" x="70" y="0" src="images\e0-p1.png"/>
+    <img name="d2p2old" x="70" y="23" src="images\e0-p2.png"/>
+    <img name="d2p1old" x="70" y="0" src="images\e0-p1.png"/>
+    <img name="d2p2new" x="70" y="23" src="images\e0-p2.png"/>
+    <img name="d3p1new" x="100" y="0" src="images\e0-p1.png"/>
+    <img name="d3p2old" x="100" y="23" src="images\e0-p2.png"/>
+    <img name="d3p1old" x="100" y="1" src="images\e0-p1.png"/>
+    <img name="d3p2new" x="100" y="23" src="images\e0-p2.png"/>
+  </div>
+  <label height="16" name="dateLabel" opacity="180" width="150" x="29"
+    y="71" align="right" bold="true" color="#FFFFFF" font="Arial"
+    size="8" valign="middle"/>
+  <label height="50" name="dot" width="31" x="153" y="-12" color="#D7D7D7"
+    size="40">·
+  </label>
+  <script src="main.js" />
+</view>

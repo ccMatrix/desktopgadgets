@@ -1,5 +1,6 @@
 ﻿var lastDigits = {"d0":-1,"d1":-1,"d2":-1,"d3":-1};
 var months = strMonths.split(",");
+var days = strDays.split(",");
 
 function view_onOpen() {
 	setInterval("animClock();", 1000);
@@ -11,7 +12,7 @@ function animClock() {
 	if (hour.length == 1) hour = "0"+hour;
   var min = d.getMinutes().toString();
 	if (min.length == 1) min = "0"+min;
-	dateLabel.innerText = d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
+	dateLabel.innerText = days[d.getDay()]+" "+d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
 	var s = hour+min;
 	setDigit("d0", s.charAt(0));
 	setDigit("d1", s.charAt(1));

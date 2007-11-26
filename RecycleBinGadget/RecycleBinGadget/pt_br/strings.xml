@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>Lixeira</GADGET_NAME>
+<GADGET_DESCRIPTION>Gerencie a sua lixeira a partir da barra lateral.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Lixeira
+Copyright 2007 Benjamin Schirmer
+
+Controle a sua lixeira a partir da barra lateral. Recursos:
+* Passe o mouse sobre a lixeira para ver quantos itens ela contém
+* Clique duas vezes na lixeira para abri-la no Explorer
+* Clique com o botão direito do mouse e selecione "Esvaziar lixeira” para esvaziá-la</GADGET_ABOUT_TEXT>
+<strRecycleBin>Lixeira</strRecycleBin>
+<strEmptyBin>Lixeira vazia</strEmptyBin>
+<strOpenRecycle>Abrir lixeira</strOpenRecycle>
+<strObjects>Elementos</strObjects>
+<strEmpty>A lixeira está vazia</strEmpty>
+<strHelp>Ajuda e mais informações</strHelp>
+</strings>

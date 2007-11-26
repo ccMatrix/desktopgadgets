@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>Corbeille</GADGET_NAME>
+<GADGET_DESCRIPTION>Gérez votre corbeille depuis la barre latérale.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Corbeille
+Copyright 2007 Benjamin Schirmer
+
+Gérez votre corbeille depuis la barre latérale. Fonctionnalités :
+* Passez avec votre curseur sur la corbeille pour voir les éléments qu'elle contient.
+* Double-cliquez dessus pour l'ouvrir dans l'Explorateur.
+* Cliquez avec le bouton droit et sélectionnez "Vider la corbeille" pour la vider.</GADGET_ABOUT_TEXT>
+<strRecycleBin>Corbeille</strRecycleBin>
+<strEmptyBin>Vider la corbeille</strEmptyBin>
+<strOpenRecycle>Ouvrir la corbeille</strOpenRecycle>
+<strObjects>Éléments</strObjects>
+<strEmpty>La corbeille est vide.</strEmpty>
+<strHelp>Aide et informations supplémentaires</strHelp>
+</strings>

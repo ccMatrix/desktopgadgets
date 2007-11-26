@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>ごみ箱</GADGET_NAME>
+<GADGET_DESCRIPTION>ごみ箱をサイドバーから管理できます。</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>ごみ箱
+Copyright 2007 Benjamin Schirmer
+
+ごみ箱をサイドバーから管理できます。機能: 
+* マウスを近づけると中身の数がわかります
+* ダブルクリックするとエクスプローラで開きます
+* 右クリックして [ごみ箱を空にする] を選ぶと空になります</GADGET_ABOUT_TEXT>
+<strRecycleBin>ごみ箱</strRecycleBin>
+<strEmptyBin>ごみ箱を空にする</strEmptyBin>
+<strOpenRecycle>ごみ箱を開く</strOpenRecycle>
+<strObjects>エレメント</strObjects>
+<strEmpty>ごみ箱は空です</strEmpty>
+<strHelp>ヘルプその他の情報</strHelp>
+</strings>

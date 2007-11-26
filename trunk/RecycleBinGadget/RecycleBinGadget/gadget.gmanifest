@@ -5,11 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>plugin_small.gif</smallIcon>
 		<icon>plugin_large.gif</icon>
-		<version>2.0.0.0</version>
+		<version>2.0.1.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/index.php?show=recyclebin</authorWebsite>
+		<authorWebsite>http://www.googledesktopgadgets.com/recyclebin/</authorWebsite>
 		<id>74DA3CB3-F638-4720-A5F7-E78EAC6F61D4</id>
-		<copyright>Ãƒâ€šÃ‚Â©2007 - Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail>
+		<copyright>Â©2007 - Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail>
 		<displayAPI></displayAPI></about>
 	<install>
 		<object name="RecycleBinObj" clsid="48C125EC-C887-4941-9103-DB6F4A24EC42" src="RecycleBinDLL.dll"/>

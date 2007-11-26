@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>Prullenbak</GADGET_NAME>
+<GADGET_DESCRIPTION>Beheer uw prullenbak vanuit uw zijbalk.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Prullenbak
+Copyright 2007 Benjamin Schirmer
+
+Beheer uw prullenbak vanuit uw zijbalk. Functies:
+* Beweeg de prullenbak om te zien hoeveel voorwerpen er in zitten
+* Dubbelklik de prullenbak om deze te openen in de verkenner
+* Rechtsklik en selecteer Prullenbak leegmaken om deze te legen</GADGET_ABOUT_TEXT>
+<strRecycleBin>Prullenbak</strRecycleBin>
+<strEmptyBin>Prullenbak leegmaken</strEmptyBin>
+<strOpenRecycle>Prullenbak openen</strOpenRecycle>
+<strObjects>Elementen</strObjects>
+<strEmpty>Prullenbak is leeg</strEmpty>
+<strHelp>Help en meer informatie</strHelp>
+</strings>

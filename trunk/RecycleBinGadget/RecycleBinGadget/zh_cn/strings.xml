@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>Recycle Bin（回收站）</GADGET_NAME>
+<GADGET_DESCRIPTION>从补充工具栏管理回收站。</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Recycle Bin
+版权所有 2007 Benjamin Schirmer
+
+从补充工具栏管理回收站。功能：
+* 将鼠标悬停于回收站上，就可以看到回收站中有多少项目
+* 双击回收站，就会在资源管理器中打开
+* 点击鼠标右键并选择“清空回收站”，即可将其清空</GADGET_ABOUT_TEXT>
+<strRecycleBin>Recycle Bin（回收站）</strRecycleBin>
+<strEmptyBin>空的 Recycle Bin</strEmptyBin>
+<strOpenRecycle>打开 Recycle Bin</strOpenRecycle>
+<strObjects>元素</strObjects>
+<strEmpty>Recycle Bin 是空的</strEmpty>
+<strHelp>帮助和更多信息</strHelp>
+</strings>

@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>Cestino</GADGET_NAME>
+<GADGET_DESCRIPTION>Gestisci il cestino dalla sidebar.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Cestino
+Copyright 2007 Benjamin Schirmer
+
+Gestisci il cestino dalla sidebar. Funzioni:
+* Solleva il cestino per sapere quanti elementi contiene
+* Fai doppio clic sul cestino per aprirlo con Internet Explorer
+* Fai clic con il tasto destro del mouse e seleziona "Svuota cestino" per rimuoverne il contenuto</GADGET_ABOUT_TEXT>
+<strRecycleBin>Cestino</strRecycleBin>
+<strEmptyBin>Svuota il cestino</strEmptyBin>
+<strOpenRecycle>Apri cestino</strOpenRecycle>
+<strObjects>Elementi</strObjects>
+<strEmpty>Il cestino è vuoto</strEmpty>
+<strHelp>Guida e ulteriori informazioni</strHelp>
+</strings>

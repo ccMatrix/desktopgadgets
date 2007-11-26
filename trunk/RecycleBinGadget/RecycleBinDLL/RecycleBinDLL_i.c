@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 6.00.0366 */
-/* at Sat Oct 13 22:03:46 2007
+/* at Mon Nov 19 01:45:06 2007
  */
 /* Compiler settings for .\RecycleBinDLL.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

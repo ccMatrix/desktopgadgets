@@ -73,10 +73,24 @@ function view_onOpen()
 
 function checkTrash()
 {
-  var status = recyclebin.binStatus();
-  if (status > 0)
+	var ssfBITBUCKET = 10; // (0xa) shell special folder constant (for recycle bin)
+	var x;
+	var totalsize = 0;
+	var totalobjects = 0;
+	var oSHApp = new ActiveXObject("Shell.Application");
+	var oRecycleBin = oSHApp.Namespace(ssfBITBUCKET);
+	var stuff = new Enumerator(oRecycleBin.Items());
+
+	for ( ; !stuff.atEnd() ; stuff.moveNext() ) {
+		x = stuff.item();
+		totalsize += x.size;
+		totalobjects++;
+	}
+	totalsizeround = Math.round(totalsize/1024/1024);
+
+  if (totalobjects > 0)
   {
-    trashPic.tooltip=status+" "+strObjects;
+    trashPic.tooltip=totalobjects+" "+strObjects+"\n"+totalsizeround+" MB";
     trashPic.src="trashcan_full.png";
   }
   else

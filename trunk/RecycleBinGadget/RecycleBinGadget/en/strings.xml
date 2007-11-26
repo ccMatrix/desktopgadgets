@@ -1,0 +1,20 @@
+<strings>
+  <GADGET_NAME>Recycle Bin</GADGET_NAME>
+  <GADGET_DESCRIPTION>Manage your recycle bin from your sidebar.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Recycle Bin
+Copyright 2007 Benjamin Schirmer
+
+Manage your recycle bin from your sidebar.
+Features:
+* Hover the recycle bin to see how many items are in it
+* Doubleclick the recycle bin to open it in the explorer
+* Right-click and select "Empty Recycle Bin" to empty it
+</GADGET_ABOUT_TEXT>
+
+  <strRecycleBin>Recycle Bin</strRecycleBin>
+  <strEmptyBin>Empty Recycle Bin</strEmptyBin>
+  <strOpenRecycle>Open Recycle Bin</strOpenRecycle>
+  <strObjects>Elements</strObjects>
+  <strEmpty>Recycle Bin is empty</strEmpty>
+  <strHelp>Help and more Information</strHelp>
+</strings>

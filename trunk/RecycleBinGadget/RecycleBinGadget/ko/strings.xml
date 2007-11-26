@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>휴지통</GADGET_NAME>
+<GADGET_DESCRIPTION>사이드바에서 휴지통을 관리하세요.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>휴지통
+Copyright 2007 Benjamin Schirmer
+
+사이드바에서 휴지통을 관리합니다. 주요 기능은 다음과 같습니다.
+* 휴지통으로 마우스를 가져가면 몇 개의 항목이 있는지 볼 수 있습니다.
+* 휴지통을 더블클릭하면 Explorer에서 휴지통이 열립니다.
+* 마우스 오른쪽 버튼으로 클릭한 후 '휴지통 비우기'를 선택하면 휴지통을 비울 수 있습니다.</GADGET_ABOUT_TEXT>
+<strRecycleBin>휴지통</strRecycleBin>
+<strEmptyBin>휴지통 비우기</strEmptyBin>
+<strOpenRecycle>휴지통 열기</strOpenRecycle>
+<strObjects>요소</strObjects>
+<strEmpty>휴지통이 비어 있습니다.</strEmpty>
+<strHelp>도움말 및 추가 정보</strHelp>
+</strings>

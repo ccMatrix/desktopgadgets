@@ -1,0 +1,17 @@
+﻿<strings>
+<GADGET_NAME>資源回收筒</GADGET_NAME>
+<GADGET_DESCRIPTION>從側欄管理資源回收筒。</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>資源回收筒
+Copyright 2007 Benjamin Schirmer
+
+從側欄管理資源回收筒。功能：
+* 將滑鼠游標移到資源回收筒上，就可以看見資源回收筒中有多少項目
+* 連按兩下資源回收筒，就會在檔案總管中開啟
+* 按一下滑鼠右鍵並選取 [清空資源回收筒]，即可將它清空</GADGET_ABOUT_TEXT>
+<strRecycleBin>資源回收筒</strRecycleBin>
+<strEmptyBin>空的資源回收筒</strEmptyBin>
+<strOpenRecycle>開啟資源回收筒</strOpenRecycle>
+<strObjects>元素</strObjects>
+<strEmpty>資源回收筒是空的</strEmpty>
+<strHelp>說明和詳細資訊</strHelp>
+</strings>

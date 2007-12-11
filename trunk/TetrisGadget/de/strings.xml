@@ -1,33 +1,30 @@
 ﻿<strings>
-  <GADGET_NAME>Tetris</GADGET_NAME>
-  <GADGET_DESCRIPTION>Spiele Tetris in deiner Seitenleiste oder auf deinem Desktop</GADGET_DESCRIPTION>
-  <GADGET_ABOUT_TEXT>Tetris
-©2007 Imagine Interactive
-Spiele Tetris in deiner Seitenleiste oder auf deinem Desktop.
+<GADGET_NAME>Tetris</GADGET_NAME>
+<GADGET_DESCRIPTION>Spielen Sie Tetris in Ihrer Seitenleiste oder auf dem Desktop.</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Tetris-Spiel, Copyright 2007. Tetris-Spiel von Imagine Interactive in Ihrer Seitenleiste oder auf dem Desktop.
 
-Gamecode basiert auf "JavaScript Tetris" von Alexei Kourbatov.
-http://www.javascripter.net/games/tetris/game.htm
+Anleitung:
+Nach links: Mauszeiger nach links
+Nach rechts: Mauszeiger nach rechts
+Drehen: Mauszeiger nach oben
+Schnell nach unten: Mauszeiger nach unten
 
-Block Grafiken von Bijoy Thangaraj. Vielen Dank!
+Der Spielcode basiert auf "JavaScript Tetris" von Alexei Kourbatov. Weitere Informationen erhalten Sie unter: http://www.javascripter.net/games/tetris/game.htm
 
-Tetris Musik von Nikolai Alekseevich Nekrasov. Verfügbar auf Wikipedia unter
-http://upload.wikimedia.org/wikipedia/en/f/fe/Korobeiniki.mid
+Blockgrafiken von Bijoy Thangaraj. Vielen Dank!
 
-</GADGET_ABOUT_TEXT>
-
-  <strOptionControls>Tastatureinstellungen:</strOptionControls>
-  <strOptionLeft>Links</strOptionLeft>
-  <strOptionRight>Rechts</strOptionRight>
-  <strOptionRotate>Drehen</strOptionRotate>
-  <strOptionDown>Runter</strOptionDown>
-  <strOptionFall>Fallen</strOptionFall>
-  <strOptionMusic>Tetris Musik abspielen</strOptionMusic>
-
-  <strGameOver>Game Over</strGameOver>
-  <strMenuNew>Neues Spiel</strMenuNew>
-  <strStart>Start</strStart>
-  <strPaused>pausiert</strPaused>
-  <strLevel>Level</strLevel>
-  <strLines>Zeilen</strLines>
-
+Tetris-Musik von Nikolai Alekseevich Nekrasov. Erworben über Wikipedia unter http://upload.wikimedia.org/wikipedia/en/f/fe/Korobeiniki.mid.</GADGET_ABOUT_TEXT>
+<strOptionControls>Spielsteuerelemente:</strOptionControls>
+<strOptionLeft>Verbleibend</strOptionLeft>
+<strOptionRight>Rechts</strOptionRight>
+<strOptionRotate>Drehen</strOptionRotate>
+<strOptionDown>Nach unten</strOptionDown>
+<strOptionFall>Herbst</strOptionFall>
+<strOptionMusic>Tetris-Musik abspielen</strOptionMusic>
+<strGameOver>Spielende</strGameOver>
+<strMenuNew>Neues Spiel</strMenuNew>
+<strStart>Start</strStart>
+<strPaused>Angehalten</strPaused>
+<strLevel>Stufe</strLevel>
+<strLines>Zeilen</strLines>
 </strings>

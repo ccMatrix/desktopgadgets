@@ -5,7 +5,7 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>plugin_small.gif</smallIcon>
 		<icon>plugin_large.gif</icon>
-		<version>2.0.1.0</version>
+		<version>2.0.2.0</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.googledesktopgadgets.com/recyclebin/</authorWebsite>
 		<id>74DA3CB3-F638-4720-A5F7-E78EAC6F61D4</id>

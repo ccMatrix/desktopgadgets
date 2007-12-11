@@ -1,12 +1,10 @@
 ﻿<strings>
-  <GADGET_NAME>Lautstärke</GADGET_NAME>
-  <GADGET_DESCRIPTION>Lautstärke Regler für die Seitenleiste</GADGET_DESCRIPTION>
-  <GADGET_ABOUT_TEXT>Lautstärke
-© 2007 Imagine Interactive
-Lautstärke Gadget
+<GADGET_NAME>Lautstärkeregelung</GADGET_NAME>
+<GADGET_DESCRIPTION>Lautstärkeregelung für die Seitenleiste</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Lautstärkeregelung
+Copyright 2007 Imagine Interactive
+Gadget zur Lautstärkeregelung
 
-Icons von Silk icon set 1.3
-(c) by Mark James
-http://www.famfamfam.com/lab/icons/silk/</GADGET_ABOUT_TEXT>
-  <strHelp>Hilfe und mehr Informationen</strHelp>
+Symbole aus dem Silk-Symbolset 1.3 (c) von Mark James. Siehe http://www.famfamfam.com/lab/icons/silk/.</GADGET_ABOUT_TEXT>
+<strHelp>Hilfe und weitere Informationen</strHelp>
 </strings>

@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 6.00.0366 */
-/* at Sat Nov 10 02:03:24 2007
+/* at Mon Nov 19 01:26:25 2007
  */
 /* Compiler settings for .\VolumeControlDLL.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

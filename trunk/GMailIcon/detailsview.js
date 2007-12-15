@@ -5,6 +5,21 @@ function detailsview_onopen() {
   mails = detailsViewData.getValue("mails");
 	labelTitle.innerText = strDetailsTitle+" ("+options.getValue("account")+")";
 
+	switch (options.getValue("design")) {
+		case "red":
+			divDetailsTitle.background = "#C63114";
+			break;
+		case "gray":
+			divDetailsTitle.background = "#6b6b6b";
+			break;
+		case "blue":
+			divDetailsTitle.background = "#086bd9";
+			break;
+		case "green":
+			divDetailsTitle.background = "#047d17";
+			break;
+	}
+
 	for (var i=0; i<mails.length; i++) {
 		var summary = mails[i].summary;
 		if (typeof summary == "object") {

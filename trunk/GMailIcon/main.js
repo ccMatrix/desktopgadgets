@@ -3,9 +3,25 @@ var refreshInterval = null;
 var detailsViewOpen = false;
 var mails = null;
 var minimized = false;
+var defaultWidth = 180;
+var defaultHeight = 120;
+var docked = true;
 
 function AddCustomMenuItems(menu) {
   menu.AddItem(strRefresh, 0, OnMenuClicked);
+	if (docked) {
+		var resizeMenu = menu.AddPopup(strZoom);
+		for (var i=50; i<=100; i+=10) {
+			var isSelected = (options.getValue("zoom") == i)?gddMenuItemFlagChecked:0;
+			resizeMenu.AddItem(i+"%", isSelected, OnSetZoomLevel);
+		}
+	}
+}
+
+function OnSetZoomLevel(zoomText) {
+	zoom = parseInt(zoomText.replace("%", ""));
+	options.putValue("zoom", zoom);
+	displayMail();
 }
 
 function OnMenuClicked(itemText) {
@@ -22,6 +38,8 @@ function view_onOpen() {
 	options.putDefaultValue("isGoogleApps", false);
 	options.putDefaultValue("alwaysAccount", false);
 	options.putDefaultValue("interval", 600000);
+	options.putDefaultValue("zoom", 100);
+	options.putDefaultValue("design", "red");
 
 	plugin.onShowOptionsDlg = ShowOptionsDlg;
 	plugin.onAddCustomMenuItems = AddCustomMenuItems;
@@ -30,6 +48,17 @@ function view_onOpen() {
 	divTitle.visible = false;
   checkMail();
 }
+
+function view_onDock() {
+	docked = true;
+	displayMail();
+}
+
+function view_onUnDock() {
+	docked = false;
+	displayMail();
+}
+
 
 function view_onMinimize() {
   minimized = true;
@@ -50,7 +79,7 @@ function checkMail() {
 		divTitle.visible = true;
 		return;
 	}
-  gadget.debug.trace("Loading Feed ...");
+  debug.trace("Loading Feed ...");
   var req = new XMLHttpRequest();
   req.open('GET', feed+"?randomTime="+Math.random(), true, options.getValue("username"), options.getValue("password"));
   req.onreadystatechange = function (aEvt) {
@@ -66,7 +95,7 @@ function checkMail() {
 					items = [];
 				}
 				else if (typeof items.author != "undefined") {
-					gadget.debug.trace("Author is set - single mail in mailbox");
+					debug.trace("Author is set - single mail in mailbox");
 					var temp = [];
 					temp.push(items);
 					items = temp;
@@ -84,10 +113,31 @@ function checkMail() {
     }
   };
   req.send(null);
-  refreshInterval = setTimeout("requestFeed()", options.getValue("interval") );
+  refreshInterval = setTimeout("checkMail()", options.getValue("interval") );
 }
 
 function displayMail() {
+	debug.trace("Setting images based on selected design");
+	var design = options.getValue("design");
+	dot.src = "images\\"+design+"_dot.png";
+	titleBg.src = "images\\"+design+"_titlebg.png";
+	background.src = "images\\"+design+"_gmail_envelope.png";
+
+	if (!minimized) {
+		if (docked) {
+			debug.trace("Resizing docked gadget to "+options.getValue("zoom")+"%");
+			var newWidth = defaultWidth*(100/options.getValue("zoom"));
+			var newHeight = defaultHeight;
+			debug.trace("New size is: "+newWidth+"x"+newHeight);
+			view.resizeTo(newWidth, newHeight);
+			mainDiv.x = (view.width/2)-(mainDiv.width/2);
+		}
+		else {
+			debug.trace("Resizing undocked gadget to normal size");
+			view.resizeTo(defaultWidth, defaultHeight);
+			mainDiv.x = 0;
+		}
+	}
 	if (options.getValue("username") == "") {
 		return;
 	}

@@ -28,4 +28,10 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
 	<strNoSubject>kein Betreff</strNoSubject>
 	<strNoSummary>leere E-Mail</strNoSummary>
 
+	<strZoom>Zoom</strZoom>
+	<strRedDesign>rotes Design</strRedDesign>
+	<strGrayDesign>graues Design</strGrayDesign>
+	<strGreenDesign>grünes Design</strGreenDesign>
+	<strBlueDesign>blaues Design</strBlueDesign>
+
 </strings>

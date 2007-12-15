@@ -27,4 +27,11 @@ Doubleclick the counter to go to your gmail account.
 	<strConfig>configurate</strConfig>
 	<strNoSubject>no subject</strNoSubject>
 	<strNoSummary>empty mail</strNoSummary>
+
+	<strZoom>Zoom</strZoom>
+	<strRedDesign>red Design</strRedDesign>
+	<strGrayDesign>gray Design</strGrayDesign>
+	<strGreenDesign>green Design</strGreenDesign>
+	<strBlueDesign>blue Design</strBlueDesign>
+
 </strings>

@@ -1,7 +1,7 @@
 ﻿var feed = "https://mail.google.com/mail/feed/atom";
 var refreshInterval = null;
 var detailsViewOpen = false;
-var mails = null;
+var mails = [];
 var minimized = false;
 var defaultWidth = 180;
 var defaultHeight = 120;
@@ -40,6 +40,14 @@ function view_onOpen() {
 	options.putDefaultValue("interval", 600000);
 	options.putDefaultValue("zoom", 100);
 	options.putDefaultValue("design", "red");
+	options.putDefaultValue("designFull", "red");
+	options.putDefaultValue("notifySoundEnable", false);
+	// Get Windows folder:
+	var winDir = framework.system.filesystem.GetSpecialFolder(0);
+	var notifySound = winDir+"\\Media\\notify.wav";
+	if (framework.system.filesystem.FileExists(notifySound)) {
+		options.putDefaultValue("notifySoundFile", notifySound);
+	}
 
 	plugin.onShowOptionsDlg = ShowOptionsDlg;
 	plugin.onAddCustomMenuItems = AddCustomMenuItems;
@@ -89,7 +97,7 @@ function checkMail() {
 				var gmailJson = parser.parse(req.responseText);
    
         // get the channel information
-				//alert( parser.show_json_structure(gmailJson) );
+				// alert( parser.show_json_structure(gmailJson) );
         var items = gmailJson.feed.entry;
 				if (items == undefined) {
 					items = [];
@@ -100,6 +108,43 @@ function checkMail() {
 					temp.push(items);
 					items = temp;
 				}
+
+				// Check for new Mails
+				if (items.length > 0) {
+					try
+					{
+						var old = false;
+						var oldSound = true;
+						for (var i=0; i<items.length; i++) {
+							old = false;
+							for (var j=0; j<mails.length; j++) {
+								if (mails[j].id == items[i].id) {
+									old = true;
+									oldSound = false;
+								}
+							}
+							if (!old) {
+								//if (options.getValue("notifyAlertEnable")) {
+									var item = new ContentItem();
+									item.heading = items[i].title;
+									item.snippet = items[i].summary;
+									plugin.AddContentItem(item, gddItemDisplayAsNotification);
+								//}
+							}
+						}
+						if (oldSound) {
+							if (options.getValue("notifySoundEnable")) {
+								if (framework.system.filesystem.FileExists( options.getValue("notifySoundFile") ) ) {
+									framework.audio.play( options.getValue("notifySoundFile") );
+								}
+							}
+						}
+					}
+					catch (E) {
+						debug.error("Crash on check for new mails with reason: \n"+E.description);
+					}
+				}
+
 				mails = items;
         displayMail();
       }
@@ -142,6 +187,11 @@ function displayMail() {
 		return;
 	}
   if (mails.length > 0) {
+		var design = options.getValue("designFull");
+		dot.src = "images\\"+design+"_dot.png";
+		titleBg.src = "images\\"+design+"_titlebg.png";
+		background.src = "images\\"+design+"_gmail_envelope.png";
+
 		newMails.visible = true;
 		newMailCount.innerText = mails.length;
 		if (options.getValue("displayAccount")) {
@@ -159,6 +209,11 @@ function displayMail() {
 		}
   }
   else {
+		var design = options.getValue("design");
+		dot.src = "images\\"+design+"_dot.png";
+		titleBg.src = "images\\"+design+"_titlebg.png";
+		background.src = "images\\"+design+"_gmail_envelope.png";
+
 		if (options.getValue("alwaysAccount")) {
 			labelTitle.innerText = options.getValue("account");
 			newMailCount.innerText = "0";

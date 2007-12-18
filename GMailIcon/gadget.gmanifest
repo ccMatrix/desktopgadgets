@@ -5,11 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.1.0.0</version>
+		<version>1.2.0.0</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.googledesktopgadgets.com/gmailicon/</authorWebsite>
 		<authorEmail>codename.matrix@gmail.com</authorEmail>
 		<id>18593C55-0E24-479C-9564-358848CC23F2</id>
-		<copyright>Â©2007 Benjamin Schirmer</copyright>
-	</about>
+		<copyright>©2007 Benjamin Schirmer</copyright>
+		<displayAPI usesNotifier="true"></displayAPI></about>
 </gadget>

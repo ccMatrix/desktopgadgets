@@ -1,6 +1,6 @@
 ﻿<strings>
   <GADGET_NAME>GoogleMail Icon</GADGET_NAME>
-  <GADGET_DESCRIPTION>Erhalte eine visuelle E-Mail Benachrichtigung direkt auf deinem Desktop.</GADGET_DESCRIPTION>
+  <GADGET_DESCRIPTION>GoogleMail Icon gibt eine visuelle oder akustische Benachrichtigungen bei neuen Mails in deinem Google Mail oder Google Apps Mail Konto aus. Du kannst es auch benutzen um eine Vorschau von neuen Mails anzuzeigen. Füge dieses Gadget mehrmals hinzu um mehrere Konten zu überprüfen.</GADGET_DESCRIPTION>
   <GADGET_ABOUT_TEXT>GoogleMail Icon
 © 2007 Benjamin Schirmer
 Erhalte eine visuelle E-Mail Benachrichtigung direkt auf deinem Desktop
@@ -33,5 +33,14 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
 	<strGrayDesign>graues Design</strGrayDesign>
 	<strGreenDesign>grünes Design</strGreenDesign>
 	<strBlueDesign>blaues Design</strBlueDesign>
+	<strDesignEmpty>bei leerem Posteingang</strDesignEmpty>
+	<strDesignFull>bei gefülltem Posteingang</strDesignFull>
+
+	<strNotifyAlert>Zeige Benachrichtigungen bei neuen Mails an</strNotifyAlert>
+	<strNotifySound>Spiele einen Klang bei neuen Mails ab</strNotifySound>
+	<strMusicFiles>Audio Dateien</strMusicFiles>
+	
+	<strAlertEnableInformation>Benachrichtigungen müssen direkt in Google Desktop eingerichtet werden. Öffnem Sie das Google Desktop Seitenleisten-Menü (Der nach unten zeigende Pfeil am oberen Rand der Seitenleiste) und wählen Sie "Gadgets konfigurieren...". Im neuen Dialog aktivieren Sie Benachrichtigungen für das GMail Icon Gadget. 
+Bitte beachten Sie, dass Sie den Optionen-Dialog schließen müssen bevor sie auf das Seitenleisten-Menü zugreifen können.</strAlertEnableInformation>
 
 </strings>

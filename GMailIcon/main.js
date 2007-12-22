@@ -6,6 +6,7 @@ var minimized = false;
 var defaultWidth = 180;
 var defaultHeight = 120;
 var docked = true;
+var audioFile = null;
 
 function AddCustomMenuItems(menu) {
   menu.AddItem(strRefresh, 0, OnMenuClicked);
@@ -32,7 +33,9 @@ function OnMenuClicked(itemText) {
 
 function view_onOpen() {
   options.putDefaultValue("username", "");
+	options.encryptValue("username");
   options.putDefaultValue("password", "");
+	options.encryptValue("password");
 	options.putDefaultValue("account", "");
 	options.putDefaultValue("displayAccount", true);
 	options.putDefaultValue("isGoogleApps", false);
@@ -114,29 +117,25 @@ function checkMail() {
 					try
 					{
 						var old = false;
-						var oldSound = true;
+						var oldSound = false;
 						for (var i=0; i<items.length; i++) {
 							old = false;
 							for (var j=0; j<mails.length; j++) {
 								if (mails[j].id == items[i].id) {
 									old = true;
-									oldSound = false;
 								}
 							}
 							if (!old) {
-								//if (options.getValue("notifyAlertEnable")) {
-									var item = new ContentItem();
-									item.heading = items[i].title;
-									item.snippet = items[i].summary;
-									plugin.AddContentItem(item, gddItemDisplayAsNotification);
-								//}
+								oldSound = true;
+								var item = new ContentItem();
+								item.heading = items[i].title;
+								item.snippet = items[i].summary;
+								plugin.AddContentItem(item, gddItemDisplayAsNotification);
 							}
 						}
 						if (oldSound) {
 							if (options.getValue("notifySoundEnable")) {
-								if (framework.system.filesystem.FileExists( options.getValue("notifySoundFile") ) ) {
-									framework.audio.play( options.getValue("notifySoundFile") );
-								}
+								playNotification( options.getValue("notifySoundFile") );
 							}
 						}
 					}
@@ -266,4 +265,12 @@ function gmailDetails() {
 
 function onDetailsClose() {
   detailsViewOpen=false;
+}
+
+function playNotification(file) {
+	if (audioFile) {
+		audioFile.stop();
+	}
+	debug.trace("Playing notification sound");
+  audioFile = framework.audio.play(file);
 }

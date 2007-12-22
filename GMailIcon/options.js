@@ -172,7 +172,12 @@ function OnChooseSound(wnd, control) {
 function OnPlaySound(wnd, control) {
 	var ctl = wnd.GetControl("notifySoundFile");
 	if (framework.system.filesystem.FileExists(ctl.value)) {
-		framework.audio.play(ctl.value);
+		try {
+			playNotification(ctl.value);
+		}
+		catch (E) {
+			debug.error( E.description );
+		}
 	}
 }
 

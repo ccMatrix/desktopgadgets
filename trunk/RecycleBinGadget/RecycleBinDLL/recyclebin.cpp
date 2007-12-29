@@ -25,12 +25,14 @@ STDMETHODIMP Crecyclebin::binStatus(USHORT* status)
 	int counter = 0;
 	try
 	{
-		IShellFolder   *pDesktop    = NULL;
-		IShellFolder   *m_pRecycleBin = NULL;
-		LPITEMIDLIST   pidlRecycleBin    = NULL;
-		HRESULT        hr        = S_OK;
-		LPENUMIDLIST   penumFiles;
+		IShellFolder *pDesktop    = NULL;
+		IShellFolder *m_pRecycleBin = NULL;
+		LPITEMIDLIST pidlRecycleBin    = NULL;
+		HRESULT	hr = S_OK;
+		LPMALLOC pMalloc = NULL;
+		LPENUMIDLIST penumFiles;
 
+		SHGetMalloc(&pMalloc); 
 		hr = SHGetDesktopFolder(&pDesktop);
 		hr = SHGetSpecialFolderLocation (0, CSIDL_BITBUCKET, &pidlRecycleBin);
 		hr = pDesktop->BindToObject(pidlRecycleBin, NULL, 
@@ -46,11 +48,35 @@ STDMETHODIMP Crecyclebin::binStatus(USHORT* status)
 			while (penumFiles->Next(1, &pidl, NULL) != S_FALSE)
 			{
 				counter++;
+				if (NULL != pidl)
+				{
+					pMalloc->Free (pidl);
+				}
 			}
 		}
-		free(pDesktop);
-		free(m_pRecycleBin);
-		free(pidl);
+
+		if (NULL != pDesktop)
+		{
+			pDesktop->Release();
+			pDesktop = NULL;
+		}
+		if (NULL != pidlRecycleBin)
+		{
+			pMalloc->Free (pidlRecycleBin);
+			pidlRecycleBin = NULL;
+		}
+		if (NULL != m_pRecycleBin)
+		{
+			m_pRecycleBin->Release ();
+			m_pRecycleBin = NULL;
+		}
+		if (NULL != penumFiles)
+		{
+			penumFiles->Release ();
+			penumFiles = NULL;
+		}
+		pMalloc->Release();
+		pMalloc = NULL;
 	}
 	catch (char * str)
 	{

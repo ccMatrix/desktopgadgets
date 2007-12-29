@@ -6,7 +6,14 @@ plugin.onAddCustomMenuItems = AddCustomMenuItems;
 
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
-  menu.AddItem(strEmptyBin, (recyclebin.binStatus()>0)?0:gddMenuItemFlagGrayed, OnMenuClicked);
+	var status = 0;
+	try {
+		status = recyclebin.binStatus();
+	}
+	catch (E) {
+		debug.error("Error getting status:\n"+E.description);
+	}
+  menu.AddItem(strEmptyBin, (status>0)?0:gddMenuItemFlagGrayed, OnMenuClicked);
   menu.AddItem(strOpenRecycle, 0, OnMenuClicked);
   menu.AddItem(strHelp, 0, OnMenuClicked);
 

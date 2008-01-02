@@ -24,7 +24,7 @@ Doubleclick the counter to go to your gmail account.
 	<strMinutes>minutes</strMinutes>
 
 	<strRefresh>Check Mails</strRefresh>
-	<strConfig>configurate</strConfig>
+	<strConfig>configure</strConfig>
 	<strNoSubject>no subject</strNoSubject>
 	<strNoSummary>empty mail</strNoSummary>
 
@@ -41,4 +41,6 @@ Doubleclick the counter to go to your gmail account.
 	<strMusicFiles>Audio Files</strMusicFiles>
 	
 	<strAlertEnableInformation>Alerts are configured using Google Desktop. Go to the Google Desktop sidebar menu (the downward arrow on the top of the bar) and choose "Configure gadgets...". In the dialog enable Alerts for the GMail Icon gadget. Please note that you must close the options dialog before you can open the sidebar menu.</strAlertEnableInformation>
+
+	<strHelp>Help and more information</strHelp>
 </strings>

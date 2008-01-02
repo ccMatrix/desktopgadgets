@@ -43,4 +43,5 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
 	<strAlertEnableInformation>Benachrichtigungen müssen direkt in Google Desktop eingerichtet werden. Öffnem Sie das Google Desktop Seitenleisten-Menü (Der nach unten zeigende Pfeil am oberen Rand der Seitenleiste) und wählen Sie "Gadgets konfigurieren...". Im neuen Dialog aktivieren Sie Benachrichtigungen für das GMail Icon Gadget. 
 Bitte beachten Sie, dass Sie den Optionen-Dialog schließen müssen bevor sie auf das Seitenleisten-Menü zugreifen können.</strAlertEnableInformation>
 
+	<strHelp>Hilfe und mehr Informationen</strHelp>
 </strings>

@@ -1,9 +1,9 @@
-﻿<view height="120" width="180" ondock="view_onDock()" onundock="view_onUnDock()"
+﻿<view height="110" width="180" ondock="view_onDock()" onundock="view_onUnDock()"
   onminimize="view_onMinimize()" onopen="view_onOpen()" onrestore="view_onRestore()"
  >
-  <div height="120" name="mainDiv" width="180" x="0" y="0">
+  <div height="110" name="mainDiv" width="180" x="0" y="0">
     <img cursor="hand" enabled="true" height="123" hitTest="htclient"
-      name="background" width="153" x="25" y="5" onclick="openGmail();"
+      name="background" width="153" x="20" y="5" onclick="openGmail();"
       src="images\red_gmail_envelope.png"/>
     <div cursor="hand" height="45" hitTest="htclient" name="divTitle"
       width="142" x="0" y="60">

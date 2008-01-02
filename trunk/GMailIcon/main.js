@@ -17,6 +17,7 @@ function AddCustomMenuItems(menu) {
 			resizeMenu.AddItem(i+"%", isSelected, OnSetZoomLevel);
 		}
 	}
+	menu.AddItem(strHelp, 0, OnMenuClicked);
 }
 
 function OnSetZoomLevel(zoomText) {
@@ -29,12 +30,16 @@ function OnMenuClicked(itemText) {
   if (itemText == strRefresh) {
     checkMail();
   }
+  if (itemText == strHelp) {
+    var wsh = new ActiveXObject( "WScript.Shell" );
+    wsh.Run( "http://www.googledesktopgadgets.com/gmailicon/" ); 
+  }
 }
 
 function view_onOpen() {
-  options.putDefaultValue("username", "");
+	options.putDefaultValue("username", "");
 	options.encryptValue("username");
-  options.putDefaultValue("password", "");
+	options.putDefaultValue("password", "");
 	options.encryptValue("password");
 	options.putDefaultValue("account", "");
 	options.putDefaultValue("displayAccount", true);
@@ -152,6 +157,7 @@ function checkMail() {
 				newMailCount.innerText = "!";
 				divTitle.visible = true;
 				labelTitle.innerText = "no connection";
+				setGadgetSize();
         debug.error("Error loading page\n");
       }
     }
@@ -160,13 +166,7 @@ function checkMail() {
   refreshInterval = setTimeout("checkMail()", options.getValue("interval") );
 }
 
-function displayMail() {
-	debug.trace("Setting images based on selected design");
-	var design = options.getValue("design");
-	dot.src = "images\\"+design+"_dot.png";
-	titleBg.src = "images\\"+design+"_titlebg.png";
-	background.src = "images\\"+design+"_gmail_envelope.png";
-
+function setGadgetSize() {
 	if (!minimized) {
 		if (docked) {
 			debug.trace("Resizing docked gadget to "+options.getValue("zoom")+"%");
@@ -182,6 +182,17 @@ function displayMail() {
 			mainDiv.x = 0;
 		}
 	}
+}
+
+function displayMail() {
+	debug.trace("Setting images based on selected design");
+	var design = options.getValue("design");
+	dot.src = "images\\"+design+"_dot.png";
+	titleBg.src = "images\\"+design+"_titlebg.png";
+	background.src = "images\\"+design+"_gmail_envelope.png";
+
+	setGadgetSize();
+
 	if (options.getValue("username") == "") {
 		return;
 	}

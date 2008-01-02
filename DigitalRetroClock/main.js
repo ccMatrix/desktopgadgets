@@ -2,7 +2,19 @@
 var months = strMonths.split(",");
 var days = strDays.split(",");
 
+function AddCustomMenuItems(menu) {
+	menu.AddItem(strHelp, 0, OnMenuClicked);
+}
+
+function OnMenuClicked(itemText) {
+  if (itemText == strHelp) {
+    var wsh = new ActiveXObject( "WScript.Shell" );
+    wsh.Run( "http://www.googledesktopgadgets.com/digitalclock/" ); 
+  }
+}
+
 function view_onOpen() {
+	plugin.onAddCustomMenuItems = AddCustomMenuItems;
 	setInterval("animClock();", 1000);
 }
 

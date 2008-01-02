@@ -9,4 +9,6 @@ Images by the KDE project.</GADGET_ABOUT_TEXT>
 
 	<strMonths>Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec</strMonths>
   <strDays>Sun,Mon,Tue,Wed,Thu,Fri,Sat,Sun</strDays>
+
+	<strHelp>Help and more information</strHelp>
 </strings>

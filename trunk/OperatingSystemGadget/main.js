@@ -8,6 +8,7 @@ function AddCustomMenuItems(menu) {
   menu.AddItem(menuShowSerial, options.getValue("showSerial")?gddMenuItemFlagChecked:0, OnMenuClicked);
   menu.AddItem(menuShowVersion, options.getValue("showVersion")?gddMenuItemFlagChecked:0, OnMenuClicked);
   menu.AddItem(menuShowServicePack, options.getValue("showServicePack")?gddMenuItemFlagChecked:0, OnMenuClicked);
+  menu.AddItem(strHelp, 0, OnMenuClicked);
 }
 
 function OnMenuClicked(itemText) {
@@ -24,6 +25,10 @@ function OnMenuClicked(itemText) {
     case menuShowServicePack:
 		var value = options.getValue("showServicePack");
 		options.putValue("showServicePack", !value);
+		break;
+    case strHelp:
+		var wsh = new ActiveXObject( "WScript.Shell" );
+		wsh.Run( "http://www.googledesktopgadgets.com/os/" ); 
 		break;
   }
   drawGadget();

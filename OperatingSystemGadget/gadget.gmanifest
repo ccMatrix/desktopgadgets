@@ -5,7 +5,7 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.0.0.0</version>
+		<version>1.1.0.0</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.imagine-interactive.de/osgadget/</authorWebsite>
 		<id>C7FCCDDE-3A9D-482F-B7C5-02330A3CF1AB</id>

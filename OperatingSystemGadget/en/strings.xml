@@ -13,5 +13,6 @@ The Operating Sytem Gadget will show information about your current operating sy
   <menuShowVersion>Show system version</menuShowVersion>
   <menuShowServicePack>Show service pack</menuShowServicePack>
 
+  <strHelp>Help and more information</strHelp>
 
 </strings>

@@ -13,4 +13,6 @@ Das Betriebssystem Gadget zeigt Informationen zum aktuellen Betriebsystem an.
   <menuShowVersion>Zeige Systemversion</menuShowVersion>
   <menuShowServicePack>Zeige ServicePack</menuShowServicePack>
 
+  <strHelp>Hilfe und mehr Informationen</strHelp>
+
 </strings>

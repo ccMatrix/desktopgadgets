@@ -6,16 +6,24 @@ plugin.onAddCustomMenuItems = AddCustomMenuItems;
 
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
-	var status = 0;
+	var totalobjects = 0;
 	try {
-		status = recyclebin.binStatus();
+		var ssfBITBUCKET = 10; // (0xa) shell special folder constant (for recycle bin)
+		var oSHApp = new ActiveXObject("Shell.Application");
+		var oRecycleBin = oSHApp.Namespace(ssfBITBUCKET);
+		var stuff = new Enumerator(oRecycleBin.Items());
+
+		for ( ; !stuff.atEnd() ; stuff.moveNext() ) {
+			totalobjects++;
+		}
+
 	}
 	catch (E) {
 		debug.error("Error getting status:\n"+E.description);
 	}
-  menu.AddItem(strEmptyBin, (status>0)?0:gddMenuItemFlagGrayed, OnMenuClicked);
-  menu.AddItem(strOpenRecycle, 0, OnMenuClicked);
-  menu.AddItem(strHelp, 0, OnMenuClicked);
+	menu.AddItem(strEmptyBin, (totalobjects>0)?0:gddMenuItemFlagGrayed, OnMenuClicked);
+	menu.AddItem(strOpenRecycle, 0, OnMenuClicked);
+	menu.AddItem(strHelp, 0, OnMenuClicked);
 
   if (additionalApps.length > 0) {
     menu.AddItem("-", 0x800, OnMenuClicked);

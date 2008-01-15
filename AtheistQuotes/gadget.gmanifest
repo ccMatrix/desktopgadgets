@@ -1,0 +1,18 @@
+﻿<gadget minimumGoogleDesktopVersion="5.7.0.0">
+	<about>
+		<name>&GADGET_NAME;</name>
+		<description>&GADGET_DESCRIPTION;</description>
+		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
+		<smallIcon>icon_small.png</smallIcon>
+		<icon>icon_large.png</icon>
+		<version>1.0.0.0</version>
+		<author>Benjamin Schirmer</author>
+		<authorWebsite>http://www.googledesktopgadgets.com/atheistquotes/</authorWebsite>
+		<id>6100E6B1-7349-4C2C-8FC5-CE24A9E516B1</id>
+		<copyright>©2007 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
+	<install>
+		<font src="DejaVuSerifCondensed.ttf"/>
+	</install>
+</gadget>

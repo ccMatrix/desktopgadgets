@@ -1,0 +1,14 @@
+﻿<strings>
+  <GADGET_NAME>Digitale Retro Uhr</GADGET_NAME>
+  <GADGET_DESCRIPTION>Digital Uhr im retro stil für deine Seitenleiste</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Digitale Retro Uhr
+© 2007 Benjamin Schirmer
+Eine digitale Urh im retro stil basierend auf der neuen digitalen Uhr aus KDE4.
+
+Bilder aus dem KDE Projekt.</GADGET_ABOUT_TEXT>
+
+	<strMonths>Jan,Feb,Mär,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez</strMonths>
+  <strDays>So,Mo,Di,Mi,Do,Fr,Sa,So</strDays>
+
+	<strHelp>Hilfe und mehr informationen</strHelp>
+</strings>

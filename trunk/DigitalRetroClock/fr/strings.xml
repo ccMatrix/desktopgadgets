@@ -1,0 +1,16 @@
+﻿<strings>
+  <GADGET_NAME>Horloge Digitale Rétro</GADGET_NAME>
+  <GADGET_DESCRIPTION>Horloge digitale de style rétro pour votre barre Google Desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Digital Retro Clock
+© 2007 Benjamin Schirmer
+Horloge digitale de style rétro basé sur la nouvelle Horloge Digitale de KDE4.
+
+Images du projet KDE.
+
+Traduction par Christophe AUJEAN.</GADGET_ABOUT_TEXT>
+
+	<strMonths>Jan,Fev,Mar,Avr,Mai,Juin,Juil,Août,Sep,Oct,Nov,Dec</strMonths>
+  <strDays>Dim,Lun,Mar,Mer,Jeu,Ven,Sam,Dim</strDays>
+
+	<strHelp>Aide et informations</strHelp>
+</strings>

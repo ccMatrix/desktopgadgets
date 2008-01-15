@@ -1,0 +1,15 @@
+﻿<view height="150" resizable="false" width="250" onopen="detailsview_onopen()"
+  onsize="detailsview_onSize()" onsizing="detailsview_onSize()"
+ >
+  <div height="150" name="bgDiv" width="250" x="0" y="0" background="#000000"/>
+  <label cursor="hand" enabled="true" height="16" hitTest="htclient"
+    name="labelName" width="230" x="10" y="10" onclick="wikipediaAuthor()"
+    bold="true" color="#FFFFFF" font="DejaVu Sans Condensed"
+   />
+  <label cursor="hand" enabled="true" height="110" hitTest="htclient"
+    name="labelQuote" width="230" x="10" y="30" color="#FFFFFF"
+    font="DejaVu Sans Condensed" size="9" wordwrap="true"/>
+  <script src="main.js" />
+  <script src="quotes.js" />
+  <script src="helper.js" />
+</view>

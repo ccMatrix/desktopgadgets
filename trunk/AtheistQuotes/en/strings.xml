@@ -1,0 +1,14 @@
+﻿<strings>
+  <GADGET_NAME>Atheist Quotes</GADGET_NAME>
+  <GADGET_DESCRIPTION>Show some insightful ahteist quotes right on your desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Atheist Quotes
+© 2007 Benjamin Schirmer
+Show some insightful ahteist quotes right on your desktop.
+
+Quotes are loaded from 
+http://www.chrisbeach.co.uk/viewQuotes.php
+</GADGET_ABOUT_TEXT>
+	<strLoading>Loading quotes ...</strLoading>
+	<strHelp>Help and more information</strHelp>
+	<strNext>Next quote</strNext>
+</strings>

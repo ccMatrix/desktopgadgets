@@ -5,11 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>plugin_small.gif</smallIcon>
 		<icon>plugin_large.gif</icon>
-		<version>1.5.0.0</version>
+		<version>1.6.0.0</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.googledesktopgadgets.com/volumecontrol/</authorWebsite>
 		<id>FD7681AF-5A9E-44CF-ABD9-6651B907028B</id>
-		<copyright>Â© 2007 Imagine Interactive</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Ã‚Â© 2007 Imagine Interactive</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
 	<install>
 		<object name="VolumeControlObj" clsid="5A409F51-AFFA-4096-95CB-FC4839C96B88" src="VolumeControlDLL.dll"/>
 	</install>

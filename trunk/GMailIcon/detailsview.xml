@@ -12,4 +12,5 @@
    />
   <script src="detailsview.js" />
   <script src="visiturl.js" />
+  <script src="helper.js" />
 </view>

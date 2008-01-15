@@ -38,9 +38,14 @@ function OnMenuClicked(itemText) {
 
 function view_onOpen() {
 	options.putDefaultValue("username", "");
-	options.encryptValue("username");
 	options.putDefaultValue("password", "");
-	options.encryptValue("password");
+	try {
+		options.encryptValue("username");
+		options.encryptValue("password");
+	}
+	catch (E) {
+		debug.error("options.encryptvalue not yet available. Probably using a version < 5.7");
+	}
 	options.putDefaultValue("account", "");
 	options.putDefaultValue("displayAccount", true);
 	options.putDefaultValue("isGoogleApps", false);
@@ -133,8 +138,8 @@ function checkMail() {
 							if (!old) {
 								oldSound = true;
 								var item = new ContentItem();
-								item.heading = items[i].title;
-								item.snippet = items[i].summary;
+								item.heading = stripEntities(items[i].title);
+								item.snippet = stripEntities(items[i].summary);
 								plugin.AddContentItem(item, gddItemDisplayAsNotification);
 							}
 						}

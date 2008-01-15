@@ -29,4 +29,5 @@
   <script src="xml2json.js" />
   <script src="visiturl.js" />
   <script src="options.js" />
+  <script src="helper.js" />
 </view>

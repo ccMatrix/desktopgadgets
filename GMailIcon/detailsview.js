@@ -25,18 +25,29 @@ function detailsview_onopen() {
 		if (typeof summary == "object") {
 			summary = strNoSummary;
 		}
-		summary = summary.replace("&amp;hellip;", " ..."+strMore);
 		var title = mails[i].title;
 		if (typeof title == "object") {
 			title = strNoSubject;
 		}
 		try {
-			var item = "<item width=\"100%\"><label width=\"100%\" tooltip=\""+mails[i].author.name+": "+title+"\" valign=\"middle\" bold=\"true\">"+mails[i].author.name+": "+title+"</label><label wordwrap=\"true\" width=\"100%\" height=\"42\" y=\"18\" valign=\"top\">"+summary+"</label></item>";
+			var item = mailList.appendElement("<item width=\"100%\"></item>");
+			var labeltitle = item.appendElement("<label />");
+			labeltitle.width = "100&";
+			labeltitle.tooltip = mails[i].author.name+": "+stripEntities(title);
+			labeltitle.valign = "middle";
+			labeltitle.bold = true;
+			labeltitle.innerText = mails[i].author.name + ": " + stripEntities(title);
+			var labelsummary = item.appendElement("<label />");
+			labelsummary.wordwrap = true;
+			labelsummary.width = "100%";
+			labelsummary.height = 42;
+			labelsummary.y = 18;
+			labelsummary.valign = "top";
+			labelsummary.innerText = stripEntities(summary);
 		}
 		catch (E) {
 			gadget.debug.error( E.Message );
 		}
-		mailList.appendElement(item);
 	}
 
 }

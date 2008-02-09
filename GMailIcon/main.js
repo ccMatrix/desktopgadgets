@@ -269,6 +269,7 @@ function gmailDetails() {
 	}
 	if (detailsViewOpen) {
     plugin.closeDetailsView();
+		return;
   }
 	if (mails.length > 0) {
 		var details = new DetailsView();

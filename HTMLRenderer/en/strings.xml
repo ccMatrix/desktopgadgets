@@ -1,0 +1,15 @@
+﻿<strings>
+  <GADGET_NAME>HTML Renderer Example</GADGET_NAME>
+  <GADGET_DESCRIPTION>Testgadget to demonstrate the HTML Renderer.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>HTML Render Example
+© 2008 Benjamin Schirmer
+This is an example for an HTML Renderer.
+</GADGET_ABOUT_TEXT>
+
+	<strRender>Render example</strRender>
+	<strVisit>Visit in browser</strVisit>
+	<strCustom>Render custom URL</strCustom>
+	<strCustomPrompt>Enter the URL you would like to render:</strCustomPrompt>
+
+	<strBackground>Gadget background</strBackground>
+</strings>

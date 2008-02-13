@@ -1,0 +1,4 @@
+﻿<view height="500" width="500" onopen="view_onOpen()">
+  <script src="main.js" />
+  <script src="htmlRender.js" />
+</view>

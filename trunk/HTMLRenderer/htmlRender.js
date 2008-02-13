@@ -37,11 +37,19 @@ function renderHTMLCode(str, parent, url) {
 
 	var baseHeight = 16;
 
+	var divName = "htmlRender"+Math.round(Math.random()*50000, 0);
 	var div = parent.appendElement("<div />");
 	div.width = parent.width;
 	div.height = parent.height;
 	div.x = 0;
 	div.y = 0;
+
+	var htmlDiv = div.appendElement("<div />");
+	htmlDiv.width = div.width-10;
+	htmlDiv.height = div.height;
+	htmlDiv.x = 0;
+	htmlDiv.y = 0;
+	htmlDiv.name = divName;
 
 	// Extract body tag if string contains complete document
 	var start = str.toLowerCase().indexOf("<body");
@@ -136,7 +144,7 @@ function renderHTMLCode(str, parent, url) {
 			case "strong":
 			case "em":
 			case "abbr":
-							tmpEle = div.appendElement( tmpStr );
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.height = baseHeight;
 							tmpEle.font = "Arial";
 							tmpEle.y = top;
@@ -149,7 +157,7 @@ function renderHTMLCode(str, parent, url) {
 							else if (match[1] == "u" || match[1] == "ins") {
 								tmpEle.underline = true;
 							}
-							else if (match[1] == "i" || match[1] == "em") {
+							else if (match[1] == "i" || match[1] == "em" || match[1] == "var") {
 								tmpEle.italic = true;
 							}
 							else if (match[1] == "abbr" || match[1] == "acronym") {
@@ -160,6 +168,9 @@ function renderHTMLCode(str, parent, url) {
 							}
 							else if (match[1] == "del") {
 								tmpEle.strikeout = true;
+							}
+							else if (match[1] == "code" || match[1] == "kbd" || match[1] == "tt" || match[1] == "samp") {
+								tmpEle.font = "Courier New";
 							}
 
 							tmpEle.height = Math.ceil(tmpEle.size*1.6);
@@ -188,7 +199,7 @@ function renderHTMLCode(str, parent, url) {
 			case "h4":
 			case "h5":
 			case "h6":
-							tmpEle = div.appendElement( tmpStr );
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.height = baseHeight;
 							tmpEle.font = "Arial";
 							tmpEle.y = top;
@@ -225,6 +236,7 @@ function renderHTMLCode(str, parent, url) {
 								tmpEle.bold = true;
 								top += Math.ceil(tmpEle.size*1.6);
 							}
+							tmpEle.y = tmpEle.y + Math.ceil(tmpEle.size / 3);
 
 							tmpEle.height = Math.ceil(tmpEle.size*1.6);
 							width = basicCalcWidth(tmpEle.innerText, tmpEle);
@@ -251,7 +263,7 @@ function renderHTMLCode(str, parent, url) {
 							break;
 
 			case "pre":
-							tmpEle = div.appendElement( tmpStr );
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.height = baseHeight;
 							tmpEle.font = "Courier New";
 							tmpEle.y = top+4;
@@ -271,10 +283,10 @@ function renderHTMLCode(str, parent, url) {
 
 			case "sub": 
 			case "sup":
-							tmpEle = div.appendElement( tmpStr );
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.font = "Arial";
 							tmpEle.size = 4;
+							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
 							if (match[1] == "sub") {
 								tmpEle.y = top-(baseHeight/2);
 							}
@@ -300,11 +312,11 @@ function renderHTMLCode(str, parent, url) {
 							break;
 
 			case "p": 
-							tmpEle = div.appendElement( tmpStr );
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.font = "Arial";
 							tmpEle.wordwrap = true;
 							tmpEle.height = baseHeight;
+							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
 							left = 0;
 							top += baseHeight;
 							if ( (tmpEle.width) > div.width) {
@@ -317,11 +329,11 @@ function renderHTMLCode(str, parent, url) {
 							break;
 
 			case "blockquote":
-							tmpEle = div.appendElement( tmpStr );
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							tmpEle.font = "Arial";
 							tmpEle.wordwrap = true;
 							tmpEle.height = baseHeight;
+							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
 							left = 50;
 							tmpEle.x = left;
 							tmpEle.y = top+tmpEle.height;
@@ -341,10 +353,10 @@ function renderHTMLCode(str, parent, url) {
 							break;
 
 			case "a":
-							tmpEle = div.appendElement( match[0] );
+							tmpEle = htmlDiv.appendElement( match[0] );
+							tmpEle.font = "Arial";
 							tmpEle.height = baseHeight;
 							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							tmpEle.font = "Arial";
 							if ( (left + tmpEle.width) > div.width) {
 								left = 0;
 								top += baseHeight;
@@ -357,7 +369,7 @@ function renderHTMLCode(str, parent, url) {
 
 			case "img": 
 							tmpStr = match[0];
-							tmpEle = div.appendElement( tmpStr );
+							tmpEle = htmlDiv.appendElement( tmpStr );
 							top += baseHeight;
 							tmpEle.y = top;
 							tmpEle.x = 0;
@@ -376,7 +388,7 @@ function renderHTMLCode(str, parent, url) {
 							break;
 
 			case "hr":
-							tmpEle = div.appendElement( "<div width=\"100%\" height=\"2\" background=\"#D0D0D0\"> </div>" );
+							tmpEle = htmlDiv.appendElement( "<div width=\"100%\" height=\"2\" background=\"#D0D0D0\"> </div>" );
 							top += baseHeight;
 							tmpEle.y = top;
 							tmpEle.x = 0;
@@ -398,6 +410,43 @@ function renderHTMLCode(str, parent, url) {
 		if (match && (match[1].length > 0)) {
 			str = str.replace(/([^<]*)/i, "<div >$1</div>");
 		}
+	}
+
+	// Set background div height
+	htmlDiv.height = top+baseHeight;
+
+	// Add Scrollbars if needed
+	if (htmlDiv.height > div.height) {
+
+		var scrollDiv = div.appendElement("<div />");
+		scrollDiv.name = "scrollarea";
+		scrollDiv.height = div.height;
+		scrollDiv.width = 10;
+		scrollDiv.x = div.width-10;
+		scrollDiv.y = 0;
+		scrollDiv.background = "#000000";
+	
+		var scrollImg = scrollDiv.appendElement("<img />");
+		scrollImg.height = "100%";
+		scrollImg.width = 9;
+		scrollImg.src = "images\\scrollbar.png";
+	
+		var scrollBar = scrollDiv.appendElement("<scrollbar />");
+		scrollBar.enabled = true;
+		scrollBar.height = div.height+10;
+		scrollBar.name = "sb";
+		scrollBar.width = 8;
+		scrollBar.y = -10;
+		scrollBar.lineStep = 10;
+		scrollBar.max = htmlDiv.height-div.height;
+		scrollBar.orientation = "vertical";
+		scrollBar.thumbDownImage = "images\\scroll.png";
+		scrollBar.thumbImage = "images\\scroll.png";
+		scrollBar.thumbOverImage = "images\\scroll.png";
+		scrollBar.onchange = function() {
+				htmlDiv.y = -scrollBar.value;
+			};
+
 	}
 
 	// debug.trace("Rest string: "+str);

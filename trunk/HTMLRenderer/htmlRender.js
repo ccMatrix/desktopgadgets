@@ -13,61 +13,51 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-@version 0.0.3 (2008-02-13)
+@version 0.0.4 (2008-02-17)
 @author Benjamin Schirmer
 */
 
-var baseUrl = "";
+function HTMLRender() {
+	this.parent = view;
+	this.baseUrl = "";
 
-function renderHTMLCode(str, parent, url) {
+	this.reset();
+}
 
-	// Clean parent
-	parent.removeAllElements();
+HTMLRender.prototype.setParent = function(p) {
+	this.parent = p;
+}
 
+HTMLRender.prototype.reset = function() {
+	this.htmlDOM = new HTMLElement("document");
+
+	// Rendering variables
+	this.baseHeight = 16;
+	this.left = 0;
+	this.top = 0;
+}
+
+HTMLRender.prototype.RenderString = function(html, url) {
 	// set baseUrl for this document (needed for image requests)
-	baseUrl = url.substring(0, url.lastIndexOf("/")+1);
-
-	var tmpEle = null;
-	var tmpStr = null;
-	
-	var top = 0;
-	var left = 0;
-	var width = 0;
-	var height = 0;
-
-	var baseHeight = 16;
-
-	var divName = "htmlRender"+Math.round(Math.random()*50000, 0);
-	var div = parent.appendElement("<div />");
-	div.width = parent.width;
-	div.height = parent.height;
-	div.x = 0;
-	div.y = 0;
-
-	var htmlDiv = div.appendElement("<div />");
-	htmlDiv.width = div.width-10;
-	htmlDiv.height = div.height;
-	htmlDiv.x = 0;
-	htmlDiv.y = 0;
-	htmlDiv.name = divName;
+	this.baseUrl = url.substring(0, url.lastIndexOf("/")+1);
 
 	// Extract body tag if string contains complete document
-	var start = str.toLowerCase().indexOf("<body");
+	var start = html.toLowerCase().indexOf("<body");
 	if (start >= 0) {
-		start = str.toLowerCase().indexOf(">", start) + 1;
-		var end = str.toLowerCase().lastIndexOf("</body>");
+		start = html.toLowerCase().indexOf(">", start) + 1;
+		var end = html.toLowerCase().lastIndexOf("</body>");
 		if (end < 0) {
-			end = str.length;
+			end = html.length;
 		}
-		str = str.substring(start, end);
+		html = html.substring(start, end);
 	}
 
 	while (true) {
-		start = str.indexOf("<!--");
+		start = html.indexOf("<!--");
 		if (start >= 0) {
-			end = str.indexOf("-->", start);
+			end = html.indexOf("-->", start);
 			if (end >= 0) {
-				str = str.replace( str.substring(start, end+3), "");
+				html = html.replace( html.substring(start, end+3), "");
 			}
 		}
 		else {
@@ -75,354 +65,141 @@ function renderHTMLCode(str, parent, url) {
 		}
 	}
 
-	// Decode entities
-	str = str.replace(/&nbsp;/ig, " ");
-	str = str.replace(/&copy;/gi, "©");
+	this.reset();
+	this.parseHTML( html, this.htmlDOM );
+	this.debugDOM();
+	this.renderDOM();
+}
 
-	// Fix attributes
-	str = str.replace(/=([\s\n\r\0\t]*)([a-zA-Z0-9]{1})([^\s]*)/g, "=\"$2$3\"");
-	//str = str.replace(/=([^\s>]*)/g, "=\"$1\" ");
-	//str = str.replace(/=\"\"([^\"]*)\"\"/g, "=\"$1\" ");
+/*!
+ * Download webpage and render data
+ */
+HTMLRender.prototype.RenderUrl = function(url) {
+	var loadUrl = url;
+	var req = new XMLHttpRequest();
+	// These are some webpages which show Hello World examples, enable each line to test the renderer:
+	loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
+	loadUrl += Math.random();
+	req.open("GET", loadUrl, false);
+	req.send();
 
-	// Paragraphs are just line-breaks here
-	str = str.replace(/<\/p>/gi, "<br>");
-	str = str.replace(/<p>/gi, "<br>");
+	this.RenderString(req.responseText, url);
+}
 
-	// Cleaning unknown or unneeded tags
-	var unknownTags = new Array("nobr", "font", "div", "p");
-	for (var i=0; i<unknownTags.length; i++) {
-		var tag = unknownTags[i];
-		var openTag = new RegExp("<"+tag+"([\s>]+)([^>]*)>", "ig");
-		var closeTag = new RegExp("<\/"+tag+"([\s>]+)([^>]*)>", "ig");
-		str = str.replace(openTag, "");
-		str = str.replace(closeTag, "");
+/*!
+ * Parse HTML Code and fill parent element
+ */
+HTMLRender.prototype.parseHTML = function(html, parentElement) {
+	debug.trace( "parseHTML: "+html );
+	while (html.length > 0) {
+		var start = html.indexOf("<");
+		var end = 0;
+		var match = null;
+		if (start == -1) {
+			// No HTML Tags detected -> Text only
+			html = html.trim();
+			if (html.length > 0) {
+				if (parentElement.subElements.length > 0) {
+					var textEle = new HTMLElement("text");
+					textEle.innerText = html;
+					debug.trace("Creating new TextNode : "+html);
+					parentElement.subElements.push( textEle );
+				}
+				else {
+					debug.trace("Setting innerText ("+parentElement.subElements.length+"): "+html);
+					parentElement.innerText = html;
+				}
+			}
+			html = "";
+		}
+		else if (start > 0) {
+			// HTML Tag detected. Move Text before Tag into TextNode
+			var text = html.substring(0, start);
+			text = text.trim();
+			if (text.length > 0) {
+				var textEle = new HTMLElement("text");
+				textEle.innerText = text;
+				debug.trace("Creating new TextNode : "+text);
+				parentElement.subElements.push( textEle );
+			}
+			html = html.substring(start, html.length);
+		}
+		else if (start == 0) {
+			// Read starting tag
+			end = html.indexOf(">", start);
+			var tagStart = html.substring(start, end+1);
+			match = tagStart.match(/<[\s\n\t\r]*([a-z0-9A-Z]+)/i);
+			if (!match) {
+				debug.error("Could not find tag in "+tagStart);
+				return;
+			}
+			if (!this.isSingleTag(match[1])) {
+				debug.trace("Has closing Tag: "+match[1]);
+				var endTag = "</"+match[1].toLowerCase()+">";
+				end = html.toLowerCase().indexOf(endTag, end);
+				var tagData = html.substring( start + tagStart.length, end );
+
+				var element = new HTMLElement(match[1]);
+				this.parseAttributes( tagStart, element );
+				this.parseHTML( tagData, element );
+				parentElement.subElements.push( element );
+
+				html = html.substring( end+endTag.length, html.length );
+			}
+			else {
+				debug.trace("Single Tag: "+match[1]);
+				var element = new HTMLElement(match[1]);
+				this.parseAttributes( tagStart, element );
+				parentElement.subElements.push( element );
+
+				html = html.substring( end+1, html.length );
+			}
+		}
+		//debug.trace("NewHTML: "+html);
 	}
+}
 
-	// creating first div tag if content starts with text
-	if (str[0] != "<") {
-		str = str.replace(/([^<]+)/i, "<div >$1</div>");
-	}
-
-	// Closing tags which usually do not have one
-	str = str.replace(/<img([^>]*)>/gi, "<img$1></img>");
-	str = str.replace(/<br([^>]*)>/gi, "<br ></br>");
-	str = str.replace(/<hr([^>]*)>/gi, "<hr ></hr>");
-
-	// Enclose all stand-alone text into divs
-	str = str.replace(/<\/([^>]+)>([^<]+)</gi, "</$1><div>$2</div><");
-	str = str.replace(/<([^>]+)>([^<]+)<([a-zA-Z]+)/gi, "</$1><div>$2</div><$3");
-
-	// Remove all empty divs
-	str = str.replace(/<div[^>]*>([\s]*)<\/div>/gi, "");
-
-	// Remove all bookmark links (no such thing in gadgets)
-	str = str.replace(/<a[\s\n\t\r]+name=[a-zA-Z0-9,.-_\"]+[\s\n\t\r]*>([^<]*)<\/a>/gi, "$1");
-	str = str.replace(/<a[\s\n\t\r]+name=[a-zA-Z0-9,.-_\"]+[\s\n\t\r]*>/gi, "");
-
-	//debug.trace("Scanning: "+str);
-
-	while (true) {
-		var match = str.match(/<([^>\s]+)([^>]*)>([^<]*)<\/([^>]+)>/);
+/*!
+ * Parse attributes from opening tag
+ */
+HTMLRender.prototype.parseAttributes = function(tag, element) {
+	tag = tag.replace(/=([\s\n\r\t]*)([a-zA-Z0-9]{1})([^\s]*)/gi, "=\"$2$3\"");
+	var match = null;
+	while ( true ) {
+		match = tag.match(/([a-zA-Z0-9-]+)=([\s\n\r\t]*)([\"]{1})([^\"]+)/i);
 		if (!match) break;
-
-		// verbose debugging
-		debug.trace("Found tag: "+match[1]+"-/"+match[4]+": "+match[0]);
-		// minimal debugging
-		//debug.trace("Found tag: "+match[1]+"-/"+match[4]);
-
-		tmpStr = match[0];
-		tmpStr = tmpStr.replace("<"+match[1], "<label");
-		tmpStr = tmpStr.replace("</"+match[4]+">", "</label>");
-		tmpStr = tmpStr.replace(/title=/, "tooltip=");
-
-		switch ( match[1] ) {
-			default:
-			case "div": 
-			case "b":
-			case "u":
-			case "i":
-			case "strong":
-			case "em":
-			case "abbr":
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.height = baseHeight;
-							tmpEle.font = "Arial";
-							tmpEle.y = top;
-							tmpEle.innerText = tmpEle.innerText.replace(/\n/g, " ");
-							tmpEle.innerText = tmpEle.innerText.replace(/([\s]+)/gi, " ");
-
-							if (match[1] == "b" || match[1] == "strong") {
-								tmpEle.bold = true;
-							}
-							else if (match[1] == "u" || match[1] == "ins") {
-								tmpEle.underline = true;
-							}
-							else if (match[1] == "i" || match[1] == "em" || match[1] == "var") {
-								tmpEle.italic = true;
-							}
-							else if (match[1] == "abbr" || match[1] == "acronym") {
-								tmpEle.underline = true;
-							}
-							else if (match[1] == "q") {
-								tmpEle.innerText = "\" "+tmpEle.innerText + " \"";
-							}
-							else if (match[1] == "del") {
-								tmpEle.strikeout = true;
-							}
-							else if (match[1] == "code" || match[1] == "kbd" || match[1] == "tt" || match[1] == "samp") {
-								tmpEle.font = "Courier New";
-							}
-
-							tmpEle.height = Math.ceil(tmpEle.size*1.6);
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-
-							if ( (left + tmpEle.width) > div.width) {
-								left = 0;
-								if (top > 0) {
-									tmpEle.y = top+tmpEle.height;
-								}
-								if ( tmpEle.width > div.width) {
-									tmpEle.wordwrap = true;
-									top -= tmpEle.height;
-									tmpEle.height = Math.ceil( tmpEle.width / div.width ) * (tmpEle.size*1.6);
-									tmpEle.width = div.width;
-									top += tmpEle.height;
-								}
-							}
-							tmpEle.x = left;
-							left += tmpEle.width;
-							break;
-
-			case "h1":
-			case "h2":
-			case "h3":
-			case "h4":
-			case "h5":
-			case "h6":
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.height = baseHeight;
-							tmpEle.font = "Arial";
-							tmpEle.y = top;
-							tmpEle.innerText = tmpEle.innerText.replace(/\n/g, " ");
-							tmpEle.innerText = tmpEle.innerText.replace(/([\s]+)/gi, " ");
-
-							if (match[1] == "h1") {
-								tmpEle.size = 24;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							else if (match[1] == "h2") {
-								tmpEle.size = 18;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							else if (match[1] == "h3") {
-								tmpEle.size = 14;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							else if (match[1] == "h4") {
-								tmpEle.size = 12;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							else if (match[1] == "h5") {
-								tmpEle.size = 10;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							else if (match[1] == "h6") {
-								tmpEle.size = 8;
-								tmpEle.bold = true;
-								top += Math.ceil(tmpEle.size*1.6);
-							}
-							tmpEle.y = tmpEle.y + Math.ceil(tmpEle.size / 3);
-
-							tmpEle.height = Math.ceil(tmpEle.size*1.6);
-							width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							if (width < div.width) {
-								width = div.width;
-							}
-							tmpEle.width = width;
-
-							if ( (left + tmpEle.width) > div.width) {
-								left = 0;
-								if (top > 0) {
-									tmpEle.y = top+tmpEle.height;
-								}
-								if ( tmpEle.width > div.width) {
-									tmpEle.wordwrap = true;
-									top -= tmpEle.height;
-									tmpEle.height = Math.ceil( tmpEle.width / div.width ) * (tmpEle.size*1.6);
-									tmpEle.width = div.width;
-									top += tmpEle.height;
-								}
-							}
-							tmpEle.x = left;
-							left = 0;
-							break;
-
-			case "pre":
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.height = baseHeight;
-							tmpEle.font = "Courier New";
-							tmpEle.y = top+4;
-							tmpEle.size = 8;
-
-							tmpEle.width = div.width;
-
-							tmpEle.wordwrap = true;
-							var lines = tmpEle.innerText.split("\n");
-							debug.trace( "Pre tag has "+lines.length+" lines");
-							tmpEle.height = Math.ceil(tmpEle.size*1.6*lines.length);
-
-							tmpEle.x = left;
-							left += tmpEle.width;
-							top += tmpEle.height;
-							break;
-
-			case "sub": 
-			case "sup":
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.font = "Arial";
-							tmpEle.size = 4;
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							if (match[1] == "sub") {
-								tmpEle.y = top-(baseHeight/2);
-							}
-							else if (match[1] == "sup") {
-								tmpEle.y = top+(baseHeight/2);
-							}
-							tmpEle.height = baseHeight;
-							if ( (left + tmpEle.width) > div.width) {
-								left = 0;
-								if (top > 0) {
-									tmpEle.y = top+tmpEle.height;
-								}
-								if ( tmpEle.width > div.width) {
-									tmpEle.wordwrap = true;
-									top -= tmpEle.height;
-									tmpEle.height = Math.ceil( tmpEle.width / div.width ) * (tmpEle.size*1.6);
-									tmpEle.width = div.width;
-									top += tmpEle.height;
-								}
-							}
-							tmpEle.x = left;
-							left += tmpEle.width;
-							break;
-
-			case "p": 
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.font = "Arial";
-							tmpEle.wordwrap = true;
-							tmpEle.height = baseHeight;
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							left = 0;
-							top += baseHeight;
-							if ( (tmpEle.width) > div.width) {
-								tmpEle.height = Math.ceil(tmpEle.width / div.width) * tmpEle.height;
-								tmpEle.width = div.width;
-							}
-							tmpEle.y = top;
-							tmpEle.x = left;
-							top += tmpEle.height;
-							break;
-
-			case "blockquote":
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							tmpEle.font = "Arial";
-							tmpEle.wordwrap = true;
-							tmpEle.height = baseHeight;
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							left = 50;
-							tmpEle.x = left;
-							tmpEle.y = top+tmpEle.height;
-
-							top += baseHeight;
-							if ( (left + tmpEle.width) > div.width) {
-								if ( tmpEle.width > (div.width - left) ) {
-									tmpEle.wordwrap = true;
-									top -= tmpEle.height;
-									tmpEle.height = Math.ceil( tmpEle.width / (div.width - left) ) * (tmpEle.size*1.6);
-									tmpEle.width = div.width;
-									top += tmpEle.height;
-								}
-							}
-							top += tmpEle.height;
-							left = 0;
-							break;
-
-			case "a":
-							tmpEle = htmlDiv.appendElement( match[0] );
-							tmpEle.font = "Arial";
-							tmpEle.height = baseHeight;
-							tmpEle.width = basicCalcWidth(tmpEle.innerText, tmpEle);
-							if ( (left + tmpEle.width) > div.width) {
-								left = 0;
-								top += baseHeight;
-							}
-							tmpEle.y = top;
-							tmpEle.x = left;
-							tmpEle.size = 8;
-							left += tmpEle.width;
-							break;
-
-			case "img": 
-							tmpStr = match[0];
-							tmpEle = htmlDiv.appendElement( tmpStr );
-							top += baseHeight;
-							tmpEle.y = top;
-							tmpEle.x = 0;
-							getImageFromUrl( tmpEle.src, tmpEle );
-							if (!tmpEle.height) {
-								if (tmpEle.srcHeight > div.height) {
-									tmpEle.height = div.height;
-									tmpEle.width = tmpEle.height * (tmpEle.srcHeight / tmpEle.srcWidth);
-								}
-								else {
-									tmpEle.height = tmpEle.srcHeight;
-								}
-							}
-							left = 0;
-							top += tmpEle.height;
-							break;
-
-			case "hr":
-							tmpEle = htmlDiv.appendElement( "<div width=\"100%\" height=\"2\" background=\"#D0D0D0\"> </div>" );
-							top += baseHeight;
-							tmpEle.y = top;
-							tmpEle.x = 0;
-							left = 0;
-							top += 5;
-							break;
-
-			case "br":
-							left = 0;
-							top += baseHeight;
-							// debug.trace("New line found");
-							break;
-
-		}
-
-		str = str.replace(match[0], "");
-
-		match = str.match(/([^<]*)/i);
-		if (match && (match[1].length > 0)) {
-			str = str.replace(/([^<]*)/i, "<div >$1</div>");
-		}
+		element.attributes[ match[1] ] = match[4];
+		tag = tag.replace(match[0], "");
 	}
+}
+
+/*!
+ * Render out parsed html document 
+ */
+HTMLRender.prototype.renderDOM = function() {
+	// Clean parent
+	this.parent.removeAllElements();
+
+	this.htmlDiv = this.parent.appendElement( "<div />" );
+	this.htmlDiv.width = this.parent.width-10;
+	this.htmlDiv.height = this.parent.height;
+	this.htmlDiv.x = 0;
+	this.htmlDiv.y = 0;
+	this.htmlDiv.name = "htmlDiv";
+
+	this.renderElement( this.htmlDOM, this.parent );
 
 	// Set background div height
-	htmlDiv.height = top+baseHeight;
+	this.htmlDiv.height = this.top+this.baseHeight;
 
 	// Add Scrollbars if needed
-	if (htmlDiv.height > div.height) {
+	if (this.htmlDiv.height > this.parent.height) {
 
-		var scrollDiv = div.appendElement("<div />");
+		var scrollDiv = this.parent.appendElement("<div />");
 		scrollDiv.name = "scrollarea";
-		scrollDiv.height = div.height;
+		scrollDiv.height = this.parent.height;
 		scrollDiv.width = 10;
-		scrollDiv.x = div.width-10;
+		scrollDiv.x = this.parent.width-10;
 		scrollDiv.y = 0;
 		scrollDiv.background = "#000000";
 	
@@ -433,54 +210,324 @@ function renderHTMLCode(str, parent, url) {
 	
 		var scrollBar = scrollDiv.appendElement("<scrollbar />");
 		scrollBar.enabled = true;
-		scrollBar.height = div.height+10;
+		scrollBar.height = this.parent.height+10;
 		scrollBar.name = "sb";
 		scrollBar.width = 8;
 		scrollBar.y = -10;
 		scrollBar.lineStep = 10;
-		scrollBar.max = htmlDiv.height-div.height;
+		scrollBar.max = this.htmlDiv.height-this.parent.height;
 		scrollBar.orientation = "vertical";
 		scrollBar.thumbDownImage = "images\\scroll.png";
 		scrollBar.thumbImage = "images\\scroll.png";
 		scrollBar.thumbOverImage = "images\\scroll.png";
 		scrollBar.onchange = function() {
-				htmlDiv.y = -scrollBar.value;
+				//htmlDiv.y = -scrollBar.value;
 			};
 
 	}
-
-	// debug.trace("Rest string: "+str);
-	
 }
 
-function getImageFromUrl(url, target) {
-	if (!url.match("([a-zA-Z]+)://")) {
-		if (url.substring(0,1) == "/") {
-			endDomain = baseUrl.indexOf("://");
-			endDomain = baseUrl.indexOf("/", endDomain+3);
-			url = baseUrl.substring(0, endDomain)+url;
-		}
-		else {
-			url = baseUrl + url;
-		}
+/*!
+ * Render element
+ */
+HTMLRender.prototype.renderElement = function(element, parent) {
+	debug.trace( "Rendering: "+element.tagName );
+	var tmpEle = null;
+	switch (element.tagName) {
+		case "document":
+		default:
+		case "p":
+		case "text":
+				if (element.tagName == "document") {
+					if (element.innerText.length == 0) break;
+				}
+
+				if (element.tagName == "p") {
+					if (this.top > 0) {
+						this.top += this.baseHeight;
+					}
+					this.left = 0;
+				}
+
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.height = this.baseHeight;
+				tmpEle.font = "Arial";
+				tmpEle.y = this.top;
+				tmpEle.size = 8;
+				tmpEle.innerText = element.getTextContent();
+				this.setElementStyle( tmpEle, parent, element );
+
+				if (element.tagName == "code" 
+						|| element.tagName == "kbd" 
+						|| element.tagName == "tt" 
+						|| element.tagName == "samp") {
+					tmpEle.font = "Courier New";
+				}
+				else if (element.tagName == "q") {
+					tmpEle.innerText = "\" "+tmpEle.innerText + " \"";
+				}
+
+				tmpEle.height = Math.ceil(tmpEle.size*1.6);
+				tmpEle.width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
+
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					if (this.left > 0) {
+						tmpEle.y = this.top+tmpEle.height;
+						this.left = 0;
+					}
+					if ( tmpEle.width > this.htmlDiv.width) {
+						tmpEle.wordwrap = true;
+						this.top -= tmpEle.height;
+						tmpEle.height = Math.ceil( tmpEle.width / this.htmlDiv.width ) * (tmpEle.size*1.8);
+						tmpEle.width = this.htmlDiv.width;
+						this.top += tmpEle.height;
+					}
+				}
+				tmpEle.x = this.left;
+				this.left += tmpEle.width;
+
+				if (element.tagName == "p") {
+					this.top += (this.baseHeight/2);
+					this.left = 0;
+				}
+				break;
+
+		case "h1":
+		case "h2":
+		case "h3":
+		case "h4":
+		case "h5":
+		case "h6":
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.font = "Arial";
+				tmpEle.y = this.top;
+				tmpEle.innerText = element.getTextContent();
+				tmpEle.bold = true;
+
+				if (element.tagName == "h1") {
+					tmpEle.size = 24;
+				}
+				else if (element.tagName == "h2") {
+					tmpEle.size = 18;
+				}
+				else if (element.tagName == "h3") {
+					tmpEle.size = 14;
+				}
+				else if (element.tagName == "h4") {
+					tmpEle.size = 12;
+				}
+				else if (element.tagName == "h5") {
+					tmpEle.size = 10;
+				}
+				else if (element.tagName == "h6") {
+					tmpEle.size = 8;
+				}
+
+				tmpEle.height = Math.ceil(tmpEle.size*1.6);
+				width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
+				if (width < this.htmlDiv.width) {
+					width = this.htmlDiv.width;
+				}
+				tmpEle.width = width;
+
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					if (this.left > 0) {
+						tmpEle.y = this.top+tmpEle.height;
+						this.left = 0;
+					}
+					if ( tmpEle.width > this.htmlDiv.width) {
+						tmpEle.wordwrap = true;
+						this.top -= tmpEle.height;
+						tmpEle.height = Math.ceil( tmpEle.width / this.htmlDiv.width ) * (tmpEle.size*1.6);
+						tmpEle.width = this.htmlDiv.width;
+						this.top += tmpEle.height;
+					}
+				}
+				tmpEle.y = tmpEle.y + (tmpEle.size);
+				tmpEle.x = this.left;
+				this.top = tmpEle.y + tmpEle.height;
+				this.left = 0;
+				break;
+
+		case "pre":
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.height = this.baseHeight;
+				tmpEle.font = "Courier New";
+				tmpEle.y = this.top+4;
+				tmpEle.size = 8;
+
+				tmpEle.width = this.htmlDiv.width;
+
+				tmpEle.wordwrap = true;
+				tmpEle.innerText = element.decodeEntities( element.innerText );
+				var lines = tmpEle.innerText.split("\n");
+				debug.trace( "Pre tag has "+lines.length+" lines");
+				tmpEle.height = Math.ceil(tmpEle.size*1.6*lines.length);
+
+				tmpEle.x = this.left;
+				this.left += tmpEle.width;
+				this.top += tmpEle.height;
+				break;
+
+		case "blockquote":
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.font = "Arial";
+				tmpEle.wordwrap = true;
+				tmpEle.height = this.baseHeight;
+				tmpEle.innerText = element.getTextContent();
+
+				tmpEle.width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
+				this.left = 50;
+				tmpEle.x = this.left;
+				tmpEle.y = this.top+tmpEle.height;
+
+				this.top += this.baseHeight;
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					tmpEle.wordwrap = true;
+					this.top -= tmpEle.height;
+					tmpEle.height = Math.ceil( tmpEle.width / (this.htmlDiv.width - this.left) ) * (tmpEle.size*1.6);
+					tmpEle.width = this.htmlDiv.width-this.left;
+					this.top += tmpEle.height;
+				}
+				this.top += tmpEle.height;
+				this.left = 0;
+				break;
+
+		case "a":
+				tmpEle = this.htmlDiv.appendElement( "<a />" );
+				tmpEle.font = "Arial";
+				tmpEle.size = 8;
+				tmpEle.innerText = element.getTextContent();
+				tmpEle.height = this.baseHeight;
+				tmpEle.width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					this.left = 0;
+					this.top += this.baseHeight;
+				}
+				tmpEle.y = this.top;
+				tmpEle.x = this.left;
+				this.left += tmpEle.width;
+				break;
+
+		case "sub": 
+		case "sup":
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.font = "Arial";
+				tmpEle.size = 4;
+				tmpEle.innerText = element.innerText;
+				tmpEle.width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
+				if (element.tagName == "sub") {
+					tmpEle.y = this.top+(this.baseHeight/2);
+				}
+				else if (element.tagName == "sup") {
+					tmpEle.y = this.top;
+				}
+				tmpEle.height = this.baseHeight;
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					this.left = 0;
+					if (this.top > 0) {
+						tmpEle.y = this.top+tmpEle.height;
+					}
+					if ( tmpEle.width > this.htmlDiv.width) {
+						tmpEle.wordwrap = true;
+						this.top -= tmpEle.height;
+						tmpEle.height = Math.ceil( tmpEle.width / this.htmlDiv.width ) * (tmpEle.size*1.6);
+						tmpEle.width = this.htmlDiv.width;
+						this.top += tmpEle.height;
+					}
+				}
+				tmpEle.x = this.left;
+				this.left += tmpEle.width;
+				break;
+
+		case "hr":
+				tmpEle = this.htmlDiv.appendElement( "<div width=\"100%\" height=\"2\" background=\"#D0D0D0\"> </div>" );
+				this.top += this.baseHeight;
+				tmpEle.y = this.top+(this.baseHeight/2)-2;
+				tmpEle.x = 0;
+				this.left = 0;
+				this.top += this.baseHeight;
+				break;
+
+		case "table":
+				debug.warning("Render entire table ...");
+				debug.warning("@TODO Table logic!");
+				return;
+				break;
+
+		case "br":
+				this.left = 0;
+				this.top += this.baseHeight;
+				// debug.trace("New line found");
+				break;
 	}
-	debug.trace("Requesting Image: "+url);
-	var req = new XMLHttpRequest();
-	req.open('GET', url, true); 
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				target.src = req.responseStream;
-			}
-			else {
-				debug.gadget.error("Error loading page\n");
-			}
-		}
-	};
-	req.send(null);
+
+	for (var i=0; i<element.subElements.length; i++) {
+		this.renderElement( element.subElements[i], tmpEle );
+	}
 }
 
-function basicCalcWidth(str, ele) {
+HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
+	if (parent != null) {
+		element.bold = parent.bold;
+		element.underline = parent.underline;
+		element.italic = parent.italic;
+		element.strikeout = parent.strikeout;
+	}
+
+	switch (cHTML.tagName) {
+		case "b": 
+		case "strong":
+					element.bold = true;
+					break;
+		case "i":
+		case "em":
+		case "var":
+					element.italic = true;
+					break;
+		case "u":
+		case "ins":
+		case "abbr":
+		case "acronym":
+					element.underline = true;
+					break;
+		case "del":
+					element.strikeout = true;
+					break;
+	}
+
+	if (cHTML.attributes.title) {
+		element.tooltip = cHTML.attributes.title;
+	}
+
+}
+
+/*!
+ * Output debugging code to verify layout
+ */
+HTMLRender.prototype.debugDOM = function() {
+	debug.trace( this.htmlDOM.toJSONString() );
+}
+
+/*!
+ * Check if the tag needs a closing tag or not
+ */
+HTMLRender.prototype.isSingleTag = function(tag) {
+	tag = tag.toLowerCase();
+	switch (tag) {
+		case "br":
+		case "hr":
+		case "img":
+					return true;
+
+		default: return false;
+	}
+}
+
+/*!
+ * Calculate width of text based on a string
+ */
+HTMLRender.prototype.basicCalcWidth = function(str, ele) {
 
 	var edit = view.appendElement("<edit />");
 	edit.visible = false;
@@ -501,4 +548,65 @@ function basicCalcWidth(str, ele) {
 	view.removeElement(edit);
 	
 	return idealRect.width-4;
+}
+
+/*!
+ * HTML attribute object
+ */
+function HTMLAttribute(k, v) {
+	this.key = k;
+	this.value = v;
+}
+
+/*!
+ * Read key from HTML attribute
+ */
+HTMLAttribute.prototype.getKey = function() {
+	return this.key;
+}
+
+/*!
+ * Read value from HTML attribute
+ */
+HTMLAttribute.prototype.getValue = function() {
+	return this.value;
+}
+
+/*!
+ * HTML Element object
+ */
+function HTMLElement(tn) {
+	this.tagName = tn;
+	this.subElements = new Array();
+	this.attributes = new Object();
+
+	this.innerText = "";
+}
+
+/*!
+ * retrieve formatted text content of the element
+ */
+HTMLElement.prototype.getTextContent = function() {
+	var text = this.innerText;
+	text = text.replace(/\n/g, " ");
+	text = text.replace(/([\s]+)/gi, " ");
+	text = text.replace(/([\r\n\t\s]+)/gi, " ");
+	text = this.decodeEntities(text);
+	return text;
+}
+
+HTMLElement.prototype.decodeEntities = function(str) {
+	str = str.replace(/&copy;/gi, "©");
+	str = str.replace(/&lt;/gi, "<");
+	str = str.replace(/&gt;/gi, ">");
+	str = str.replace(/&quot;/gi, "\"");
+	return str;
+}
+
+/*!
+ * Extended String prototype with trim function
+ *
+ */
+String.prototype.trim = function () {
+    return this.replace(/^\s*/, "").replace(/\s*$/, "");
 }

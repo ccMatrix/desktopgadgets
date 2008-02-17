@@ -2,4 +2,5 @@
  >
   <script src="main.js" />
   <script src="htmlRender.js" />
+  <script src="json.js" />
 </view>

@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-@version 0.0.4 (2008-02-17)
+@version 0.0.6 (2008-02-20)
 @author Benjamin Schirmer
 */
 
@@ -74,42 +74,44 @@ HTMLRender.prototype.RenderString = function(html, url) {
 	this.renderDOM();
 }
 
-/*!
+/**
  * Download webpage and render data
  */
-HTMLRender.prototype.RenderUrl = function(url) {
+HTMLRender.prototype.RenderUrl = function(url, nocache) {
 	var loadUrl = url;
 	var req = new XMLHttpRequest();
 	// These are some webpages which show Hello World examples, enable each line to test the renderer:
-	loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
-	loadUrl += Math.random();
+	if (nocache) {
+		loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
+		loadUrl += Math.random();
+	}
 	req.open("GET", loadUrl, false);
 	req.send();
 
 	this.RenderString(req.responseText, url);
 }
 
-/*!
+/**
  * Parse HTML Code and fill parent element
  */
 HTMLRender.prototype.parseHTML = function(html, parentElement) {
-	debug.trace( "parseHTML: "+html );
+	// debug.trace( "parseHTML: "+html );
 	while (html.length > 0) {
 		var start = html.indexOf("<");
 		var end = 0;
 		var match = null;
 		if (start == -1) {
 			// No HTML Tags detected -> Text only
-			html = html.trim();
+			html = this.trimString(html);
 			if (html.length > 0) {
 				if (parentElement.subElements.length > 0) {
 					var textEle = new HTMLElement("text");
 					textEle.innerText = html;
-					debug.trace("Creating new TextNode : "+html);
+					// debug.trace("Creating new TextNode : "+html);
 					parentElement.subElements.push( textEle );
 				}
 				else {
-					debug.trace("Setting innerText ("+parentElement.subElements.length+"): "+html);
+					// debug.trace("Setting innerText ("+parentElement.subElements.length+"): "+html);
 					parentElement.innerText = html;
 				}
 			}
@@ -118,11 +120,11 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 		else if (start > 0) {
 			// HTML Tag detected. Move Text before Tag into TextNode
 			var text = html.substring(0, start);
-			text = text.trim();
+			text = this.trimString(text);
 			if (text.length > 0) {
 				var textEle = new HTMLElement("text");
 				textEle.innerText = text;
-				debug.trace("Creating new TextNode : "+text);
+				// debug.trace("Creating new TextNode : "+text);
 				parentElement.subElements.push( textEle );
 			}
 			html = html.substring(start, html.length);
@@ -137,7 +139,7 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 				return;
 			}
 			if (!this.isSingleTag(match[1])) {
-				debug.trace("Has closing Tag: "+match[1]);
+				// debug.trace("Has closing Tag: "+match[1]);
 				var endTag = "</"+match[1].toLowerCase()+">";
 
 				var endPos = -1;
@@ -145,20 +147,17 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 				var posLoop = true;
 				while (posLoop) {
 					startPos = html.toLowerCase().indexOf( "<"+match[1].toLowerCase(), startPos );
-					//if (confirm("StartPos1: "+startPos+"\nEndPos: "+endPos+"\n\n"+html.substring( start + tagStart.length, html.length ))) return;
 					if ( (startPos == -1) || (endPos != -1 && startPos > endPos) ) {
 						posLoop = false;
 					}
 					else {
 						endPos = html.toLowerCase().indexOf( endTag, endPos );
-						//if (confirm("StartPos2: "+startPos+"\nEndPos: "+endPos+"\n\n"+html.substring( start + tagStart.length, html.length ))) return;
 						posLoop = true;
 						endPos++;
 						startPos++;
 					}
 				}
 				end = endPos-1;
-				//alert( html.substring( start + tagStart.length, end ) );
 
 				//end = html.toLowerCase().indexOf( endTag, end);
 				var tagData = html.substring( start + tagStart.length, end );
@@ -182,13 +181,11 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 	}
 }
 
-/*!
+/**
  * Parse attributes from opening tag
  */
 HTMLRender.prototype.parseAttributes = function(tag, element) {
-	debug.trace("Tag: "+tag);
 	tag = tag.replace(/=[\s\n\r\t]*([a-zA-Z0-9]{1})([^\s]*)/gi, "=\"$1$2\"");
-	debug.trace("Tag Fixed: "+tag);
 	var match = null;
 	while ( true ) {
 		match = tag.match(/([a-zA-Z0-9-]+)[\s\n\r\t]*=[\s\n\r\t]*[\"]{1}([^\"]+)/i);
@@ -198,7 +195,7 @@ HTMLRender.prototype.parseAttributes = function(tag, element) {
 	}
 }
 
-/*!
+/**
  * Render out parsed html document 
  */
 HTMLRender.prototype.renderDOM = function() {
@@ -254,7 +251,7 @@ HTMLRender.prototype.renderDOM = function() {
 	}
 }
 
-/*!
+/**
  * Render element
  */
 HTMLRender.prototype.renderElement = function(element, parent) {
@@ -263,33 +260,36 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 	switch (element.tagName) {
 		case "body":
 				// Apply background attributes
-				this.setElementStyle( this.htmlDiv, parent, element);
 
-				if (element.innerText.length == 0) break;
 				tmpEle = this.htmlDiv.appendElement( "<label />" );
-				tmpEle.innerText = element.getTextContent();
-				this.setBaseStyle( tmpEle );
+				if (element.innerText.length > 0) {
+					tmpEle.innerText = element.getTextContent();
+					this.setBaseStyle( tmpEle );
+					this.setElementSize( tmpEle );
+				}
 				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle );
 
 				break;
 
 		case "p":
+		case "blockquote":
+				if (this.left > 0) {
+					this.top += this.baseHeight;
+				}
 				if (element.innerText.length > 0) {
 					this.top += (this.baseHeight/2);
 					this.left = 0;
+				}
+				if (element.tagName == "blockquote") {
+					this.left = 30;
 				}
 
 				tmpEle = this.htmlDiv.appendElement( "<label />" );
 				tmpEle.innerText = element.getTextContent();
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle, true );
+				this.setElementSize( tmpEle, true, true );
 
-				if (element.innerText.length > 0) {
-					this.top += (this.baseHeight/2);
-					this.left = 0;
-				}
 				break;
 
 		default:
@@ -307,6 +307,16 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				}
 				else if (element.tagName == "q") {
 					tmpEle.innerText = "\" "+tmpEle.innerText + " \"";
+				}
+				else if (element.tagName == "bdo") {
+					if (element.attributes.dir == "rtl") {
+						var str = tmpEle.innerText;
+						var out = "";
+						for (var i = 0; i <= str.length; i++) {
+							out = str.charAt(i) + out;
+						}
+						tmpEle.innerText = out;
+					}
 				}
 
 				this.setElementSize( tmpEle );
@@ -342,7 +352,10 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				}
 
 				this.setElementSize( tmpEle, true );
+				this.top += this.baseHeight;
+				tmpEle.y += (this.baseHeight / 2);
 				tmpEle.width = this.htmlDiv.width;
+				this.applyAttributes( tmpEle, element );
 				this.left = 0;
 				break;
 
@@ -352,8 +365,8 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "pre":
 				tmpEle = this.htmlDiv.appendElement( "<label />" );
 				tmpEle.innerText = element.decodeEntities( element.innerText );
-				tmpEle.font = "Courier New";
 				this.setBaseStyle( tmpEle );
+				tmpEle.font = "Courier New";
 
 				tmpEle.width = this.htmlDiv.width;
 				tmpEle.wordwrap = true;
@@ -365,13 +378,6 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				tmpEle.x = this.left;
 				this.left = 0;
 				this.top += tmpEle.height;
-				break;
-
-		case "blockquote":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
-				tmpEle.innerText = element.getTextContent();
-				this.setBaseStyle( tmpEle );
-				this.setElementSize( tmpEle );
 				break;
 
 		case "a":
@@ -492,7 +498,6 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				break;
 
 		case "li":
-
 				tmpEle = this.htmlDiv.appendElement( "<label />" );
 				tmpEle.innerText = this.getListIndex();
 				this.left = this.tmpData.length * 25;
@@ -510,11 +515,30 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					tmpEle.innerText = element.getTextContent();
 					this.setBaseStyle( tmpEle );
 					this.setElementStyle( tmpEle, parent, element );
-					this.setElementSize( tmpEle, true );
+					this.setElementSize( tmpEle, true, true );
 				}
 
 				this.tmpData[ this.tmpData.length-1 ].index++;
+				break;
 
+		case "dt":
+				this.left = this.tmpData.length * 25;
+
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.innerText = element.getTextContent();
+				this.setBaseStyle( tmpEle );
+				this.setElementStyle( tmpEle, parent, element );
+				this.setElementSize( tmpEle, true, true );
+				break;
+
+		case "dd":
+				this.left = (this.tmpData.length+1) * 25;
+
+				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle.innerText = element.getTextContent();
+				this.setBaseStyle( tmpEle );
+				this.setElementStyle( tmpEle, parent, element );
+				this.setElementSize( tmpEle, true, true );
 				break;
 
 		case "br":
@@ -534,8 +558,17 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "ul":
 		case "ol":
 		case "dl":
-						this.tmpData.pop();
-						break;
+				this.tmpData.pop();
+				break;
+
+		case "p":
+		case "blockquote":
+				this.top += (this.baseHeight/2);
+				if (this.left > 0) {
+					this.top += this.baseHeight;
+				}
+				this.left = 0;
+				break;
 	}
 }
 
@@ -544,22 +577,21 @@ HTMLRender.prototype.setBaseStyle = function( element ) {
 	element.size = 8;
 }
 
-HTMLRender.prototype.setElementSize = function( element, fullWidth ) {
-	// debug.trace("Start position is x: "+this.left+" y: "+this.top);
+HTMLRender.prototype.setElementSize = function( element, fullWidth, lockLeft ) {
 	element.height = Math.ceil(element.size*1.6);
-	element.width = this.basicCalcWidth(element.innerText, element);
+	element.width = this.basicCalcWidth(element.innerText+" ", element);
 
 	if ( (this.left + element.width) > this.htmlDiv.width) {
-		if (this.left > 0) {
+		if (!lockLeft && (this.left > 0) ) {
 			this.top += this.baseHeight;
 			this.left = 0;
 		}
 		element.x = this.left;
 		element.y = this.top;
-		if ( element.width > this.htmlDiv.width) {
+		if ( element.width > (this.htmlDiv.width-this.left) ) {
+			element.height = Math.ceil( element.width / (this.htmlDiv.width-this.left) ) * (element.size*1.6);
+			element.width = (this.htmlDiv.width-this.left);
 			element.wordwrap = true;
-			element.height = Math.ceil( element.width / this.htmlDiv.width ) * (element.size*1.6);
-			element.width = this.htmlDiv.width;
 		}
 	}
 	else {
@@ -572,7 +604,6 @@ HTMLRender.prototype.setElementSize = function( element, fullWidth ) {
 		element.width = this.htmlDiv.width;
 		this.left = 0;
 	}
-	// debug.trace("Next position is x: "+this.left+" y: "+this.top);
 }
 
 HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
@@ -582,6 +613,9 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 		if (parent.italic) element.italic = parent.italic;
 		if (parent.strikeout) element.strikeout = parent.strikeout;
 		if (parent.color) element.color = parent.color;
+
+		if (parent.font) element.font = parent.font;
+		if (parent.size) element.size = parent.size;
 	}
 
 	switch (cHTML.tagName.toLowerCase()) {
@@ -607,17 +641,68 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 					break;
 	}
 
+	this.applyAttributes( element, cHTML );
+}
+
+HTMLRender.prototype.applyAttributes = function( element, cHTML ) {
+	var fontSizes = [6, 8, 10, 12, 14, 18, 24];
+
 	if (cHTML.attributes.title) {
 		element.tooltip = cHTML.attributes.title;
 	}
 	if (cHTML.attributes.color) {
-		element.color = cHTML.attributes.color;
+		if (cHTML.attributes.color.charAt(0) == "#") {
+			element.color = cHTML.attributes.color;
+		}
+		else {
+			element.color = cHTML.decodeColor( cHTML.attributes.color );
+		}
+	}
+	if (cHTML.attributes.text && element.color) {
+		if (cHTML.attributes.text.charAt(0) == "#") {
+			element.color = cHTML.attributes.text;
+		}
+		else {
+			element.color = cHTML.decodeColor( cHTML.attributes.text );
+		}
 	}
 	if (cHTML.attributes.background) {
-		element.background = this.getImageFromUrl(cHTML.attributes.background);
+		if (element.background)
+			element.background = this.getImageFromUrl(cHTML.attributes.background);
+		else
+			this.htmlDiv.background = this.getImageFromUrl(cHTML.attributes.background);
 	}
 	if (cHTML.attributes.bgcolor) {
-		element.background = cHTML.attributes.bgcolor;
+		if (element.background)
+			element.background = cHTML.attributes.bgcolor;
+		else
+			this.htmlDiv.background = this.getImageFromUrl(cHTML.attributes.background);
+
+	}
+	if (cHTML.attributes.size) {
+		if (cHTML.attributes.size.match(/^[0-9]+$/)) {
+			element.size = fontSizes[ cHTML.attributes.size ];
+			debug.trace("Size: "+cHTML.attributes.size+" -> "+element.size );
+		}
+		else {
+			var curSize = 0;
+			for (var i=0; i<fontSizes.length; i++)
+				if (fontSizes[i] <= element.size)
+					curSize = fontSizes[i];
+			var num = parseInt( cHTML.attributes.size.match(/([0-9]+)/)[1] );
+			debug.trace("Set number is: "+num);
+			cursize += (cHTML.attributes.size.charAt(0) == "+")?num:(-1*num);
+			if (curSize < 0) curSize = 0;
+			if (curSize > (fontSizes.length-1)) curSize = fontSizes.length-1;
+			element.size = fontSizes[ curSize ];
+		}
+	}
+	if (cHTML.attributes.face) {
+		element.font = cHTML.attributes.face;
+	}
+	if (cHTML.attributes.align) {
+		debug.trace("Positionare alignmente");
+		element.align = cHTML.attributes.align;
 	}
 }
 
@@ -694,14 +779,14 @@ HTMLRender.prototype.getImageFromUrl = function(url) {
 	return "";
 }
 
-/*!
+/**
  * Output debugging code to verify layout
  */
 HTMLRender.prototype.debugDOM = function() {
 	debug.trace( this.htmlDOM.toJSONString() );
 }
 
-/*!
+/**
  * Check if the tag needs a closing tag or not
  */
 HTMLRender.prototype.isSingleTag = function(tag) {
@@ -716,7 +801,7 @@ HTMLRender.prototype.isSingleTag = function(tag) {
 	}
 }
 
-/*!
+/**
  * Calculate width of text based on a string
  */
 HTMLRender.prototype.basicCalcWidth = function(str, ele) {
@@ -743,7 +828,14 @@ HTMLRender.prototype.basicCalcWidth = function(str, ele) {
 	return newWidth;
 }
 
-/*!
+/**
+ * Trim a string (remove whitespaces at beginning and end)
+ */
+HTMLRender.prototype.trimString = function(str) {
+	return str.replace(/^\s*/, "").replace(/\s*$/, "");
+}
+
+/**
  * HTML attribute object
  */
 function HTMLAttribute(k, v) {
@@ -751,21 +843,21 @@ function HTMLAttribute(k, v) {
 	this.value = v;
 }
 
-/*!
+/**
  * Read key from HTML attribute
  */
 HTMLAttribute.prototype.getKey = function() {
 	return this.key;
 }
 
-/*!
+/**
  * Read value from HTML attribute
  */
 HTMLAttribute.prototype.getValue = function() {
 	return this.value;
 }
 
-/*!
+/**
  * HTML Element object
  */
 function HTMLElement(tn) {
@@ -776,7 +868,7 @@ function HTMLElement(tn) {
 	this.innerText = "";
 }
 
-/*!
+/**
  * retrieve formatted text content of the element
  */
 HTMLElement.prototype.getTextContent = function() {
@@ -906,10 +998,158 @@ HTMLElement.prototype.decodeEntities = function(str) {
 	return str;
 }
 
-/*!
- * Extended String prototype with trim function
- *
- */
-String.prototype.trim = function () {
-    return this.replace(/^\s*/, "").replace(/\s*$/, "");
+HTMLElement.prototype.decodeColor = function( color ) {
+
+	// Decode supported color names
+	color = color.replace(/^AliceBlue$/i, "#F0F8FF");
+	color = color.replace(/^AntiqueWhite$/i, "#FAEBD7");
+	color = color.replace(/^Aqua$/i, "#00FFFF");
+	color = color.replace(/^Aquamarine$/i, "#7FFFD4");
+	color = color.replace(/^Azure$/i, "#F0FFFF");
+	color = color.replace(/^Beige$/i, "#F5F5DC");
+	color = color.replace(/^Bisque$/i, "#FFE4C4");
+	color = color.replace(/^Black$/i, "#000000");
+	color = color.replace(/^BlanchedAlmond$/i, "#FFEBCD");
+	color = color.replace(/^Blue$/i, "#0000FF");
+	color = color.replace(/^BlueViolet$/i, "#8A2BE2");
+	color = color.replace(/^Brown$/i, "#A52A2A");
+	color = color.replace(/^BurlyWood$/i, "#DEB887");
+	color = color.replace(/^CadetBlue$/i, "#5F9EA0");
+	color = color.replace(/^Chartreuse$/i, "#7FFF00");
+	color = color.replace(/^Chocolate$/i, "#D2691E");
+	color = color.replace(/^Coral$/i, "#FF7F50");
+	color = color.replace(/^CornflowerBlue$/i, "#6495ED");
+	color = color.replace(/^Cornsilk$/i, "#FFF8DC");
+	color = color.replace(/^Crimson$/i, "#DC143C");
+	color = color.replace(/^Cyan$/i, "#00FFFF");
+	color = color.replace(/^DarkBlue$/i, "#00008B");
+	color = color.replace(/^DarkCyan$/i, "#008B8B");
+	color = color.replace(/^DarkGoldenRod$/i, "#B8860B");
+	color = color.replace(/^DarkGray$/i, "#A9A9A9");
+	color = color.replace(/^DarkGrey$/i, "#A9A9A9");
+	color = color.replace(/^DarkGreen$/i, "#006400");
+	color = color.replace(/^DarkKhaki$/i, "#BDB76B");
+	color = color.replace(/^DarkMagenta$/i, "#8B008B");
+	color = color.replace(/^DarkOliveGreen$/i, "#556B2F");
+	color = color.replace(/^Darkorange$/i, "#FF8C00");
+	color = color.replace(/^DarkOrchid$/i, "#9932CC");
+	color = color.replace(/^DarkRed$/i, "#8B0000");
+	color = color.replace(/^DarkSalmon$/i, "#E9967A");
+	color = color.replace(/^DarkSeaGreen$/i, "#8FBC8F");
+	color = color.replace(/^DarkSlateBlue$/i, "#483D8B");
+	color = color.replace(/^DarkSlateGray$/i, "#2F4F4F");
+	color = color.replace(/^DarkSlateGrey$/i, "#2F4F4F");
+	color = color.replace(/^DarkTurquoise$/i, "#00CED1");
+	color = color.replace(/^DarkViolet$/i, "#9400D3");
+	color = color.replace(/^DeepPink$/i, "#FF1493");
+	color = color.replace(/^DeepSkyBlue$/i, "#00BFFF");
+	color = color.replace(/^DimGray$/i, "#696969");
+	color = color.replace(/^DimGrey$/i, "#696969");
+	color = color.replace(/^DodgerBlue$/i, "#1E90FF");
+	color = color.replace(/^FireBrick$/i, "#B22222");
+	color = color.replace(/^FloralWhite$/i, "#FFFAF0");
+	color = color.replace(/^ForestGreen$/i, "#228B22");
+	color = color.replace(/^Fuchsia$/i, "#FF00FF");
+	color = color.replace(/^Gainsboro$/i, "#DCDCDC");
+	color = color.replace(/^GhostWhite$/i, "#F8F8FF");
+	color = color.replace(/^Gold$/i, "#FFD700");
+	color = color.replace(/^GoldenRod$/i, "#DAA520");
+	color = color.replace(/^Gray$/i, "#808080");
+	color = color.replace(/^Grey$/i, "#808080");
+	color = color.replace(/^Green$/i, "#008000");
+	color = color.replace(/^GreenYellow$/i, "#ADFF2F");
+	color = color.replace(/^HoneyDew$/i, "#F0FFF0");
+	color = color.replace(/^HotPink$/i, "#FF69B4");
+	color = color.replace(/^IndianRed $/i, "#CD5C5C");
+	color = color.replace(/^Indigo $/i, "#4B0082");
+	color = color.replace(/^Ivory$/i, "#FFFFF0");
+	color = color.replace(/^Khaki$/i, "#F0E68C");
+	color = color.replace(/^Lavender$/i, "#E6E6FA");
+	color = color.replace(/^LavenderBlush$/i, "#FFF0F5");
+	color = color.replace(/^LawnGreen$/i, "#7CFC00");
+	color = color.replace(/^LemonChiffon$/i, "#FFFACD");
+	color = color.replace(/^LightBlue$/i, "#ADD8E6");
+	color = color.replace(/^LightCoral$/i, "#F08080");
+	color = color.replace(/^LightCyan$/i, "#E0FFFF");
+	color = color.replace(/^LightGoldenRodYellow$/i, "#FAFAD2");
+	color = color.replace(/^LightGray$/i, "#D3D3D3");
+	color = color.replace(/^LightGrey$/i, "#D3D3D3");
+	color = color.replace(/^LightGreen$/i, "#90EE90");
+	color = color.replace(/^LightPink$/i, "#FFB6C1");
+	color = color.replace(/^LightSalmon$/i, "#FFA07A");
+	color = color.replace(/^LightSeaGreen$/i, "#20B2AA");
+	color = color.replace(/^LightSkyBlue$/i, "#87CEFA");
+	color = color.replace(/^LightSlateGray$/i, "#778899");
+	color = color.replace(/^LightSlateGrey$/i, "#778899");
+	color = color.replace(/^LightSteelBlue$/i, "#B0C4DE");
+	color = color.replace(/^LightYellow$/i, "#FFFFE0");
+	color = color.replace(/^Lime$/i, "#00FF00");
+	color = color.replace(/^LimeGreen$/i, "#32CD32");
+	color = color.replace(/^Linen$/i, "#FAF0E6");
+	color = color.replace(/^Magenta$/i, "#FF00FF");
+	color = color.replace(/^Maroon$/i, "#800000");
+	color = color.replace(/^MediumAquaMarine$/i, "#66CDAA");
+	color = color.replace(/^MediumBlue$/i, "#0000CD");
+	color = color.replace(/^MediumOrchid$/i, "#BA55D3");
+	color = color.replace(/^MediumPurple$/i, "#9370D8");
+	color = color.replace(/^MediumSeaGreen$/i, "#3CB371");
+	color = color.replace(/^MediumSlateBlue$/i, "#7B68EE");
+	color = color.replace(/^MediumSpringGreen$/i, "#00FA9A");
+	color = color.replace(/^MediumTurquoise$/i, "#48D1CC");
+	color = color.replace(/^MediumVioletRed$/i, "#C71585");
+	color = color.replace(/^MidnightBlue$/i, "#191970");
+	color = color.replace(/^MintCream$/i, "#F5FFFA");
+	color = color.replace(/^MistyRose$/i, "#FFE4E1");
+	color = color.replace(/^Moccasin$/i, "#FFE4B5");
+	color = color.replace(/^NavajoWhite$/i, "#FFDEAD");
+	color = color.replace(/^Navy$/i, "#000080");
+	color = color.replace(/^OldLace$/i, "#FDF5E6");
+	color = color.replace(/^Olive$/i, "#808000");
+	color = color.replace(/^OliveDrab$/i, "#6B8E23");
+	color = color.replace(/^Orange$/i, "#FFA500");
+	color = color.replace(/^OrangeRed$/i, "#FF4500");
+	color = color.replace(/^Orchid$/i, "#DA70D6");
+	color = color.replace(/^PaleGoldenRod$/i, "#EEE8AA");
+	color = color.replace(/^PaleGreen$/i, "#98FB98");
+	color = color.replace(/^PaleTurquoise$/i, "#AFEEEE");
+	color = color.replace(/^PaleVioletRed$/i, "#D87093");
+	color = color.replace(/^PapayaWhip$/i, "#FFEFD5");
+	color = color.replace(/^PeachPuff$/i, "#FFDAB9");
+	color = color.replace(/^Peru$/i, "#CD853F");
+	color = color.replace(/^Pink$/i, "#FFC0CB");
+	color = color.replace(/^Plum$/i, "#DDA0DD");
+	color = color.replace(/^PowderBlue$/i, "#B0E0E6");
+	color = color.replace(/^Purple$/i, "#800080");
+	color = color.replace(/^Red$/i, "#FF0000");
+	color = color.replace(/^RosyBrown$/i, "#BC8F8F");
+	color = color.replace(/^RoyalBlue$/i, "#4169E1");
+	color = color.replace(/^SaddleBrown$/i, "#8B4513");
+	color = color.replace(/^Salmon$/i, "#FA8072");
+	color = color.replace(/^SandyBrown$/i, "#F4A460");
+	color = color.replace(/^SeaGreen$/i, "#2E8B57");
+	color = color.replace(/^SeaShell$/i, "#FFF5EE");
+	color = color.replace(/^Sienna$/i, "#A0522D");
+	color = color.replace(/^Silver$/i, "#C0C0C0");
+	color = color.replace(/^SkyBlue$/i, "#87CEEB");
+	color = color.replace(/^SlateBlue$/i, "#6A5ACD");
+	color = color.replace(/^SlateGray$/i, "#708090");
+	color = color.replace(/^SlateGrey$/i, "#708090");
+	color = color.replace(/^Snow$/i, "#FFFAFA");
+	color = color.replace(/^SpringGreen$/i, "#00FF7F");
+	color = color.replace(/^SteelBlue$/i, "#4682B4");
+	color = color.replace(/^Tan$/i, "#D2B48C");
+	color = color.replace(/^Teal$/i, "#008080");
+	color = color.replace(/^Thistle$/i, "#D8BFD8");
+	color = color.replace(/^Tomato$/i, "#FF6347");
+	color = color.replace(/^Turquoise$/i, "#40E0D0");
+	color = color.replace(/^Violet$/i, "#EE82EE");
+	color = color.replace(/^Wheat$/i, "#F5DEB3");
+	color = color.replace(/^White$/i, "#FFFFFF");
+	color = color.replace(/^WhiteSmoke$/i, "#F5F5F5");
+	color = color.replace(/^Yellow$/i, "#FFFF00");
+	color = color.replace(/^YellowGreen$/i, "#9ACD32");
+
+	debug.trace("Converted color is: "+color);
+
+	return color;
 }

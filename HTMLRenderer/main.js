@@ -12,21 +12,61 @@ webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_hea
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_hr");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_comment");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_formattingch");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_font");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_pre");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_computeroutput");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_abbr");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_bdo");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_q");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_del");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_tables");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_images");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_images2");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_bodybgimg");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_image_align");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_images_adj");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_back_good");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_back_bad");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_back_img");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_back_img2");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_back_imgbad");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists4");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists_ordered");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists_unordered");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists2");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_nestedlists2");
+webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists3");
 
+var currentPage = 0;
 var render = null;
 
 function view_onOpen() {
 	plugin.onAddCustomMenuItems = AddCustomMenuItems;
+	plugin.plugin_flags = gddPluginFlagToolbarForward | gddPluginFlagToolbarBack;
+	plugin.onCommand = ToolbarCommand;
 
 	render = new HTMLRender();
-	render.RenderUrl( webpages[15] );
+	render.RenderUrl( webpages[30] );
 
 	// Render( "http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_tables" );
+}
+
+function ToolbarCommand(command) {
+	if (command == gddCmdToolbarForward) {
+		currentPage++;
+		if (currentPage >= webpages.length) {
+			currentPage = 0;
+		}
+		render.RenderUrl( webpages[currentPage] );
+	}
+	if (command == gddCmdToolbarBack) {
+		currentPage--;
+		if (currentPage < 0) {
+			currentPage = webpages.length-1;
+		}
+		render.RenderUrl( webpages[currentPage] );
+	}
 }
 
 function AddCustomMenuItems(menu) {

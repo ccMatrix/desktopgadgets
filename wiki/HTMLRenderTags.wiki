@@ -1,0 +1,33 @@
+#summary Supported Tags by the HTMLRender Script
+
+= Introduction =
+
+This page lists all the tags which are supported by the HTMLRender script. Any tags not listed here would be interpreted as standard tags like <span> and will not have any special rules such as explicit linebreaks, indents or styles.
+
+== Tags ==
+
+ * body
+ * hr
+ * img
+ * br
+ * a
+ * h1, h2, h3, h4, h5, h6
+ * p
+ * blockquote
+ * b, strong
+ * u, ins, abbr, acronym
+ * i, em, var
+ * del, s, strike
+ * code, kbd, tt, samp
+ * sub, sup
+ * listing, plaintext, xmp, pre
+ * q, bdo
+ * ul, ol, dl, li, dt, dd
+
+== Attributes ==
+
+Attributes are only valid for the tag they were set for. For all elements HTMLRender will evaluate *title*, *color*, *background*, *size*, *face* and *align* attributes. If they are available they will be set accordingly. Since some attributes are not available in Google Desktop divs these attributes are set for the main htmlDiv element. This is used especially for background or bgcolor settings applied to the body element.
+
+=== Lists ===
+
+Lists have the attribute "type" which can be *1*, *a*, *A*, *i*, *I*, *disc*, *circle* or *square*. HTMLRender will automatically switch to the next type (disc -> circle or circle -> square) if nested lists are used. Numerical, alphabetical and roman numbering is supported.

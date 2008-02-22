@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-@version 0.0.6 (2008-02-20)
+@version 0.0.7 (2008-02-22)
 @author Benjamin Schirmer
 */
 
@@ -21,26 +21,45 @@ function HTMLRender() {
 	this.parent = view;
 	this.baseUrl = "";
 
+	/* FollowLinks internally and try to render */
+	this.FollowLink = false;
+
 	this.reset();
 }
 
+/**
+ * Set parent for the rendering
+ */
 HTMLRender.prototype.setParent = function(p) {
 	this.parent = p;
 }
 
+/**
+ * Reset render variables
+ */
 HTMLRender.prototype.reset = function() {
 	this.htmlDOM = new HTMLElement("body");
 
 	// Rendering variables
-	this.baseHeight = 16;
 	this.left = 0;
 	this.top = 0;
-	this.tmpData = new Array();
+	this.lastHeight = 0;
+	this.baseFont = "Arial";
+	this.baseSize = 10;
+	this.baseHeight = 2*this.baseSize;
+
+	this.tmpData = new Object();
+	this.tmpData.image = new Object();
+	this.tmpData.lists = new Array();
+	this.tmpData.table = new Array();
+	this.tmpData.link = new Object();
 }
 
+/**
+ * Render a string into the parent object
+ */
 HTMLRender.prototype.RenderString = function(html, url) {
 	this.reset();
-
 	// set baseUrl for this document (needed for image requests)
 	this.baseUrl = url.substring(0, url.lastIndexOf("/")+1);
 
@@ -69,7 +88,15 @@ HTMLRender.prototype.RenderString = function(html, url) {
 		}
 	}
 
-	this.parseHTML( html, this.htmlDOM );
+	try {
+		this.parseHTML( html, this.htmlDOM );
+	}
+	catch (E) {
+		debug.error("Parser Crashed: \n"+E.description);
+		alert( "There is not enough RAM for Javascript to parse this webpage.\nPlease load a smaller website" );
+		return;
+	}
+
 	this.debugDOM();
 	this.renderDOM();
 }
@@ -79,15 +106,19 @@ HTMLRender.prototype.RenderString = function(html, url) {
  */
 HTMLRender.prototype.RenderUrl = function(url, nocache) {
 	var loadUrl = url;
-	var req = new XMLHttpRequest();
-	// These are some webpages which show Hello World examples, enable each line to test the renderer:
-	if (nocache) {
-		loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
-		loadUrl += Math.random();
+	try {
+		var req = new XMLHttpRequest();
+		// These are some webpages which show Hello World examples, enable each line to test the renderer:
+		if (nocache) {
+			loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
+			loadUrl += Math.random();
+		}
+		req.open("GET", loadUrl, false);
+		req.send();
 	}
-	req.open("GET", loadUrl, false);
-	req.send();
-
+	catch (E) {
+		debug.error("Could not load url. No Internet connection?");
+	}
 	this.RenderString(req.responseText, url);
 }
 
@@ -95,7 +126,7 @@ HTMLRender.prototype.RenderUrl = function(url, nocache) {
  * Parse HTML Code and fill parent element
  */
 HTMLRender.prototype.parseHTML = function(html, parentElement) {
-	// debug.trace( "parseHTML: "+html );
+	//debug.trace( "parseHTML: "+html );
 	while (html.length > 0) {
 		var start = html.indexOf("<");
 		var end = 0;
@@ -169,7 +200,7 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 				html = html.substring( end+endTag.length, html.length );
 			}
 			else {
-				debug.trace("Single Tag: "+match[1]);
+				//debug.trace("Single Tag: "+match[1]);
 				var element = new HTMLElement(match[1]);
 				this.parseAttributes( tagStart, element );
 				parentElement.subElements.push( element );
@@ -185,10 +216,10 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
  * Parse attributes from opening tag
  */
 HTMLRender.prototype.parseAttributes = function(tag, element) {
-	tag = tag.replace(/=[\s\n\r\t]*([a-zA-Z0-9]{1})([^\s]*)/gi, "=\"$1$2\"");
+	//tag = tag.replace(/[a-zA-Z]+[\s\n\r\t]*=[\s\n\r\t]*([a-zA-Z0-9]{1})([^\s]*)/gi, "=\"$1$2\"");
 	var match = null;
 	while ( true ) {
-		match = tag.match(/([a-zA-Z0-9-]+)[\s\n\r\t]*=[\s\n\r\t]*[\"]{1}([^\"]+)/i);
+		match = tag.match(/([a-zA-Z0-9-]+)[\s\n\r\t]*=[\s\n\r\t]*[\"]{0,1}([^\"\s>]+)/i);
 		if (!match) break;
 		element.attributes[ match[1] ] = match[2];
 		tag = tag.replace(match[0], "");
@@ -210,9 +241,6 @@ HTMLRender.prototype.renderDOM = function() {
 	this.htmlDiv.name = "htmlDiv";
 
 	this.renderElement( this.htmlDOM, this.parent );
-
-	// Set background div height
-	this.htmlDiv.height = this.top+this.baseHeight;
 
 	// Add Scrollbars if needed
 	if (this.htmlDiv.height > this.parent.height) {
@@ -247,7 +275,6 @@ HTMLRender.prototype.renderDOM = function() {
 		scrollBar.onchange = function() {
 				htmlDiv.y = -scrollBar.value;
 			};
-
 	}
 }
 
@@ -255,46 +282,76 @@ HTMLRender.prototype.renderDOM = function() {
  * Render element
  */
 HTMLRender.prototype.renderElement = function(element, parent) {
-	debug.trace( "Rendering: "+element.tagName );
+	//debug.trace( "Rendering: "+element.tagName );
+
+	// Check for images in this tag
+	var setImg = false;
+	for (var i=0; i < element.subElements.length; i++) {
+		if (element.subElements[i].tagName.toLowerCase() == "img") {
+			this.tmpData.image.inside = true;
+			setImg = true;
+
+			if (element.subElements[i].attributes.align)
+				this.tmpData.image.align = element.subElements[i].attributes.align;
+			else
+				this.tmpData.image.align = "bottom";
+
+			if (element.subElements[i].attributes.height)
+				this.tmpData.image.height = element.subElements[i].attributes.height;
+			else 
+				this.tmpData.image.height = this.getImageHeight( element.subElements[i].attributes.src );
+		}
+	}
+
 	var tmpEle = null;
 	switch (element.tagName) {
 		case "body":
 				// Apply background attributes
-
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle = this.createElement("label");
 				if (element.innerText.length > 0) {
 					tmpEle.innerText = element.getTextContent();
 					this.setBaseStyle( tmpEle );
-					this.setElementSize( tmpEle );
+					this.setElementSize( tmpEle, element );
 				}
 				this.setElementStyle( tmpEle, parent, element );
-
 				break;
 
 		case "p":
 		case "blockquote":
-				if (this.left > 0) {
-					this.top += this.baseHeight;
+		case "div":
+				// Go to new line if we are not at the beginning of a line
+				// except if we are in a list, then the left margin is valid
+				if (this.left > 0 && (this.tmpData.lists == 0)) {
+					this.top += this.lastHeight;
 				}
+				// If there is text in this tag, we move the tag down a notch
 				if (element.innerText.length > 0) {
 					this.top += (this.baseHeight/2);
 					this.left = 0;
 				}
+				// Blockquote gets an indent
+				// @TODO: Move blockquote to lists ?
 				if (element.tagName == "blockquote") {
 					this.left = 30;
 				}
 
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
-				tmpEle.innerText = element.getTextContent();
-				this.setBaseStyle( tmpEle );
-				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle, true, true );
+				if (element.innerText.length > 0) {
+					tmpEle = this.createElement("label");
+					tmpEle.innerText = element.getTextContent();
+					this.setBaseStyle( tmpEle );
+					this.setElementStyle( tmpEle, parent, element );
+					this.setElementSize( tmpEle, element, true, true );
+				}
 
 				break;
 
+		case "a":
+				this.tmpData.link.open = true;
+				this.tmpData.link.href = element.attributes.href;
+				// No break - render with normal tags. setElementStyle will make it colored and underline
 		default:
 		case "text":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = element.getTextContent();
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
@@ -319,7 +376,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					}
 				}
 
-				this.setElementSize( tmpEle );
+				this.setElementSize( tmpEle, element );
 				break;
 
 		case "h1":
@@ -328,7 +385,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "h4":
 		case "h5":
 		case "h6":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = element.getTextContent();
 				this.setBaseStyle( tmpEle );
 				tmpEle.bold = true;
@@ -351,7 +408,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					tmpEle.size = 8;
 				}
 
-				this.setElementSize( tmpEle, true );
+				this.setElementSize( tmpEle, element, true );
 				this.top += this.baseHeight;
 				tmpEle.y += (this.baseHeight / 2);
 				tmpEle.width = this.htmlDiv.width;
@@ -363,7 +420,11 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "plaintext":
 		case "xmp":
 		case "pre":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				if (this.left > 0) {
+					this.left = 0;
+					this.top += this.lastHeight;
+				}
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = element.decodeEntities( element.innerText );
 				this.setBaseStyle( tmpEle );
 				tmpEle.font = "Courier New";
@@ -371,7 +432,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				tmpEle.width = this.htmlDiv.width;
 				tmpEle.wordwrap = true;
 				var lines = tmpEle.innerText.split("\n");
-				debug.trace( "Pre tag has "+lines.length+" lines");
+				// debug.trace( "Pre tag has "+lines.length+" lines");
 				tmpEle.height = Math.ceil(tmpEle.size*1.6*lines.length);
 
 				tmpEle.y = this.top;
@@ -380,17 +441,10 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				this.top += tmpEle.height;
 				break;
 
-		case "a":
-				tmpEle = this.htmlDiv.appendElement( "<a />" );
-				tmpEle.innerText = element.getTextContent();
-				this.setBaseStyle( tmpEle );
-				this.setElementSize( tmpEle );
-				break;
-
 		case "sub": 
 		case "sup":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
-				tmpEle.font = "Arial";
+				tmpEle = this.createElement("label");
+				tmpEle.font = this.baseFont;
 				tmpEle.size = 4;
 				tmpEle.innerText = element.innerText;
 				tmpEle.width = this.basicCalcWidth(tmpEle.innerText, tmpEle);
@@ -418,24 +472,10 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				this.left += tmpEle.width;
 				break;
 
-		case "hr":
-				tmpEle = this.htmlDiv.appendElement( "<div width=\"100%\" height=\"2\" background=\"#D0D0D0\"> </div>" );
-				if (this.left > 0) {
-					this.top += this.baseHeight;
-					this.left = 0;
-				}
-				tmpEle.y = this.top+(this.baseHeight/2)-2;
-				tmpEle.x = this.left;
-				this.top += this.baseHeight;
-				break;
-
 		case "img": 
-				tmpEle = this.htmlDiv.appendElement( "<img />" );
-				if (this.top > 0) {
-					this.top += this.baseHeight;
-				}
+				tmpEle = this.createElement("img");
 				tmpEle.y = this.top;
-				tmpEle.x = 0;
+				tmpEle.x = this.left;
 				tmpEle.src = this.getImageFromUrl( element.attributes.src );
 				if (element.attributes.height) {
 					tmpEle.height = element.attributes.height;
@@ -452,8 +492,13 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 						tmpEle.height = tmpEle.srcHeight;
 					}
 				}
-				this.left = 0;
-				this.top += tmpEle.height;
+				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+					this.top += this.lastHeight;
+					tmpEle.y += this.top;
+					tmpEle.x = 0;
+				}
+				this.left += tmpEle.width;
+				this.applyLink( tmpEle );
 				break;
 
 		case "table":
@@ -462,13 +507,15 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				return;
 				break;
 
+		case "dir":
+		case "menu":
 		case "ul":
 		case "dl":
 		case "ol":
-				debug.warning("Render list ...");
 				var thisData = new Object();
-				var lastData = this.tmpData[ this.tmpData.length-1 ];
+				var lastData = this.tmpData.lists[ this.tmpData.lists.length-1 ];
 				if (lastData == null) lastData = new Object();
+
 				thisData.mode = "list";
 				if ( element.attributes.type ) {
 					thisData.type = element.attributes.type;
@@ -477,8 +524,12 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					if (element.tagName == "ol") {
 						thisData.type = "1";
 					}
-					else if (element.tagName == "ul") {
-						if (lastData.type == "disc") {
+					else if (element.tagName == "ul" 
+								|| element.tagName == "dir" 
+								|| element.tagName == "menu") {
+	
+
+					if (lastData.type == "disc") {
 							thisData.type = "circle";
 						}
 						else if (lastData.type == "circle") {
@@ -489,124 +540,266 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 						}
 					}
 				}
-				thisData.index = 1;
+
+				if (element.attributes.start) {
+					thisData.index = element.attributes.start;
+				}
+				else {
+					thisData.index = 1;
+				}
+
 				if (this.left > 0) {
 					this.left = 0;
-					this.top += this.baseHeight;
+					this.top += this.lastHeight;
 				}
-				this.tmpData.push( thisData );
+				this.tmpData.lists.push( thisData );
 				break;
 
 		case "li":
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				if (element.attributes.value) {
+					this.tmpData.lists[ this.tmpData.lists.length-1 ].index = element.attributes.value;
+				}
+
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = this.getListIndex();
-				this.left = this.tmpData.length * 25;
+				this.left = this.tmpData.lists.length * 20;
 				var leftTmp = this.left;
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle );
+				this.setElementSize( tmpEle, element );
 				tmpEle.font = "Courier New";
-				tmpEle.width = 20;
+				tmpEle.width = 40;
 				tmpEle.align = "right";
 
 				this.left = leftTmp + tmpEle.width;
 				if (element.innerText.length > 0) {
-					tmpEle = this.htmlDiv.appendElement( "<label />" );
+					tmpEle = this.createElement("label");
 					tmpEle.innerText = element.getTextContent();
 					this.setBaseStyle( tmpEle );
 					this.setElementStyle( tmpEle, parent, element );
-					this.setElementSize( tmpEle, true, true );
+					this.setElementSize( tmpEle, element, true, true );
+				}
+				else {
+					tmpEle = null;
 				}
 
-				this.tmpData[ this.tmpData.length-1 ].index++;
+				this.tmpData.lists[ this.tmpData.lists.length-1 ].index++;
 				break;
 
 		case "dt":
-				this.left = this.tmpData.length * 25;
+				this.left = this.tmpData.lists.length * 25;
 
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = element.getTextContent();
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle, true, true );
+				this.setElementSize( tmpEle, element, true, true );
 				break;
 
 		case "dd":
-				this.left = (this.tmpData.length+1) * 25;
+				this.left = (this.tmpData.lists.length+1) * 25;
 
-				tmpEle = this.htmlDiv.appendElement( "<label />" );
+				tmpEle = this.createElement("label");
 				tmpEle.innerText = element.getTextContent();
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
-				this.setElementSize( tmpEle, true, true );
+				this.setElementSize( tmpEle, element, true, true );
+				break;
+
+		case "hr":
+				tmpEle = this.createElement("div");
+				tmpEle.background = "#D0D0D0";
+
+				if (element.attributes.size)
+					tmpEle.height = element.attributes.size;
+				else
+					tmpEle.height = 2;
+
+				if (element.attributes.width) {
+					if (element.attributes.width.indexOf("%") != -1) {
+						var percent = parseInt(element.attributes.width);
+						tmpEle.width = this.htmlDiv.width * (percent / 100);
+					}
+					else {
+						tmpEle.width = element.attributes.width;
+					}
+				}
+				else {
+					tmpEle.width = this.htmlDiv.width;
+				}
+
+				if (this.left > 0) {
+					this.top += this.lastHeight;
+					this.left = 0;
+				}
+				tmpEle.y = this.top+(this.baseHeight/2)-Math.ceil(tmpEle.height/2);
+
+				if (element.attributes.align) {
+					if (element.attributes.align == "left") tmpEle.x = this.left;
+					if (element.attributes.align == "right") tmpEle.x = this.htmlDiv.width-this.left;
+					if (element.attributes.align == "center") tmpEle.x = (this.htmlDiv.width/2)-(tmpEle.width/2);
+				}
+				else {
+					tmpEle.x = this.left;
+				}
+				this.top += this.baseHeight;
 				break;
 
 		case "br":
 				if (this.left > 0) {
 					this.left = 0;
-					this.top += this.baseHeight;
+					this.top += this.lastHeight;
 				}
-				// debug.trace("New line found");
+				this.lastHeight = this.baseHeight;
+				// Very important. A new line resets the image variables since the line height
+				// is just valid for the line the image is in. New line -> New height
+				this.tmpData.image.inside = false;
+				this.lastHeight = this.baseHeight;
 				break;
 	}
+
+	// Calculate maximum height of current line for correct linebreaks later
+	this.lastHeight = Math.max( (tmpEle && tmpEle.height)?tmpEle.height:this.baseHeight, this.lastHeight );
+	/*
+	if (!setImg && !this.tmpData.image.inside) {
+		this.lastHeight = (tmpEle)?tmpEle.height:this.baseHeight;
+	}
+	*/
+	
+	// Set background div height
+	this.htmlDiv.height = this.top + this.lastHeight;
 
 	for (var i=0; i<element.subElements.length; i++) {
 		this.renderElement( element.subElements[i], tmpEle );
 	}
 
 	switch( element.tagName ) {
+		case "dir":
+		case "menu":
 		case "ul":
 		case "ol":
 		case "dl":
-				this.tmpData.pop();
+				this.tmpData.lists.pop();
+				this.top += (this.baseHeight/2);
+				if (this.left > 0) {
+					this.top += this.lastHeight;
+				}
+				this.left = 0;
+				break;
+
+		case "h1":
+		case "h2":
+		case "h3":
+		case "h4":
+		case "h5":
+		case "h6":
+				this.lastHeight = 0;
 				break;
 
 		case "p":
 		case "blockquote":
+		case "div":
 				this.top += (this.baseHeight/2);
 				if (this.left > 0) {
-					this.top += this.baseHeight;
+					this.top += this.lastHeight;
 				}
 				this.left = 0;
+				this.lastHeight = 0;
+				break;
+
+		case "a":
+				if (tmpEle.innerText.length == 0) {
+					tmpEle.width = this.left-tmpEle.x;
+					for (var i=0; i<Math.ceil(tmpEle.width/1.6); i++) {
+						tmpEle.innerText += ".                  ";
+					}
+				}
+				this.tmpData.link.open = false;
 				break;
 	}
+
+	// Reset the image variables if this tag triggered the image height
+	if (setImg) {
+		this.tmpData.image.inside = false;
+		this.lastHeight = this.baseHeight;
+	}
+
 }
 
-HTMLRender.prototype.setBaseStyle = function( element ) {
-	element.font = "Arial";
-	element.size = 8;
-}
-
-HTMLRender.prototype.setElementSize = function( element, fullWidth, lockLeft ) {
-	element.height = Math.ceil(element.size*1.6);
-	element.width = this.basicCalcWidth(element.innerText+" ", element);
-
-	if ( (this.left + element.width) > this.htmlDiv.width) {
-		if (!lockLeft && (this.left > 0) ) {
-			this.top += this.baseHeight;
-			this.left = 0;
-		}
-		element.x = this.left;
-		element.y = this.top;
-		if ( element.width > (this.htmlDiv.width-this.left) ) {
-			element.height = Math.ceil( element.width / (this.htmlDiv.width-this.left) ) * (element.size*1.6);
-			element.width = (this.htmlDiv.width-this.left);
-			element.wordwrap = true;
-		}
+/**
+ * Create new element
+ */
+HTMLRender.prototype.createElement = function( type ) {
+	var newType = "";
+	if (type == "label") {
+		newType = "<"+type+" font=\""+this.baseFont+"\" />";
 	}
 	else {
-		element.x = this.left;
-		this.left += element.width;
-		element.y = this.top;
+		newType = "<"+type+" />";
 	}
+	return this.htmlDiv.appendElement(newType);
+}
+
+/**
+ * set the base style for the element
+ */
+HTMLRender.prototype.setBaseStyle = function( element ) {
+	element.font = this.baseFont;
+	element.size = this.baseSize;
+}
+
+/**
+ * set size of the element.
+ * This function handles wordwrap, width, height
+ * fullWidth will always create a linebreak after the element
+ * lockLeft will keep the left value when creating multi-line element
+ */
+HTMLRender.prototype.setElementSize = function( tmpEle, element, fullWidth, lockLeft ) {
+	tmpEle.height = Math.ceil(tmpEle.size*1.6);
+	if (tmpEle.innerText.length == 0) {
+		tmpEle.width = 0;
+	}
+	else {
+		tmpEle.width = this.basicCalcWidth(tmpEle.innerText+" ", tmpEle);
+	}
+
+	if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
+		if (!lockLeft && (this.left > 0) ) {
+			this.top += this.lastHeight;
+			this.left = 0;
+		}
+		tmpEle.x = this.left;
+		tmpEle.y = this.top;
+		if ( tmpEle.width > (this.htmlDiv.width-this.left) ) {
+			tmpEle.height = this.basicCalcHeight(tmpEle, (this.htmlDiv.width-this.left));
+			tmpEle.width = (this.htmlDiv.width-this.left);
+			tmpEle.wordwrap = true;
+		}
+		this.lastHeight = tmpEle.height;
+	}
+	else {
+		if (this.tmpData.image.inside) {
+			tmpEle.height = Math.max(tmpEle.height, this.tmpData.image.height);
+			tmpEle.valign = this.tmpData.image.align;
+		}
+		tmpEle.x = this.left;
+		this.left += tmpEle.width;
+		tmpEle.y = this.top;
+	}
+
 	if (fullWidth) {
-		this.top += element.height;
-		element.width = this.htmlDiv.width;
+		this.top += tmpEle.height;
+		tmpEle.width = this.htmlDiv.width;
 		this.left = 0;
 	}
 }
 
+/**
+ * set the style for the element. They will inherit styles from the parent
+ */
 HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
+	element.size = this.baseSize;
+
 	if (parent != null) {
 		if (parent.bold) element.bold = parent.bold;
 		if (parent.underline) element.underline = parent.underline;
@@ -628,10 +821,12 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 		case "var":
 					element.italic = true;
 					break;
-		case "u":
-		case "ins":
 		case "abbr":
 		case "acronym":
+					element.enabled = true;
+					element.cursor = "help";
+		case "u":
+		case "ins":
 					element.underline = true;
 					break;
 		case "del":
@@ -641,9 +836,55 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 					break;
 	}
 
+	this.applyLink( element );
+
 	this.applyAttributes( element, cHTML );
 }
 
+/**
+ * Open a link in the users webbrowser or internally if FollowLink is enabled
+ */
+HTMLRender.prototype.openLink = function( url  ) {
+	if (this.FollowLink) {
+		this.RenderUrl( url );
+	}
+	else {
+		if (!url.match("([a-zA-Z]+)://")) {
+			if (url.substring(0,1) == "/") {
+				endDomain = this.baseUrl.indexOf("://");
+				endDomain = this.baseUrl.indexOf("/", endDomain+3);
+				url = this.baseUrl.substring(0, endDomain)+url;
+			}
+			else {
+				url = this.baseUrl + url;
+			}
+		}
+		debug.trace("Clicked on Link: "+url);
+		// @TODO use framework.openUrl when mailto: links are fixed
+    var wsh = new ActiveXObject( "WScript.Shell" );
+    wsh.Run( url );
+	}
+}
+
+HTMLRender.prototype.applyLink = function( element ) {
+	if (this.tmpData.link.open) {
+		// Set underline and color only for labels
+		// Images do not have these properties
+		if (element.underline == false) element.underline = true;
+		if (element.color) element.color = "#0000FF";
+		element.enabled = true;
+		htmlRender = this;
+		var linkHref = htmlRender.tmpData.link.href;
+		element.onclick = function () {
+			htmlRender.openLink( linkHref );
+		};
+		element.cursor = "hand";
+	}
+}
+
+/**
+ * Apply attributes from the HTML element to the GD element
+ */
 HTMLRender.prototype.applyAttributes = function( element, cHTML ) {
 	var fontSizes = [6, 8, 10, 12, 14, 18, 24];
 
@@ -706,8 +947,12 @@ HTMLRender.prototype.applyAttributes = function( element, cHTML ) {
 	}
 }
 
+/**
+ * Get the value for the index of the list.
+ * Handles the different list prefix types
+ */
 HTMLRender.prototype.getListIndex = function() {
-	var thisData = this.tmpData[ this.tmpData.length-1 ];
+	var thisData = this.tmpData.lists[ this.tmpData.lists.length-1 ];
 	switch (thisData.type) {
 		case "1": 
 					return thisData.index + ".";
@@ -756,6 +1001,9 @@ HTMLRender.prototype.getListIndex = function() {
 	
 }
 
+/**
+ * load the image from the specified url
+ */
 HTMLRender.prototype.getImageFromUrl = function(url) {
 	if (!url) return "";
 
@@ -772,11 +1020,25 @@ HTMLRender.prototype.getImageFromUrl = function(url) {
 	debug.trace("Requesting Image: "+url);
 	var req = new XMLHttpRequest();
 	req.open('GET', url, false); 
+	req.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows; Google Desktop) HTMLRender/0.0.6");
 	req.send();
+	debug.trace("Server response: "+req.status);
 	if (req.status == 200) {
 		return req.responseStream;
 	}
 	return "";
+}
+
+/**
+ * Read source height from images url
+ */
+HTMLRender.prototype.getImageHeight = function( url ) {
+	var img = view.appendElement("<img />");
+	img.visible = false;
+	img.src = this.getImageFromUrl( url );
+	var height = img.srcHeight;
+	view.removeElement(img);
+	return height;
 }
 
 /**
@@ -795,6 +1057,7 @@ HTMLRender.prototype.isSingleTag = function(tag) {
 		case "br":
 		case "hr":
 		case "img":
+		case "input":
 					return true;
 
 		default: return false;
@@ -802,16 +1065,14 @@ HTMLRender.prototype.isSingleTag = function(tag) {
 }
 
 /**
- * Calculate width of text based on a string
+ * Calculate width of an element so that all text fits into it
  */
 HTMLRender.prototype.basicCalcWidth = function(str, ele) {
 
 	var edit = view.appendElement("<edit />");
 	edit.visible = false;
-	edit.y = 2000;
-	edit.x = 0;
 	edit.width = 1000;
-	edit.height = ele.height;
+	edit.height = this.baseHeight;
 	edit.value = str;
 	edit.font = ele.font;
 	edit.size = ele.size;
@@ -819,13 +1080,19 @@ HTMLRender.prototype.basicCalcWidth = function(str, ele) {
 	edit.italic = ele.italic;
 	edit.underline = ele.underline;
 	var idealRect = edit.idealBoundingRect;
-	edit.width = idealRect.width;
-	edit.height = idealRect.height;
 	// debug.trace("ideal width would be: "+idealRect.width);
 	view.removeElement(edit);
-	
 	var newWidth = idealRect.width-4;
 	return newWidth;
+}
+
+/**
+ * Calculate height of element based on a string
+ */
+HTMLRender.prototype.basicCalcHeight = function(ele, maxWidth) {
+	var aproxHeight = Math.ceil( ele.width / maxWidth + .5 ) * (ele.size*1.8);
+
+	return aproxHeight;
 }
 
 /**
@@ -880,6 +1147,9 @@ HTMLElement.prototype.getTextContent = function() {
 	return text;
 }
 
+/**
+ * Decode HTML entities
+ */
 HTMLElement.prototype.decodeEntities = function(str) {
 	// ASCII Entities
 	str = str.replace(/&lt;/gi, "<");
@@ -925,68 +1195,68 @@ HTMLElement.prototype.decodeEntities = function(str) {
 	str = str.replace(/&divide;/gi, "÷");
 
 	// ISO 8859-1 Character Entities
-	str = str.replace(/&Agrave;/gi, "À");
-	str = str.replace(/&Aacute;/gi, "Á");
-	str = str.replace(/&Acirc;/gi, "Â");
-	str = str.replace(/&Atilde;/gi, "Ã");
-	str = str.replace(/&Auml;/gi, "Ä");
-	str = str.replace(/&Aring;/gi, "Å");
-	str = str.replace(/&AElig;/gi, "Æ");
-	str = str.replace(/&Ccedil;/gi, "Ç");
-	str = str.replace(/&Egrave;/gi, "È");
-	str = str.replace(/&Eacute;/gi, "É");
-	str = str.replace(/&Ecirc;/gi, "Ê");
-	str = str.replace(/&Euml;/gi, "Ë");
-	str = str.replace(/&Igrave;/gi, "Ì");
-	str = str.replace(/&Iacute;/gi, "Í");
-	str = str.replace(/&Icirc;/gi, "Î");
-	str = str.replace(/&Iuml;/gi, "Ï");
-	str = str.replace(/&ETH;/gi, "Ð");
-	str = str.replace(/&Ntilde;/gi, "Ñ");
-	str = str.replace(/&Ograve;/gi, "Ò");
-	str = str.replace(/&Oacute;/gi, "Ó");
-	str = str.replace(/&Ocirc;/gi, "Ô");
-	str = str.replace(/&Otilde;/gi, "Õ");
-	str = str.replace(/&Ouml;/gi, "Ö");
-	str = str.replace(/&Oslash;/gi, "Ø");
-	str = str.replace(/&Ugrave;/gi, "Ù");
-	str = str.replace(/&Uacute;/gi, "Ú");
-	str = str.replace(/&Ucirc;/gi, "Û");
-	str = str.replace(/&Uuml;/gi, "Ü");
-	str = str.replace(/&Yacute;/gi, "Ý");
-	str = str.replace(/&THORN;/gi, "Þ");
-	str = str.replace(/&szlig;/gi, "ß");
-	str = str.replace(/&agrave;/gi, "à");
-	str = str.replace(/&aacute;/gi, "á");
-	str = str.replace(/&acirc;/gi, "â");
-	str = str.replace(/&atilde;/gi, "ã");
-	str = str.replace(/&auml;/gi, "ä");
-	str = str.replace(/&aring;/gi, "å");
-	str = str.replace(/&aelig;/gi, "æ");
-	str = str.replace(/&ccedil;/gi, "ç");
-	str = str.replace(/&egrave;/gi, "è");
-	str = str.replace(/&eacute;/gi, "é");
-	str = str.replace(/&ecirc;/gi, "ê");
-	str = str.replace(/&euml;/gi, "ë");
-	str = str.replace(/&igrave;/gi, "ì");
-	str = str.replace(/&iacute;/gi, "í");
-	str = str.replace(/&icirc;/gi, "î");
-	str = str.replace(/&iuml;/gi, "ï");
-	str = str.replace(/&eth;/gi, "ð");
-	str = str.replace(/&ntilde;/gi, "ñ");
-	str = str.replace(/&ograve;/gi, "ò");
-	str = str.replace(/&oacute;/gi, "ó");
-	str = str.replace(/&ocirc;/gi, "ô");
-	str = str.replace(/&otilde;/gi, "õ");
-	str = str.replace(/&ouml;/gi, "ö");
-	str = str.replace(/&oslash;/gi, "ø");
-	str = str.replace(/&ugrave;/gi, "ù");
-	str = str.replace(/&uacute;/gi, "ú");
-	str = str.replace(/&ucirc;/gi, "û");
-	str = str.replace(/&uuml;/gi, "ü");
-	str = str.replace(/&yacute;/gi, "ý");
-	str = str.replace(/&thorn;/gi, "þ");
-	str = str.replace(/&yuml;/gi, "ÿ");
+	str = str.replace(/&Agrave;/g, "À");
+	str = str.replace(/&Aacute;/g, "Á");
+	str = str.replace(/&Acirc;/g, "Â");
+	str = str.replace(/&Atilde;/g, "Ã");
+	str = str.replace(/&Auml;/g, "Ä");
+	str = str.replace(/&Aring;/g, "Å");
+	str = str.replace(/&AElig;/g, "Æ");
+	str = str.replace(/&Ccedil;/g, "Ç");
+	str = str.replace(/&Egrave;/g, "È");
+	str = str.replace(/&Eacute;/g, "É");
+	str = str.replace(/&Ecirc;/g, "Ê");
+	str = str.replace(/&Euml;/g, "Ë");
+	str = str.replace(/&Igrave;/g, "Ì");
+	str = str.replace(/&Iacute;/g, "Í");
+	str = str.replace(/&Icirc;/g, "Î");
+	str = str.replace(/&Iuml;/g, "Ï");
+	str = str.replace(/&ETH;/g, "Ð");
+	str = str.replace(/&Ntilde;/g, "Ñ");
+	str = str.replace(/&Ograve;/g, "Ò");
+	str = str.replace(/&Oacute;/g, "Ó");
+	str = str.replace(/&Ocirc;/g, "Ô");
+	str = str.replace(/&Otilde;/g, "Õ");
+	str = str.replace(/&Ouml;/g, "Ö");
+	str = str.replace(/&Oslash;/g, "Ø");
+	str = str.replace(/&Ugrave;/g, "Ù");
+	str = str.replace(/&Uacute;/g, "Ú");
+	str = str.replace(/&Ucirc;/g, "Û");
+	str = str.replace(/&Uuml;/g, "Ü");
+	str = str.replace(/&Yacute;/g, "Ý");
+	str = str.replace(/&THORN;/g, "Þ");
+	str = str.replace(/&szlig;/g, "ß");
+	str = str.replace(/&agrave;/g, "à");
+	str = str.replace(/&aacute;/g, "á");
+	str = str.replace(/&acirc;/g, "â");
+	str = str.replace(/&atilde;/g, "ã");
+	str = str.replace(/&auml;/g, "ä");
+	str = str.replace(/&aring;/g, "å");
+	str = str.replace(/&aelig;/g, "æ");
+	str = str.replace(/&ccedil;/g, "ç");
+	str = str.replace(/&egrave;/g, "è");
+	str = str.replace(/&eacute;/g, "é");
+	str = str.replace(/&ecirc;/g, "ê");
+	str = str.replace(/&euml;/g, "ë");
+	str = str.replace(/&igrave;/g, "ì");
+	str = str.replace(/&iacute;/g, "í");
+	str = str.replace(/&icirc;/g, "î");
+	str = str.replace(/&iuml;/g, "ï");
+	str = str.replace(/&eth;/g, "ð");
+	str = str.replace(/&ntilde;/g, "ñ");
+	str = str.replace(/&ograve;/g, "ò");
+	str = str.replace(/&oacute;/g, "ó");
+	str = str.replace(/&ocirc;/g, "ô");
+	str = str.replace(/&otilde;/g, "õ");
+	str = str.replace(/&ouml;/g, "ö");
+	str = str.replace(/&oslash;/g, "ø");
+	str = str.replace(/&ugrave;/g, "ù");
+	str = str.replace(/&uacute;/g, "ú");
+	str = str.replace(/&ucirc;/g, "û");
+	str = str.replace(/&uuml;/g, "ü");
+	str = str.replace(/&yacute;/g, "ý");
+	str = str.replace(/&thorn;/g, "þ");
+	str = str.replace(/&yuml;/g, "ÿ");
 
 	// Number entities:
 	while (true) {
@@ -998,6 +1268,9 @@ HTMLElement.prototype.decodeEntities = function(str) {
 	return str;
 }
 
+/**
+ * Decode named colors to HTML code
+ */
 HTMLElement.prototype.decodeColor = function( color ) {
 
 	// Decode supported color names

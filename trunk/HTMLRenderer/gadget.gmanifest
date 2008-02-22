@@ -5,9 +5,9 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>0.0.6</version>
+		<version>0.0.7</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.googledesktopgadgets.com</authorWebsite>
 		<id>45412D07-5C88-4A9F-9E9B-9F1A4CCC1C7A</id>
-		<copyright>Ã‚Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
 </gadget>

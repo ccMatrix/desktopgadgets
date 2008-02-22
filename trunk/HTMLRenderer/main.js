@@ -1,4 +1,5 @@
 ﻿var webpages = [];
+
 webpages.push("http://www.codename-matrix.de/_private/example.html");
 webpages.push("http://www.december.com/html/demo/hello.html");
 webpages.push("http://www2.latech.edu/~acm/helloworld/HTML.html");
@@ -38,6 +39,20 @@ webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lis
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_nestedlists2");
 webpages.push("http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_lists3");
 
+webpages.push("http://de.selfhtml.org/html/text/anzeige/h1_6_align.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/ul.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/ul_ul.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/ol.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/dl_dt_dd.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/dir_menu.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/ul_ol_dl_eigenschaften.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/logisch.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/ins_del.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/bdo.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/physisch.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/hr.htm");
+webpages.push("http://de.selfhtml.org/html/text/anzeige/hr_attribute.htm");
+
 var currentPage = 0;
 var render = null;
 
@@ -47,9 +62,10 @@ function view_onOpen() {
 	plugin.onCommand = ToolbarCommand;
 
 	render = new HTMLRender();
-	render.RenderUrl( webpages[30] );
+	//render.RenderUrl( webpages[5], true );
 
-	// Render( "http://www.w3schools.com/html/tryit_view.asp?filename=tryhtml_tables" );
+	// http://www.google.com/gwt/n can create small pages for any webpage. Use this for real-world tests
+	render.RenderUrl( "http://www.google.com/gwt/n?u=http%3A%2F%2Fwww.googledesktopgadgets.com");
 }
 
 function ToolbarCommand(command) {
@@ -89,6 +105,12 @@ function RenderCustom(itemText) {
 }
 
 function Render(url) {
+	for (var i=0; i<webpages.length; i++) {
+		if (webpages[i] == url) {
+			currentPage = i;
+			break;
+		}
+	}
 	render.RenderUrl(url);
 }
 

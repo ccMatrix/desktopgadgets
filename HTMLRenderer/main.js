@@ -62,10 +62,10 @@ function view_onOpen() {
 	plugin.onCommand = ToolbarCommand;
 
 	render = new HTMLRender();
-	//render.RenderUrl( webpages[5], true );
+	render.RenderUrl( webpages[currentPage], true );
 
 	// http://www.google.com/gwt/n can create small pages for any webpage. Use this for real-world tests
-	render.RenderUrl( "http://www.google.com/gwt/n?u=http%3A%2F%2Fwww.googledesktopgadgets.com");
+	//render.RenderUrl( "http://www.google.com/gwt/n?u=http%3A%2F%2Fwww.googledesktopgadgets.com");
 }
 
 function ToolbarCommand(command) {

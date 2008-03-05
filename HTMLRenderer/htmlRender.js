@@ -76,9 +76,9 @@ HTMLRender.prototype.RenderString = function(html, url) {
 	}
 
 	while (true) {
-		start = html.indexOf("<!--");
+		start = html.indexOf("<!-");
 		if (start >= 0) {
-			end = html.indexOf("-->", start);
+			end = html.indexOf("->", start);
 			if (end >= 0) {
 				html = html.replace( html.substring(start, end+3), "");
 			}
@@ -169,7 +169,7 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 				debug.error("Could not find tag in "+tagStart);
 				return;
 			}
-			if (!this.isSingleTag(match[1])) {
+			if (!this.isSingleTag(match[1], tagStart)) {
 				// debug.trace("Has closing Tag: "+match[1]);
 				var endTag = "</"+match[1].toLowerCase()+">";
 
@@ -190,14 +190,21 @@ HTMLRender.prototype.parseHTML = function(html, parentElement) {
 				}
 				end = endPos-1;
 
-				//end = html.toLowerCase().indexOf( endTag, end);
-				var tagData = html.substring( start + tagStart.length, end );
-				var element = new HTMLElement(match[1]);
-				this.parseAttributes( tagStart, element );
-				this.parseHTML( tagData, element );
-				parentElement.subElements.push( element );
+				if (end >= 0) {
+					//end = html.toLowerCase().indexOf( endTag, end);
+					var tagData = html.substring( start + tagStart.length, end );
+					var element = new HTMLElement(match[1]);
+					this.parseAttributes( tagStart, element );
+					this.parseHTML( tagData, element );
+					parentElement.subElements.push( element );
 
-				html = html.substring( end+endTag.length, html.length );
+					html = html.substring( end+endTag.length, html.length );
+				}
+				else {
+					debug.trace("There is no end tag for ("+match[1]+")! Malformed HTML");
+					var element = new HTMLElement(match[1]);
+					html = html.substring( start + tagStart.length, html.length );
+				}
 			}
 			else {
 				//debug.trace("Single Tag: "+match[1]);
@@ -304,6 +311,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 	}
 
 	var tmpEle = null;
+	element.tagName = element.tagName.toLowerCase();
 	switch (element.tagName) {
 		case "body":
 				// Apply background attributes
@@ -335,19 +343,26 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					this.left = 30;
 				}
 
+				// Create even empty elements. Don't break the format inheritance chain!
+				tmpEle = this.createElement("label");
 				if (element.innerText.length > 0) {
-					tmpEle = this.createElement("label");
 					tmpEle.innerText = element.getTextContent();
-					this.setBaseStyle( tmpEle );
-					this.setElementStyle( tmpEle, parent, element );
 					this.setElementSize( tmpEle, element, true, true );
 				}
+				this.setBaseStyle( tmpEle );
+				this.setElementStyle( tmpEle, parent, element );
 
 				break;
 
 		case "a":
-				this.tmpData.link.open = true;
-				this.tmpData.link.href = element.attributes.href;
+				// bookmarks are not supported and do not need to be rendered as links
+				if (element.attributes.href) {
+					// skip links to bookmarks inside the document. not supported anyway.
+					if (element.attributes.href.charAt(0) != "#") {
+						this.tmpData.link.open = true;
+						this.tmpData.link.href = element.attributes.href;
+					}
+				}
 				// No break - render with normal tags. setElementStyle will make it colored and underline
 		default:
 		case "text":
@@ -411,9 +426,11 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				this.setElementSize( tmpEle, element, true );
 				this.top += this.baseHeight;
 				tmpEle.y += (this.baseHeight / 2);
-				tmpEle.width = this.htmlDiv.width;
+				tmpEle.width = this.htmlDiv.width-this.left;
 				this.applyAttributes( tmpEle, element );
-				this.left = 0;
+				if (this.tmpData.lists == 0) {
+					this.left = 0;
+				}
 				break;
 
 		case "listing":
@@ -439,6 +456,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				tmpEle.x = this.left;
 				this.left = 0;
 				this.top += tmpEle.height;
+				this.lastHeight = this.baseHeight;
 				break;
 
 		case "sub": 
@@ -548,10 +566,6 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					thisData.index = 1;
 				}
 
-				if (this.left > 0) {
-					this.left = 0;
-					this.top += this.lastHeight;
-				}
 				this.tmpData.lists.push( thisData );
 				break;
 
@@ -559,10 +573,14 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				if (element.attributes.value) {
 					this.tmpData.lists[ this.tmpData.lists.length-1 ].index = element.attributes.value;
 				}
+				// Every li starts at a new line:
+				if (this.left > 0) {
+					this.top += this.lastHeight;
+				}
 
 				tmpEle = this.createElement("label");
 				tmpEle.innerText = this.getListIndex();
-				this.left = this.tmpData.lists.length * 20;
+				this.left = this.tmpData.lists.length * 20 - 10;
 				var leftTmp = this.left;
 				this.setBaseStyle( tmpEle );
 				this.setElementStyle( tmpEle, parent, element );
@@ -577,7 +595,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					tmpEle.innerText = element.getTextContent();
 					this.setBaseStyle( tmpEle );
 					this.setElementStyle( tmpEle, parent, element );
-					this.setElementSize( tmpEle, element, true, true );
+					this.setElementSize( tmpEle, element, false, true );
 				}
 				else {
 					tmpEle = null;
@@ -643,6 +661,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					tmpEle.x = this.left;
 				}
 				this.top += this.baseHeight;
+				this.lastHeight = this.baseHeight;
 				break;
 
 		case "br":
@@ -660,11 +679,6 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 
 	// Calculate maximum height of current line for correct linebreaks later
 	this.lastHeight = Math.max( (tmpEle && tmpEle.height)?tmpEle.height:this.baseHeight, this.lastHeight );
-	/*
-	if (!setImg && !this.tmpData.image.inside) {
-		this.lastHeight = (tmpEle)?tmpEle.height:this.baseHeight;
-	}
-	*/
 	
 	// Set background div height
 	this.htmlDiv.height = this.top + this.lastHeight;
@@ -680,11 +694,12 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "ol":
 		case "dl":
 				this.tmpData.lists.pop();
-				this.top += (this.baseHeight/2);
-				if (this.left > 0) {
-					this.top += this.lastHeight;
+				if (this.left > 0 && (this.tmpData.lists.length == 0)) {
+					if (element.subElements.length > 0) {
+						this.top += this.lastHeight;
+					}
 				}
-				this.left = 0;
+				this.left = (this.tmpData.lists.length * 20);
 				break;
 
 		case "h1":
@@ -755,6 +770,8 @@ HTMLRender.prototype.setBaseStyle = function( element ) {
  * lockLeft will keep the left value when creating multi-line element
  */
 HTMLRender.prototype.setElementSize = function( tmpEle, element, fullWidth, lockLeft ) {
+	if (this.tmpData.lists > 0) lockLeft = true;
+
 	tmpEle.height = Math.ceil(tmpEle.size*1.6);
 	if (tmpEle.innerText.length == 0) {
 		tmpEle.width = 0;
@@ -798,6 +815,7 @@ HTMLRender.prototype.setElementSize = function( tmpEle, element, fullWidth, lock
  * set the style for the element. They will inherit styles from the parent
  */
 HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
+
 	element.size = this.baseSize;
 
 	if (parent != null) {
@@ -806,6 +824,7 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 		if (parent.italic) element.italic = parent.italic;
 		if (parent.strikeout) element.strikeout = parent.strikeout;
 		if (parent.color) element.color = parent.color;
+		if (parent.align) element.align = parent.align;
 
 		if (parent.font) element.font = parent.font;
 		if (parent.size) element.size = parent.size;
@@ -833,6 +852,9 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
 		case "s":
 		case "strike":
 					element.strikeout = true;
+					break;
+		case "center":
+					element.align = "center";
 					break;
 	}
 
@@ -888,6 +910,9 @@ HTMLRender.prototype.applyLink = function( element ) {
 HTMLRender.prototype.applyAttributes = function( element, cHTML ) {
 	var fontSizes = [6, 8, 10, 12, 14, 18, 24];
 
+	if (cHTML.attributes.alt) {
+		element.tooltip = cHTML.attributes.alt;
+	}
 	if (cHTML.attributes.title) {
 		element.tooltip = cHTML.attributes.title;
 	}
@@ -1051,9 +1076,14 @@ HTMLRender.prototype.debugDOM = function() {
 /**
  * Check if the tag needs a closing tag or not
  */
-HTMLRender.prototype.isSingleTag = function(tag) {
-	tag = tag.toLowerCase();
-	switch (tag) {
+HTMLRender.prototype.isSingleTag = function(tagName, tagComplete) {
+	tagName = tagName.toLowerCase();
+	if (tagComplete.charAt( tagComplete.length-2 ) == "/" ) {
+		debug.trace("Tag: "+tagComplete+" ends with />");
+		return true;
+	}
+
+	switch (tagName) {
 		case "br":
 		case "hr":
 		case "img":
@@ -1264,7 +1294,15 @@ HTMLElement.prototype.decodeEntities = function(str) {
 		if (!data) break;
 		str = str.replace( data[0], String.fromCharCode( data[1] ) );
 	}
-	
+
+	// Number unicode entities:
+	while (true) {
+		var data = str.match( /&#x([0-9]*);/i );
+		if (!data) break;
+		var uni = '"\\u' + data[1] +'"';
+		str = str.replace( data[0], String.fromCharCode( eval(uni) ) );
+	}
+
 	return str;
 }
 

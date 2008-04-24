@@ -1,0 +1,10 @@
+﻿<strings>
+  <GADGET_NAME>Index Status</GADGET_NAME>
+  <GADGET_DESCRIPTION>Zeigt die aktuelle Größes deines Google Desktop Suchindex an.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Index Status
+© 2008 Benjamin Schirmer
+Zeigt die aktuelle Größes deines Google Desktop Suchindex an.</GADGET_ABOUT_TEXT>
+
+	<strTotal>Gesamtanzahl</strTotal>
+	<strHelp>Hilfe und mehr Information</strHelp>
+</strings>

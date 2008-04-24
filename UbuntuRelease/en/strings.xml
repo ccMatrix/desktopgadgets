@@ -1,0 +1,13 @@
+﻿<strings>
+  <GADGET_NAME>Ubuntu Release</GADGET_NAME>
+  <GADGET_DESCRIPTION>Countdown to the latest Ubuntu Release from www.ubuntu.com</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Ubuntu Release
+© 2008 Benjamin Schirmer
+Countdown to the latest Ubuntu Release.
+
+Visit www.ubuntu.com to download the latest release or to learn more about Ubuntu.</GADGET_ABOUT_TEXT>
+
+	<strGadgetPage>Help and more Information</strGadgetPage>
+	<visitUbuntuWebsite>Visit www.ubuntu.com</visitUbuntuWebsite>
+	<errorNoData>Could not retrieve Information. No internet connection?</errorNoData>
+</strings>

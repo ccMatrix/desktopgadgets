@@ -1,0 +1,39 @@
+﻿<view height="110" width="200" onclose="view_onClose()" onminimize="view_onMinimize()"
+  onopen="view_onOpen()" onrestore="view_onRestore()">
+  <img height="110" width="200" x="0" y="0" src="images\background.png"
+   />
+  <div height="110" width="190" x="7" y="0">
+    <label height="16" name="labelTotal" width="109" x="0" y="5" bold="true"
+      color="#FFFFFF" font="" size="10">&strTotal;:
+    </label>
+    <label height="16" name="dataTotal" width="80" x="105" y="5" bold="true"
+      color="#FFFFFF" font="" size="10">0
+    </label>
+    <label height="16" name="labelMail" width="80" x="15" y="25" color="#FFFFFF"
+     >Mail
+    </label>
+    <label height="16" name="labelChat" width="80" x="15" y="45" color="#FFFFFF"
+     >Chats
+    </label>
+    <label height="16" name="labelWeb" width="80" x="15" y="65" color="#FFFFFF"
+     >Webprotokoll
+    </label>
+    <label height="16" name="labelFiles" width="80" x="15" y="85" color="#FFFFFF"
+     >Dateien
+    </label>
+    <label height="16" name="dataMail" width="120" x="100" y="25" color="#FFFFFF"
+     >0
+    </label>
+    <label height="16" name="dataChat" width="120" x="100" y="45" color="#FFFFFF"
+     >0
+    </label>
+    <label height="16" name="dataWeb" width="120" x="100" y="65" color="#FFFFFF"
+     >0
+    </label>
+    <label height="16" name="dataFiles" width="120" x="100" y="85" color="#FFFFFF"
+     >0
+    </label>
+  </div>
+  <script src="main.js" />
+  <script src="registry.js" />
+</view>

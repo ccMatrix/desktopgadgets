@@ -2,6 +2,7 @@
 var refreshInterval = null;
 var detailsViewOpen = false;
 var mails = [];
+var mailCount = 0;
 var minimized = false;
 var defaultWidth = 180;
 var defaultHeight = 120;
@@ -110,7 +111,8 @@ function checkMail() {
 				var gmailJson = parser.parse(req.responseText);
    
         // get the channel information
-				// alert( parser.show_json_structure(gmailJson) );
+				//alert( parser.show_json_structure(gmailJson) );
+				mailCount = gmailJson.feed.fullcount;
         var items = gmailJson.feed.entry;
 				if (items == undefined) {
 					items = [];
@@ -208,7 +210,13 @@ function displayMail() {
 		background.src = "images\\"+design+"_gmail_envelope.png";
 
 		newMails.visible = true;
-		newMailCount.innerText = mails.length;
+		newMailCount.innerText = mailCount;
+		newMailCount.size = 18;
+		if (mailCount >= 100)
+			newMailCount.size = 14;
+		if (mailCount >= 1000)
+			newMailCount.size = 10;
+
 		if (options.getValue("displayAccount")) {
 			labelTitle.innerText = options.getValue("account");
 			divTitle.visible = true;

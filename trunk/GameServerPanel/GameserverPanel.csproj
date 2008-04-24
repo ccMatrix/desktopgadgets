@@ -1,390 +1,238 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{4502771A-C317-4A6B-AB90-329A919B3AC4}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "Gameserver Panel"
-                AssemblyOriginatorKeyFile = "GameserverKey.snk"
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "Library"
-                PreBuildEvent = ""
-                PostBuildEvent = ""
-                RootNamespace = "GameserverPanel"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "true"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "true"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "2"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
-                    Name = "stdole"
-                    Guid = "{00020430-0000-0000-C000-000000000046}"
-                    VersionMajor = "2"
-                    VersionMinor = "0"
-                    Lcid = "0"
-                    WrapperTool = "primary"
-                />
-                <Reference
-                    Name = "System.Management"
-                    AssemblyName = "System.Management"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Management.dll"
-                />
-                <Reference
-                    Name = "GoogleTalkAPILib"
-                    Guid = "{7B29C130-826A-4070-BA18-EC01E703D244}"
-                    VersionMajor = "1"
-                    VersionMinor = "0"
-                    Lcid = "0"
-                    WrapperTool = "tlbimp"
-                />
-                <Reference
-                    Name = "GoogleDesktopDisplayLib"
-                    Guid = "{E3B60D50-19AB-4A32-A8B1-A09113AB2BA4}"
-                    VersionMajor = "2"
-                    VersionMinor = "1"
-                    Lcid = "0"
-                    WrapperTool = "tlbimp"
-                />
-                <Reference
-                    Name = "System.Configuration.Install"
-                    AssemblyName = "System.Configuration.Install"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Configuration.Install.dll"
-                />
-                <Reference
-                    Name = "GoogleDesktopAPILib"
-                    Guid = "{3D056FE7-EA8E-481A-B18F-0B02EBF6B3C1}"
-                    VersionMajor = "1"
-                    VersionMinor = "1"
-                    Lcid = "0"
-                    WrapperTool = "tlbimp"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "doc4.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "empty_usage.txt"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "folderIcon.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "formServer.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "formServer.resx"
-                    DependentUpon = "formServer.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "friendList.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "friendList.resx"
-                    DependentUpon = "friendList.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "GoBack.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "GoForward.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "GoUp.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "iconLarge.gif"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "iconSmall.gif"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Imports.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "InputDialog.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "InputDialog.resx"
-                    DependentUpon = "InputDialog.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "MSInstaller.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "MSInstaller.resx"
-                    DependentUpon = "MSInstaller.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Plugin.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PropertyPage.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PropertyPage.resx"
-                    DependentUpon = "PropertyPage.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "right.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ServerDetails.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ServerDetails.resx"
-                    DependentUpon = "ServerDetails.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ShellExtLib.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "up.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Common\Cursors.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\EnumWindows.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\Kernel32.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\OSVersion.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\Settings.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\Tree.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Common\User32.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "installer\empty_usage.txt"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "installer\GameserverSetup.iss"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\license_de.rtf"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\license_en.rtf"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\usage_de.rtf"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\usage_en.rtf"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\Language\de.ini"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "installer\Language\en.ini"
-                    BuildAction = "None"
-                />
-                <Folder RelPath = "installer\Output\" />
-                <File
-                    RelPath = "Resources\Americas Army.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Battlefield 2.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Call of Duty 2.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Call of Duty.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Counter-Strike Source.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Counter-Strike.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Day of Defeat Source.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Day of Defeat.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Doom III.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Enemy Territory.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\F.E.A.R Combat.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Half-Life2 Deathmatch.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Natural Selection.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Quake 4.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Resources\Unreal Tournament 2004.ico"
-                    BuildAction = "EmbeddedResource"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4502771A-C317-4A6B-AB90-329A919B3AC4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Gameserver Panel</AssemblyName>
+    <AssemblyOriginatorKeyFile>GameserverKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GameserverPanel</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration.Install">
+      <Name>System.Configuration.Install</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>System.Management</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="GoogleDesktopAPILib">
+      <Guid>{3D056FE7-EA8E-481A-B18F-0B02EBF6B3C1}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="GoogleDesktopDisplayLib">
+      <Guid>{E3B60D50-19AB-4A32-A8B1-A09113AB2BA4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="GoogleTalkAPILib">
+      <Guid>{7B29C130-826A-4070-BA18-EC01E703D244}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Cursors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\EnumWindows.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Kernel32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\OSVersion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Settings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Tree.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\User32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="formServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="friendList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imports.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MSInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Plugin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShellExtLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="doc4.ico" />
+    <EmbeddedResource Include="folderIcon.ico" />
+    <EmbeddedResource Include="formServer.resx">
+      <DependentUpon>formServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="friendList.resx">
+      <DependentUpon>friendList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoBack.ico" />
+    <EmbeddedResource Include="GoForward.ico" />
+    <EmbeddedResource Include="GoUp.ico" />
+    <EmbeddedResource Include="iconLarge.gif" />
+    <EmbeddedResource Include="iconSmall.gif" />
+    <EmbeddedResource Include="InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSInstaller.resx">
+      <DependentUpon>MSInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPage.resx">
+      <DependentUpon>PropertyPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Americas Army.ico" />
+    <EmbeddedResource Include="Resources\Battlefield 2.ico" />
+    <EmbeddedResource Include="Resources\Call of Duty 2.ico" />
+    <EmbeddedResource Include="Resources\Call of Duty.ico" />
+    <EmbeddedResource Include="Resources\Counter-Strike Source.ico" />
+    <EmbeddedResource Include="Resources\Counter-Strike.ico" />
+    <EmbeddedResource Include="Resources\Day of Defeat Source.ico" />
+    <EmbeddedResource Include="Resources\Day of Defeat.ico" />
+    <EmbeddedResource Include="Resources\Doom III.ico" />
+    <EmbeddedResource Include="Resources\Enemy Territory.ico" />
+    <EmbeddedResource Include="Resources\F.E.A.R Combat.ico" />
+    <EmbeddedResource Include="Resources\Half-Life2 Deathmatch.ico" />
+    <EmbeddedResource Include="Resources\Natural Selection.ico" />
+    <EmbeddedResource Include="Resources\Quake 4.ico" />
+    <EmbeddedResource Include="Resources\Unreal Tournament 2004.ico" />
+    <EmbeddedResource Include="right.ico" />
+    <EmbeddedResource Include="ServerDetails.resx">
+      <DependentUpon>ServerDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="up.ico" />
+    <Content Include="empty_usage.txt" />
+    <Content Include="installer\empty_usage.txt" />
+    <None Include="installer\GameserverSetup.iss" />
+    <None Include="installer\Language\de.ini" />
+    <None Include="installer\Language\en.ini" />
+    <None Include="installer\license_de.rtf" />
+    <None Include="installer\license_en.rtf" />
+    <None Include="installer\usage_de.rtf" />
+    <None Include="installer\usage_en.rtf" />
+    <Folder Include="installer\Output" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

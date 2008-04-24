@@ -1,0 +1,10 @@
+﻿<strings>
+  <GADGET_NAME>Index Status</GADGET_NAME>
+  <GADGET_DESCRIPTION>Display the current size of your Google Desktop search index.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Index Status
+© 2008 Benjamin Schirmer
+Display the current size of your Google Desktop search index.</GADGET_ABOUT_TEXT>
+
+	<strTotal>Indexsize</strTotal>
+  <strHelp>Help and more information</strHelp>
+</strings>

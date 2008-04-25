@@ -1,0 +1,43 @@
+﻿<view height="150" resizable="true" width="250" onclose="view_onclose()"
+  onopen="view_onOpen()" onsize="view_onsizing()" onsizing="view_onsizing()"
+ >
+  <img height="100%" name="background" width="100%" x="0" y="0" src="images\background.png"
+   />
+  <div height="18" name="searchArea" width="230" x="10" y="10" background="#6D8DFF">
+    <img enabled="true" height="16" hitTest="htclient" name="searchBtn"
+      width="16" x="213" y="1" onclick="searchBtn_onclick()"
+      src="images\find.png"/>
+    <edit height="16" name="wordQuery" width="196" x="17" y="1" onfocusin="wordQuery_onfocusin()"
+      onfocusout="wordQuery_onfocusout()" onkeypress="wordQuery_onkeypress()"
+      color="#A0A0A0" value="Enter your word"/>
+    <img cursor="hand" enabled="true" height="12" hitTest="htclient"
+      name="langIcon" width="18" x="1" y="1" onclick="displayLangSelector()"
+      src="images\country\de.png"/>
+    <img cursor="hand" enabled="true" hitTest="htclient" name="imageDrop"
+      x="1" y="13" onclick="displayLangSelector()" src="images\dropArrow.png"
+     />
+  </div>
+  <div height="105" name="contentArea" width="230" x="10" y="35">
+    <div height="105" name="scrollarea" width="10" visible="false" x="220"
+      y="0" background="#000000">
+      <img height="100%" width="9" src="images\scrollbar.png"/>
+      <scrollbar enabled="true" height="105" hitTest="htclient" name="sb" width="8"
+        y="-10" lineStep="10" max="200" orientation="vertical"
+        background="0000000" thumbDownImage="images\scroll.png"
+        thumbImage="images\scroll.png" thumbOverImage="images\scroll.png"
+        onchange="scrollText()"/>
+    </div>
+    <label height="105" name="thesaurusData" width="230" x="0" y="0" color="#FFFFFF"
+      wordwrap="true"/>
+  </div>
+  <div height="80" name="languageListDiv" width="20" visible="false"
+    x="12" y="28" background="#FFFFFF">
+    <listbox height="100%" name="languageList" width="20" x="0" y="0" background="#FFFFFF"
+      itemWidth="20" itemHeight="14" itemOverColor="#DBEEFE"
+      onchange="languageList_onchange()" itemSelectedColor="#CBDEEE"/>
+  </div>
+  <edit height="105" name="sizeCalc" width="230" x="0" y="150" size="8"
+    wordwrap="true" multiline="true" value="text"/>
+  <script src="main.js" />
+  <script src="thesaurus.js" />
+</view>

@@ -1,0 +1,37 @@
+﻿<strings>
+  <GADGET_NAME>Thesaurus</GADGET_NAME>
+  <GADGET_DESCRIPTION>Thesaurus lookup for different languages including English, German, Dutch and Spanish.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Thesaurus
+©2008 Benjamin Schirmer
+Thesaurus lookup for different languages.
+
+Used resoucses:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+English Thesaurus using Aiksaurus
+http://aiksaurus.sourceforge.net/
+
+German, Dutch and Spanish by OpenThesaurus Project
+http://www.openthesaurus.de/
+http://www.opentaal.org/opentaalbank/thesaurus
+http://openthes-es.berlios.de/
+
+Icons by the great FamFamFam icon pack
+http://www.famfamfam.com
+
+</GADGET_ABOUT_TEXT>
+
+	<strHelp>Help and more information</strHelp>
+	<strColors>Color scheme</strColors>
+	<strEmptyWord>Enter your word</strEmptyWord>
+	<strLookupFailed>No thesaurus found for this word.</strLookupFailed>
+	<strWebsiteFailed>Could not connect to thesaurus webpage. Please check your internet connection!</strWebsiteFailed>
+	<strWordRequest>Please enter a word to look up.</strWordRequest>
+
+	<strThemeDefault>Default</strThemeDefault>
+	<strThemeGreen>Green</strThemeGreen>
+	<strThemeRed>Red</strThemeRed>
+	<strThemeYellow>Yellow</strThemeYellow>
+	<strThemeBlue>Blue</strThemeBlue>
+	<strThemePurple>Purple</strThemePurple>
+	<strThemeOrange>Orange</strThemeOrange>
+</strings>

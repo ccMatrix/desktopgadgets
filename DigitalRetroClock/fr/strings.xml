@@ -12,5 +12,8 @@ Traduction par Christophe AUJEAN.</GADGET_ABOUT_TEXT>
 	<strMonths>Jan,Fev,Mar,Avr,Mai,Juin,Juil,Août,Sep,Oct,Nov,Dec</strMonths>
   <strDays>Dim,Lun,Mar,Mer,Jeu,Ven,Sam,Dim</strDays>
 
+	<strFormat12>12-heures</strFormat>
+	<strFormat12>24-heures</strFormat>
+
 	<strHelp>Aide et informations</strHelp>
 </strings>

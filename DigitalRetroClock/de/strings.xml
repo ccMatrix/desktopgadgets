@@ -9,6 +9,8 @@ Bilder aus dem KDE Projekt.</GADGET_ABOUT_TEXT>
 
 	<strMonths>Jan,Feb,Mär,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez</strMonths>
   <strDays>So,Mo,Di,Mi,Do,Fr,Sa,So</strDays>
+	<strFormat12>12-Stunden-Format</strFormat12>
+	<strFormat24>24-Stunden-Format</strFormat24>
 
 	<strHelp>Hilfe und mehr informationen</strHelp>
 </strings>

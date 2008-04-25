@@ -3,6 +3,8 @@ var months = strMonths.split(",");
 var days = strDays.split(",");
 
 function AddCustomMenuItems(menu) {
+	menu.AddItem(strFormat12, (options.getValue("format")==12)?gddMenuItemFlagChecked:0, OnMenuClicked);
+	menu.AddItem(strFormat24, (options.getValue("format")==24)?gddMenuItemFlagChecked:0, OnMenuClicked);
 	menu.AddItem(strHelp, 0, OnMenuClicked);
 }
 
@@ -11,16 +13,29 @@ function OnMenuClicked(itemText) {
     var wsh = new ActiveXObject( "WScript.Shell" );
     wsh.Run( "http://www.googledesktopgadgets.com/digitalclock/" ); 
   }
+	else if (itemText == strFormat12) {
+		options.putValue("format", 12);
+	}
+	else if (itemText == strFormat24) {
+		options.putValue("format", 24);
+	}
 }
 
 function view_onOpen() {
 	plugin.onAddCustomMenuItems = AddCustomMenuItems;
+	options.putDefaultValue("format", 24);
 	setInterval("animClock();", 1000);
 }
 
 function animClock() {
 	var d = new Date();
 	var hour = d.getHours().toString();
+	if (options.getValue("format") == 12) {
+		if (d.getHours() > 12) {
+			hour = d.getHours()-12;
+			hour = hour.toString();
+		}
+	}
 	if (hour.length == 1) hour = "0"+hour;
   var min = d.getMinutes().toString();
 	if (min.length == 1) min = "0"+min;

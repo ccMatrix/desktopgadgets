@@ -237,7 +237,12 @@ function languageList_onchange() {
 function reposition() {
 	searchArea.width = view.width-20;
 	searchBtn.x = searchArea.width - searchBtn.width - 1;
-	progress.x = searchBtn.x-progress.width;
+	try {
+		progress.x = searchBtn.x-progress.width;
+	}
+	catch (E) {
+		debug.error("Flash not supported");
+	}
 	wordQuery.width = searchBtn.x-wordQuery.x;
 
 	contentArea.width = view.width-20;

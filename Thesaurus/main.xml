@@ -9,7 +9,7 @@
       src="images\find.png"/>
     <edit height="16" name="wordQuery" width="196" x="17" y="1" onfocusin="wordQuery_onfocusin()"
       onfocusout="wordQuery_onfocusout()" onkeypress="wordQuery_onkeypress()"
-      color="#A0A0A0" value="Enter your word"/>
+      color="#A0A0A0" value="&strEmptyWord;"/>
     <img cursor="hand" enabled="true" height="12" hitTest="htclient"
       name="langIcon" width="18" x="1" y="1" onclick="displayLangSelector()"
       src="images\country\de.png"/>

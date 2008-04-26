@@ -22,7 +22,7 @@ http://www.famfamfam.com
 
 	<strHelp>Hilfe und mehr Informationen</strHelp>
 	<strColors>Farbschema</strColors>
-	<strEmptyWord>Gib dein Wort ein</strEmptyWord>
+	<strEmptyWord>Gib ein Wort ein</strEmptyWord>
 	<strLookupFailed>Kein thesaurus für dieses Wort gefunden.</strLookupFailed>
 	<strWebsiteFailed>Konnte nicht zur Thesaurus webseite verbinden. Bitte überprüfe deine Internetverbindung!</strWebsiteFailed>
 	<strWordRequest>Bitte gib ein Wort ein.</strWordRequest>

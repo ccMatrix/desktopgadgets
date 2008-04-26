@@ -18,15 +18,15 @@ function ShowOptionsDlg(wnd) {
   ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "showAccount", strShowAccount, 20, 170, 260, 20);
   ctl.value = options.getValue("displayAccount");
 
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "googleApps", strAppsFix, 20, 190, 260, 20);
-  ctl.value = options.getValue("isGoogleApps");
+	//ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "googleApps", strAppsFix, 20, 190, 260, 20);
+  //ctl.value = options.getValue("isGoogleApps");
 
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "alwaysAccount", strAlwaysAccount, 20, 210, 260, 20);
+	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "alwaysAccount", strAlwaysAccount, 20, 190, 260, 20);
   ctl.value = options.getValue("alwaysAccount");
 
-	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strInterval, 20, 235, 80, 20);
-  wnd.AddControl(gddWndCtrlClassEdit, gddWndCtrlClassEdit, "refreshInterval", options.getValue("interval")/(60*1000), 100, 230, 40, 25);
-	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strMinutes, 145, 235, 80, 20);
+	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strInterval, 20, 215, 80, 20);
+  wnd.AddControl(gddWndCtrlClassEdit, gddWndCtrlClassEdit, "refreshInterval", options.getValue("interval")/(60*1000), 100, 210, 40, 25);
+	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strMinutes, 145, 215, 80, 20);
 
 	var designs = [];
 	var designAppendix = " ("+strDesignEmpty+")";
@@ -34,7 +34,7 @@ function ShowOptionsDlg(wnd) {
 	designs.push(strGrayDesign+designAppendix);
 	designs.push(strGreenDesign+designAppendix)
 	designs.push(strBlueDesign+designAppendix);
-	ctl = wnd.AddControl(gddWndCtrlClassList, gddWndCtrlTypeListDrop, "designEmpty", designs, 20, 260, 260, 25);
+	ctl = wnd.AddControl(gddWndCtrlClassList, gddWndCtrlTypeListDrop, "designEmpty", designs, 20, 240, 260, 25);
 	switch (options.getValue("design")) {
 		case "red": 
 				ctl.value = strRedDesign+designAppendix;
@@ -56,7 +56,7 @@ function ShowOptionsDlg(wnd) {
 	designs.push(strGrayDesign+designAppendix);
 	designs.push(strGreenDesign+designAppendix)
 	designs.push(strBlueDesign+designAppendix);
-	ctl = wnd.AddControl(gddWndCtrlClassList, gddWndCtrlTypeListDrop, "designFull", designs, 20, 285, 260, 25);
+	ctl = wnd.AddControl(gddWndCtrlClassList, gddWndCtrlTypeListDrop, "designFull", designs, 20, 265, 260, 25);
 	switch (options.getValue("designFull")) {
 		case "red": 
 				ctl.value = strRedDesign+designAppendix;
@@ -73,16 +73,16 @@ function ShowOptionsDlg(wnd) {
 	}
 
 
-	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strNotifyAlert, 36, 310, 240, 20);
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "notifyAlert", "?", 19, 310, 16, 16);
+	wnd.AddControl(gddWndCtrlClassLabel, 0, "", strNotifyAlert, 36, 290, 240, 20);
+	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "notifyAlert", "?", 19, 290, 16, 16);
 	ctl.onClicked = OnAlertsInformation;
 
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "notifySound", strNotifySound, 20, 330, 260, 20);
+	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonCheck, "notifySound", strNotifySound, 20, 310, 260, 20);
   ctl.value = options.getValue("notifySoundEnable");
-  wnd.AddControl(gddWndCtrlClassEdit, 0, "notifySoundFile", options.getValue("notifySoundFile"), 40, 350, 190, 25);
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "chooseSound", "...", 235, 350, 25, 20);
+  wnd.AddControl(gddWndCtrlClassEdit, 0, "notifySoundFile", options.getValue("notifySoundFile"), 40, 330, 190, 25);
+	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "chooseSound", "...", 235, 330, 25, 20);
   ctl.onClicked = OnChooseSound;
-	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "previewSound", ">", 260, 350, 25, 20);
+	ctl = wnd.AddControl(gddWndCtrlClassButton, gddWndCtrlTypeButtonPush, "previewSound", ">", 260, 330, 25, 20);
   ctl.onClicked = OnPlaySound;
 
   wnd.onClose = OptionsDlgClosed;
@@ -96,20 +96,28 @@ function OptionsDlgClosed(wnd, code) {
   
   var ctl;
 
+	var googleApps = true;
+
 	ctl = wnd.GetControl("input_account");
   options.putValue("account", ctl.value);
 
   ctl = wnd.GetControl("input_username");
   options.putValue("username", ctl.value);
 
+	var username = ctl.value;
+	if (username.match(/gmail.com$/) ||
+			username.match(/googlemail.com$/) ||
+			username.indexOf("@") == -1) {
+		googleApps = false;
+	}
+	options.putValue("isGoogleApps", googleApps);
+	debug.trace(username+" is GoogleApps: "+googleApps);
+
   ctl = wnd.GetControl("input_password");
   options.putValue("password", ctl.value);
 
 	ctl = wnd.GetControl("showAccount");
 	options.putValue("displayAccount", ctl.value);
-
-	ctl = wnd.GetControl("googleApps");
-	options.putValue("isGoogleApps", ctl.value);
 
 	ctl = wnd.GetControl("alwaysAccount");
 	options.putValue("alwaysAccount", ctl.value);

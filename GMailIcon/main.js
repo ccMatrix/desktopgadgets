@@ -32,8 +32,7 @@ function OnMenuClicked(itemText) {
     checkMail();
   }
   if (itemText == strHelp) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.googledesktopgadgets.com/gmailicon/" ); 
+    framework.openUrl( "http://www.googledesktopgadgets.com/gmailicon/" ); 
   }
 }
 

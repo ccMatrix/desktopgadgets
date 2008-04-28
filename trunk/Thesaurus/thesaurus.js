@@ -19,8 +19,6 @@ var ERROR_WEBSITE = "2";
 function Thesaurus(lang) {
 	this.language = lang;
 	this.lookupReg = null;
-	this.postProcess = false;
-	this.processFunction = null;
 	this.callback = null;
 }
 
@@ -59,17 +57,6 @@ Thesaurus.prototype.lookup = function(word) {
 		case LANG_ENGLISH:
 			lookupUrl = "http://www.googledesktopgadgets.com/scripts/aiksaurus.php?lookup=%s";
 			this.lookupReg = new RegExp("([^$]*)", "gi");
-			this.postProcess = false;
-			this.processFunction = function(data) {
-				var match = data.match("<table[^>]*>([^\n]*)");
-				if (!match) return "";
-				data = match[1];
-				data = data.replace(/<br><\/td><\/tr><\/table>/gi, "\n\n"); 
-				data = data.replace(/<br>/gi, ", ");
-				data = data.replace(/<\/big> <\/th>/gi, ":\n");
-				data = data.replace(/(<)([^>]*)(>)/gi, "");
-				return data;
-				};
 			break;
 	}
 	// Call lookup URL with parameter
@@ -82,9 +69,6 @@ Thesaurus.prototype.lookup = function(word) {
 			if (req.readyState == 4) {
 				if (req.status == 200) {
 					var data = req.responseText;
-					if (thesaurus.postProcess) {
-						data = thesaurus.processFunction(data);
-					}
 					var result = "";
 					var match = thesaurus.lookupReg.exec(data);
 					if (!match) {

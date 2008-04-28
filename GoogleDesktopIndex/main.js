@@ -51,9 +51,15 @@ function readIndexStatus() {
 		req.open("GET", indexUrl, false);
 		req.send();
 		if (req.status == 200) {
-			data = req.responseText.match("<td align=right><b>([0-9., ]+)</b></td>");
-			indexSize = data[1];
-			debug.trace("Indexed Objects: "+indexSize);
+			var match = req.responseText.match("<td align=right><b>(.+)</b></td>");
+			if (match) {
+				indexSize = match[1];
+				debug.trace("Indexed Objects: "+indexSize);
+			}
+			else {
+				debug.error("Could not find max");
+				return;
+			}
 			
 			data = req.responseText;
 			data = data.replace(/&nbsp;/gi, " ");

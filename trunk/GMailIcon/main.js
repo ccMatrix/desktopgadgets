@@ -102,7 +102,7 @@ function checkMail() {
 	}
   debug.trace("Loading Feed ...");
   var req = new XMLHttpRequest();
-  req.open('GET', feed+"?randomTime="+Math.random(), true, options.getValue("username"), options.getValue("password"));
+  req.open("GET", feed+"?randomTime="+Math.random(), true, options.getValue("username"), options.getValue("password"));
   req.onreadystatechange = function (aEvt) {
     if (req.readyState == 4) {
       if (req.status == 200) {
@@ -168,7 +168,7 @@ function checkMail() {
       }
     }
   };
-  req.send(null);
+  req.send();
   refreshInterval = setTimeout("checkMail()", options.getValue("interval") );
 }
 

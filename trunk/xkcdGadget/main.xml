@@ -1,5 +1,5 @@
-﻿<view height="150" width="250" onclose="view_onclose()" onopen="view_onOpen()"
- >
+﻿<view height="150" width="250" onclose="view_onclose()" onmouseout="view_onmouseout()"
+  onmouseover="view_onmouseover()" onopen="view_onOpen()">
   <img height="32" name="comicImg" width="32"/>
   <label height="100%" name="loadingText" width="100%" bold="true" wordwrap="true"
    >&strLoading;

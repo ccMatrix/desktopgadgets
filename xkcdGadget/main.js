@@ -1,9 +1,14 @@
 ﻿var feed = "http://xkcd.com/atom.xml";
+var feedItems = [];
+var currentIndex = 0;
 var refreshInterval;
+var slideshowInterval;
 
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
   menu.AddItem(strRefresh, 0, OnMenuClicked);
+	menu.AddItem(strXKCD, 0, OnMenuClicked);
+	menu.AddItem(strHelp, 0, OnMenuClicked);
   var transSub = menu.AddPopup(strTransparency);
   for (var i=100; i>10; i-=10) {
     var capt = i+"%";
@@ -11,10 +16,25 @@ function AddCustomMenuItems(menu) {
   }
 }
 
+function ToolbarCommand(command) {
+	if (command == gddCmdToolbarForward) {
+		displayNext();
+	}
+	if (command == gddCmdToolbarBack) {
+		displayPrev();
+	}
+}
+
 function OnMenuClicked(itemText) {
   if (itemText == strRefresh) {
     requestFeed();
   }
+	else if (itemText == strXKCD) {
+		framework.openUrl("http://www.xkcd.com");
+	}
+	else if (itemText == strHelp) {
+		framework.openUrl("http://www.googledesktopgadgets.com/xkcd/");
+	}
   else {
     var trans = itemText.substring(0, itemText.indexOf("%"));
     setTrans(trans);
@@ -25,7 +45,10 @@ function view_onOpen() {
   options.putDefaultValue("Trans", 100);
   setTrans( options.getValue("Trans") );
   plugin.onAddCustomMenuItems = AddCustomMenuItems;
+	plugin.plugin_flags = gddPluginFlagToolbarForward | gddPluginFlagToolbarBack;
+	plugin.onCommand = ToolbarCommand;
   requestFeed();
+	slideshowInterval = setInterval("idleNext()", 30000);
 }
 
 function requestFeed() {
@@ -56,16 +79,57 @@ function requestFeed() {
 
 function displayFeed(items) {
   if (items.length == 0) return;
-  var item = items[0];
+	feedItems = items;
+  displayItem(0);
+}
 
+function idleNext() {
+	if (framework.system.user.idle) {
+		displayNext();
+	}
+}
+
+function displayNext() {
+	debug.trace("Next image...");
+	if (currentIndex == feedItems.length-1) {
+		currentIndex = 0;
+	}
+	else {
+		currentIndex++;
+	}
+	displayItem(currentIndex);
+}
+
+function displayPrev() {
+	debug.trace("Previous image...");
+	if (currentIndex == 0) {
+		currentIndex = feedItems.length-1;
+	}
+	else {
+		currentIndex--;
+	}
+	displayItem(currentIndex);
+}
+
+function displayItem(index) {
+	currentIndex = index;
+
+	beginAnimation("comicImg.opacity = event.value;", (255/100)*options.getValue("trans"), 0, 400);
+	setTimeout("displayItemAnim();", 400);
+}
+
+function displayItemAnim() {
+	beginAnimation("comicImg.opacity = event.value;", 0, (255/100)*options.getValue("trans"), 400);
+	var item = feedItems[currentIndex];
   var summary = item["summary"];
   var imgSrc = summary.match("\"([^\"]*)\"")[1];
+	var imgAlt = summary.match("alt=\"([^\"]*)\"")[1];
   comicImg.src = loadPicture(imgSrc);
   comicImg.x = 0;
   comicImg.y = 0;
   comicImg.width = comicImg.srcWidth;
   comicImg.height = comicImg.srcHeight;
-  comicImg.tooltip = item["title"];
+  comicImg.tooltip = item["title"]+"\n\n"+imgAlt;
   comicImg.cursor = "hand";
   comicImg.enabled = true;
   comicImg.onClick = "visitUrl(\""+item["link@href"]+"\");";
@@ -78,8 +142,7 @@ function visitUrl(url) {
   wsh.Run( url ); 
 }
 
-function loadPicture(url)
-{
+function loadPicture(url) {
   var req = new XMLHttpRequest();
   req.open('GET', url, false); 
   req.send(null);
@@ -98,4 +161,10 @@ function getTrans() {
   trans = Math.round(trans);
   // gadget.debug.trace("Opacity: "+comicImg.opacity+" => "+trans);
   return trans;
+}
+
+
+function view_onclose() {
+	clearInterval(slideshowInterval);
+	clearInterval(slideshowInterval);
 }

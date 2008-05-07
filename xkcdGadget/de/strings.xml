@@ -14,4 +14,6 @@ http://www.imagine-interactive.de/gadgets/
   <strRefresh>Aktualisieren</strRefresh>
   <strLoading>Lade</strLoading>
   <strNoInternet>Konnte Bilder nicht laden. Besteht eine Internetverbindung</strNoInternet>
+	<strXKCD>http://www.xkcd.com</strXKCD>
+	<strHelp>Hilfe und mehr Informationen</strHelp>
 </strings>

@@ -14,6 +14,7 @@ http://www.imagine-interactive.de/gadgets/
   <strRefresh>Refresh</strRefresh>
   <strLoading>Loading</strLoading>
   <strNoInternet>Could not load Feed. Are you connected to the internet?</strNoInternet>
+	<strIdle>Slideshow</strIdle>
 	<strXKCD>http://www.xkcd.com</strXKCD>
 	<strHelp>Help and more Information</strHelp>
 </strings>

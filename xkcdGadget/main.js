@@ -3,10 +3,12 @@ var feedItems = [];
 var currentIndex = 0;
 var refreshInterval;
 var slideshowInterval;
+var gadgetIdle = true;
 
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
   menu.AddItem(strRefresh, 0, OnMenuClicked);
+	menu.AddItem(strIdle, options.getValue("idlemode")?gddMenuItemFlagChecked:0, OnMenuClicked);
 	menu.AddItem(strXKCD, 0, OnMenuClicked);
 	menu.AddItem(strHelp, 0, OnMenuClicked);
   var transSub = menu.AddPopup(strTransparency);
@@ -29,6 +31,9 @@ function OnMenuClicked(itemText) {
   if (itemText == strRefresh) {
     requestFeed();
   }
+	else if (itemText == strIdle) {
+		options.putValue("idlemode", !options.getValue("idlemode") );
+	}
 	else if (itemText == strXKCD) {
 		framework.openUrl("http://www.xkcd.com");
 	}
@@ -43,12 +48,15 @@ function OnMenuClicked(itemText) {
 
 function view_onOpen() {
   options.putDefaultValue("Trans", 100);
+	options.putDefaultValue("idlemode", true);
   setTrans( options.getValue("Trans") );
+
   plugin.onAddCustomMenuItems = AddCustomMenuItems;
 	plugin.plugin_flags = gddPluginFlagToolbarForward | gddPluginFlagToolbarBack;
 	plugin.onCommand = ToolbarCommand;
+
   requestFeed();
-	slideshowInterval = setInterval("idleNext()", 30000);
+	slideshowInterval = setInterval("idleNext()", 60000);
 }
 
 function requestFeed() {
@@ -84,7 +92,7 @@ function displayFeed(items) {
 }
 
 function idleNext() {
-	if (framework.system.user.idle) {
+	if (options.getValue("idlemode") && gadgetIdle) {
 		displayNext();
 	}
 }
@@ -167,4 +175,12 @@ function getTrans() {
 function view_onclose() {
 	clearInterval(slideshowInterval);
 	clearInterval(slideshowInterval);
+}
+
+function view_onmouseover() {
+	gadgetIdle = false;
+}
+
+function view_onmouseout() {
+	gadgetIdle = true;
 }

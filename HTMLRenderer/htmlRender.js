@@ -24,6 +24,10 @@ function HTMLRender() {
 	/* FollowLinks internally and try to render */
 	this.FollowLink = false;
 
+	/* Convert page to mobile using GWT */
+	this.MobilePages = false;
+	this.mobileBase = "http://www.google.com/gwt/n?u=";
+
 	this.reset();
 }
 
@@ -60,7 +64,7 @@ HTMLRender.prototype.reset = function() {
  */
 HTMLRender.prototype.RenderString = function(html, url) {
 	this.reset();
-	// set baseUrl for this document (needed for image requests)
+	// set baseUrl for this document (needed for image requests
 	this.baseUrl = url.substring(0, url.lastIndexOf("/")+1);
 
 	// Extract body tag if string contains complete document
@@ -106,9 +110,12 @@ HTMLRender.prototype.RenderString = function(html, url) {
  */
 HTMLRender.prototype.RenderUrl = function(url, nocache) {
 	var loadUrl = url;
+	if (this.MobilePages) {
+		debug.trace("Using mobile page for request");
+		loadUrl = this.mobileBase+encodeURIComponent(url);
+	}
 	try {
 		var req = new XMLHttpRequest();
-		// These are some webpages which show Hello World examples, enable each line to test the renderer:
 		if (nocache) {
 			loadUrl += (loadUrl.indexOf("?") > 0)?"&":"?";
 			loadUrl += Math.random();
@@ -119,7 +126,7 @@ HTMLRender.prototype.RenderUrl = function(url, nocache) {
 	catch (E) {
 		debug.error("Could not load url. No Internet connection?");
 	}
-	this.RenderString(req.responseText, url);
+	this.RenderString(req.responseText, loadUrl);
 }
 
 /**
@@ -673,7 +680,6 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				// Very important. A new line resets the image variables since the line height
 				// is just valid for the line the image is in. New line -> New height
 				this.tmpData.image.inside = false;
-				this.lastHeight = this.baseHeight;
 				break;
 	}
 
@@ -867,24 +873,26 @@ HTMLRender.prototype.setElementStyle = function( element, parent, cHTML ) {
  * Open a link in the users webbrowser or internally if FollowLink is enabled
  */
 HTMLRender.prototype.openLink = function( url  ) {
+	
+	if (!url.match("([a-zA-Z]+)://")) {
+		if (url.substring(0,1) == "/") {
+			endDomain = this.baseUrl.indexOf("://");
+			endDomain = this.baseUrl.indexOf("/", endDomain+3);
+			url = this.baseUrl.substring(0, endDomain)+url;
+		}
+		else {
+			url = this.baseUrl + url;
+		}
+	}
+	debug.trace("Clicked on Link: "+url);
 	if (this.FollowLink) {
+		debug.trace("Clicked on Link: "+url);
 		this.RenderUrl( url );
 	}
 	else {
-		if (!url.match("([a-zA-Z]+)://")) {
-			if (url.substring(0,1) == "/") {
-				endDomain = this.baseUrl.indexOf("://");
-				endDomain = this.baseUrl.indexOf("/", endDomain+3);
-				url = this.baseUrl.substring(0, endDomain)+url;
-			}
-			else {
-				url = this.baseUrl + url;
-			}
-		}
-		debug.trace("Clicked on Link: "+url);
 		// @TODO use framework.openUrl when mailto: links are fixed
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( url );
+		var wsh = new ActiveXObject( "WScript.Shell" );
+		wsh.Run( url );
 	}
 }
 

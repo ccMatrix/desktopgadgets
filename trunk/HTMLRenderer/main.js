@@ -62,10 +62,13 @@ function view_onOpen() {
 	plugin.onCommand = ToolbarCommand;
 
 	render = new HTMLRender();
-	render.RenderUrl( webpages[currentPage], true );
+	//render.RenderUrl( webpages[currentPage], true );
 
 	// http://www.google.com/gwt/n can create small pages for any webpage. Use this for real-world tests
-	//render.RenderUrl( "http://www.google.com/gwt/n?u=http%3A%2F%2Fwww.googledesktopgadgets.com");
+	render.FollowLink = true;
+	render.MobilePages = true;
+	render.RenderUrl( "http://www.googledesktopgadgets.com");
+	//render.RenderUrl( "http://www.phonifier.com/phonify.php?i=1&m=0&l=0&u=http%3A%2F%2Fwww.googledesktopgadgets.com" );
 }
 
 function ToolbarCommand(command) {

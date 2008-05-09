@@ -1,4 +1,9 @@
-﻿options.putDefaultValue("interface_ip", "");
+﻿options.encryptValue("interface_ip");
+options.encryptValue("interface_port");
+options.encryptValue("interface_username");
+options.encryptValue("interface_password");
+
+options.putDefaultValue("interface_ip", "");
 options.putDefaultValue("interface_port", "");
 options.putDefaultValue("interface_username", "");
 options.putDefaultValue("interface_password", "");

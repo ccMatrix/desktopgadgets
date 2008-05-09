@@ -1,8 +1,9 @@
 ﻿view.caption = "µTorrent Gadget";
 
 var isMinimized = false;
-var detailsViewOpen = false;
+var curData = null;
 
+var detailsViewOpen = false;
 var detailsView=null;
 
 var interface_ip;
@@ -25,6 +26,7 @@ var STATUS_LOADED = 128;
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
   menu.AddItem(strLaunchInterface, 0, OnMenuClicked);
+	menu.AddItem(strHelp, 0, OnMenuClicked);
   menu.AddItem("-", 0x800, OnMenuClicked);
   menu.AddItem(menu_complete, show_completed?gddMenuItemFlagChecked:0, OnMenuClicked);
   menu.AddItem(menu_stop, show_stopped?gddMenuItemFlagChecked:0, OnMenuClicked);
@@ -35,29 +37,32 @@ function AddCustomMenuItems(menu) {
 function OnMenuClicked(itemText) {
   switch (itemText)
   {
+		case strHelp:
+			framework.openUrl( "http://www.googledesktopgadgets.com/utorrent/" );
+			break;
     case strLaunchInterface:
-		launchInterface()
-                break;
+			launchInterface();
+			break;
     case menu_complete:
-                show_completed = !show_completed;
-								options.putValue("show_completed", show_completed);
-                displayData();
-                break;
+			show_completed = !show_completed;
+			options.putValue("show_completed", show_completed);
+			displayData(curData);
+			break;
     case menu_stop:
-                show_stopped = !show_stopped;
-								options.putValue("show_stopped", show_stopped);
-                displayData();
-                break;
+			show_stopped = !show_stopped;
+			options.putValue("show_stopped", show_stopped);
+			displayData(curData);
+			break;
     case menu_start:
-                show_started = !show_started;
-								options.putValue("show_started", show_started);
-                displayData();
-                break;
+			show_started = !show_started;
+			options.putValue("show_started", show_started);
+			displayData(curData);
+			break;
     case menu_seeding:
-                show_seeding = !show_seeding;
-								options.putValue("show_seeding", show_seeding);
-                displayData();
-                break;
+			show_seeding = !show_seeding;
+			options.putValue("show_seeding", show_seeding);
+			displayData(curData);
+			break;
   }
 }
 
@@ -70,7 +75,7 @@ function view_onOpen() {
 
   view_onSize();
   loadOptionsData();
-  displayData();
+  requestData();
 }
 
 function view_onSize() {
@@ -136,13 +141,13 @@ function launchInterface() {
 function onMinimize() {
   debug.trace('Minimized');
   isMinimized = true;
-  displayData();
+  displayData(curData);
 }
 
 function onRestore() {
   debug.trace('Restored');
   isMinimized = false;
-  displayData();
+  displayData(curData);
 }
 
 function sb_onchange(){
@@ -164,6 +169,8 @@ function displayData(data) {
     setTimeout("requestData()", 5000);
     return;
   }
+
+	curData = data;
 
   setTimeout("requestData()", 5000);
 
@@ -294,7 +301,7 @@ function unSelectTorrent() {
 
 function startTorrentUI() {
   if (active_torrentID != null) {
-    stopTorrent( active_torrentID );
+    startTorrent( active_torrentID );
   }
 }
 
@@ -305,7 +312,7 @@ function stopTorrentUI() {
 }
 
 function addTorrentUI() {
-  var url = prompt("Torrent URL:", "Add new Torrent", "");
+  var url = view.prompt("Add new Torrent\nEnter URL:", "");
   if (url != null) {
     addTorrent( url );
   }

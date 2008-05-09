@@ -13,11 +13,13 @@ Icons used are from famfamfam Silk Icons pack (www.famfamfam.com)
 and from the µTorrent WebUI.</GADGET_ABOUT_TEXT>
 
   <strLaunchInterface>Launch WebInterface</strLaunchInterface>
+	<strHelp>Help and more Information</strHelp>
   <menu_complete>Display completed torrents</menu_complete>
   <menu_stop>Display stopped torrents</menu_stop>
   <menu_start>Display running torrents</menu_start>
   <menu_seeding>Display seeding torrents</menu_seeding>
   <ERROR_CONNECT>Error connecting to web interace. Please check your settings!</ERROR_CONNECT>
+	<ERROR_SETUP>You haven't the ip and port of your µTorrent interface yet. Please enter your data into the options dialog.</ERROR_SETUP>
   <OPTION_IP>IP or Hostname</OPTION_IP>
   <OPTION_PORT>Port</OPTION_PORT>
   <OPTION_USERNAME>Username</OPTION_USERNAME>

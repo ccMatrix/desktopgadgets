@@ -8,8 +8,11 @@ var details;
 function requestData()
 {
   gadget.debug.trace("InterfaceUrl: "+getTorrentInterface());
-  if (getTorrentInterface() == "") {
-    displayData(null);
+  if (getTorrentInterface() == null) {
+    torrentList.removeAllElements();
+    displayNotification(ERROR_SETUP);
+    lblUp.innerText = "";
+    lblDown.innerText = "";
     return;
   }
   try {
@@ -91,7 +94,11 @@ function getTorrentInterface() {
   interface_username=options.getValue("interface_username");
   interface_password=options.getValue("interface_password");
   
-
-  // Create URL based on options data
-  return "http://"+interface_ip+":"+interface_port+"/gui/?list=1";
+	if (interface_ip != "" && interface_port != "") {
+		// Create URL based on options data
+		return "http://"+interface_ip+":"+interface_port+"/gui/?list=1";
+	}
+	else {
+		return null;
+	}
 }

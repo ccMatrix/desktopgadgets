@@ -6,36 +6,15 @@ function Quote( n, q ) {
 }
 
 function requestQuotes() {
-	var quotesUrl = "http://www.chrisbeach.co.uk/viewQuotes.php";
-	labelQuote.innerText = strLoading;
-	labelName.innerText = GADGET_NAME;
-	var req = new XMLHttpRequest();
-	req.open("GET", quotesUrl, true);
-	req.onReadyStateChange = function () {
-    if (req.readyState == 4) {
-      if (req.status == 200) {
-        readQuotes(req.responseText);
-      }
-      else {
-        debug.gadget.error("Error loading page\n");
-      }
-    }
-  };
-	req.send(null);
-}
-
-function readQuotes(html) {
-	var regEx = "<!-- Entry::getAuthorHTML\\(\\) -->([^<]*)</td>\n<td>([^<]*)</td>";
+	var quotesData = storage.openText("quotes.csv").split("\n");
 	while (quoteList.length > 0) {
 		quoteList.pop();
 	}
-	var data = false;
-	while (true) {
-		data = html.match( regEx );
-		if (!data) break;
-		var q = new Quote( data[1].trim(), data[2].trim() );
+	for (var i=0; i<quotesData.length; i++) {
+		var data = quotesData[i].split("|");
+		var q = new Quote( data[0], data[1] );
 		quoteList.push( q );
-		html = html.replace( data[0], "" );
 	}
+
 	displayQuote();
 }

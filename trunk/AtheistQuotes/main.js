@@ -1,4 +1,5 @@
 ﻿var detailsViewOpen = false;
+var updateInterval = null;
 
 function view_onOpen() {
 	plugin.plugin_flags = gddPluginFlagToolbarForward;
@@ -31,6 +32,8 @@ function ToolbarCommand(command) {
 function displayQuote() {
 	if (quoteList.length == 0) return;
 
+	clearInterval(updateInterval);
+
 	var rand = Math.random()*(quoteList.length-1);
 	rand = Math.floor(rand);
 	var q = quoteList[rand];
@@ -41,6 +44,8 @@ function displayQuote() {
 	debug.trace( q.name + ": " + q.quote );
 
 	fitQuote();
+
+	updateInterval = setInterval("displayQuote();", 30000);
 }
 
 function view_onSize() {

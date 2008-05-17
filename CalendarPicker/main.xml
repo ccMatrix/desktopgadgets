@@ -1,0 +1,16 @@
+﻿<view height="200" showCaptionAlways="true" width="300" onopen="view_onOpen()"
+ >
+  <div height="18" name="div1" width="200" x="20" y="20" background="#000000">
+    <edit height="16" name="edit1" width="198" x="1" y="1" onrclick="edit1_onrclick()"
+      readonly="true" value="Right click to select date"/>
+  </div>
+  <div height="18" name="div2" width="200" x="20" y="50" background="#000000">
+    <edit height="16" name="edit2" width="198" x="1" y="1" readonly="true"
+      value="click on icon to select date -&gt;"/>
+    <img cursor="hand" enabled="true" hitTest="htclient" name="img1"
+      x="182" y="1" onclick="img1_onclick()" src="images\calendar_icon.png"
+     />
+  </div>
+  <script src="main.js" />
+  <script src="calendarPicker.js" />
+</view>

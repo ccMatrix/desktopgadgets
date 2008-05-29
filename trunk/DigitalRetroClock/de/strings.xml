@@ -11,6 +11,9 @@ Bilder aus dem KDE Projekt.</GADGET_ABOUT_TEXT>
   <strDays>So,Mo,Di,Mi,Do,Fr,Sa,So</strDays>
 	<strFormat12>12-Stunden-Format</strFormat12>
 	<strFormat24>24-Stunden-Format</strFormat24>
+	<strTimezone>Zeitzone</strTimezone>
+	<strDisplay>Zeitzone anzeigen</strDisplay>
+	<strDaylight>Sommerzeit</strDaylight>
 
 	<strHelp>Hilfe und mehr informationen</strHelp>
 </strings>

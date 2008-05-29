@@ -1,0 +1,15 @@
+﻿<view height="45" width="170" onminimize="view_onminimize()" onopen="view_onOpen()"
+  onrestore="view_onrestore()">
+  <div cursor="hand" enabled="true" height="45" hitTest="htclient"
+    name="divPledges" width="170" x="0" y="0" onclick="divPledges_onclick()"
+    background="images/legend_total_bg.gif">
+    <label height="21" name="labelTitle" width="127" x="34" y="3" align="right"
+      color="#D5C41F" font="" size="10">TOTAL PLEDGES:
+    </label>
+    <label height="25" name="labelPledges" width="154" x="8" y="19" align="right"
+      bold="true" color="#FFFFFF" font="" size="12">retrieving ...
+    </label>
+    <img name="img1" x="6" y="7" src="icon_large.png"/>
+  </div>
+  <script src="main.js" />
+</view>

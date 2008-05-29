@@ -1,0 +1,10 @@
+﻿<strings>
+  <GADGET_NAME>Firefox World Record</GADGET_NAME>
+  <GADGET_DESCRIPTION>Help Firefox to set a world record as the most downloaded software in 24 Hours. Click on the gadget to pledge your help!</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Firefox World Record
+© 2008 Benjamin Schirmer
+Help Firefox to set a world record as the most downloaded software in 24 Hours. Click on the gadget to pledge your help!</GADGET_ABOUT_TEXT>
+
+	<strRefresh>Refresh counter</strRefresh>
+	<strGadgetPage>Help and more information</strGadgetPage>
+</strings>

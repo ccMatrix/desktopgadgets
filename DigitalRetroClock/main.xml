@@ -20,9 +20,11 @@
   </div>
   <label height="16" name="dateLabel" opacity="180" width="150" x="29"
     y="71" align="right" bold="true" color="#FFFFFF" font="Arial"
-    size="8" valign="middle"/>
-  <label height="50" font="Segoe UI" name="dot" width="31" x="153" y="-12" color="#D7D7D7"
-    size="40">·
+    size="10" valign="middle"/>
+  <label height="50" name="dot" width="36" x="144" y="-14" color="#D7D7D7"
+    font="Times New Roman" size="60">·
   </label>
+  <label height="16" name="labelTimezone" width="172" x="12" y="6" color="#E0E0E0"
+   />
   <script src="main.js" />
 </view>

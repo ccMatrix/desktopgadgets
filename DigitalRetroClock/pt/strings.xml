@@ -1,0 +1,23 @@
+﻿<strings>
+  <GADGET_NAME>Relógio Digital Retrô</GADGET_NAME>
+  <GADGET_DESCRIPTION>Um relógio digital estilo retrô para Google sidebar</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Digital Retro Clock
+
+© 2007 Benjamin Schirmer
+
+Um relógio digital estilo retrô para baseado no Digital Clock do KDE4.
+
+Imagens do projeto KDE.
+
+Traduzido por Cleverson A Izzo - www.wince.com.br</GADGET_ABOUT_TEXT>
+
+	<strMonths>Jan,Fev,Mar,Abr,Mai,Jun,Jul,Ago,Set,Out,Nov,Dez</strMonths>
+  <strDays>Dom,Seg,Ter,Qua,Qui,Sex,Sab,Dom</strDays>
+	<strFormat12>Formato 12 horas</strFormat12>
+	<strFormat24>Formato 24 horas</strFormat24>
+	<strTimezone>Fuso Horário</strTimezone>
+	<strDisplay>Exibir Fuso Horário</strDisplay>
+	<strDaylight>Horário de Verão</strDaylight>
+
+	<strHelp>Ajuda e mais informações</strHelp>
+</strings>

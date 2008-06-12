@@ -64,10 +64,9 @@ function OnSetTimezone(timezone) {
 }
 
 function OnMenuClicked(itemText) {
-  if (itemText == strHelp) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.googledesktopgadgets.com/digitalclock/" ); 
-  }
+	if (itemText == strHelp) {
+		framework.openUrl( "http://www.googledesktopgadgets.com/digitalclock/" ); 
+	}
 	else if (itemText == strFormat12) {
 		options.putValue("format", 12);
 	}

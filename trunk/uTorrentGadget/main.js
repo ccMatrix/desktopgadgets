@@ -38,7 +38,7 @@ function OnMenuClicked(itemText) {
   switch (itemText)
   {
 		case strHelp:
-			framework.openUrl( "http://www.googledesktopgadgets.com/utorrent/" );
+			framework.openUrl( "http://www.desktop-gadgets.net/utorrent/" );
 			break;
     case strLaunchInterface:
 			launchInterface();

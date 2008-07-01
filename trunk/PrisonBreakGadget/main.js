@@ -16,7 +16,7 @@ function OnMenuClicked(itemText) {
     requestFeed();
   }
   if (itemText == strGadgetPage) {
-    openUrl("http://www.imagine-interactive.de/prisonbreakgadget/");
+    openUrl("http://www.desktop-gadgets.net/prisonbreak/");
   }
   if (itemText == strPrisonBreakPage) {
     openUrl("http://www.fox.com/prisonbreak/");
@@ -135,9 +135,8 @@ function displayTimeDiff(countdown)  {
 
 function openUrl(url) {
   gadget.debug.trace("Opening URL: "+url);
-  if (url == "") url = "/Heroes";
-  var wsh = new ActiveXObject( "WScript.Shell" );
-  wsh.Run( url ); 
+  if (url == "") return;
+  framework.openUrl( url ); 
 }
 
 function goPrisonBreak() {

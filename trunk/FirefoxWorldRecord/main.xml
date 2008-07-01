@@ -4,7 +4,7 @@
     name="divPledges" width="170" x="0" y="0" onclick="divPledges_onclick()"
     background="images/legend_total_bg.gif">
     <label height="21" name="labelTitle" width="127" x="34" y="3" align="right"
-      color="#D5C41F" font="" size="10">TOTAL PLEDGES:
+      color="#D5C41F" font="" size="8">TOTAL DOWNLOADS:
     </label>
     <label height="25" name="labelPledges" width="154" x="8" y="19" align="right"
       bold="true" color="#FFFFFF" font="" size="12">retrieving ...

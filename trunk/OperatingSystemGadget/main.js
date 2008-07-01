@@ -27,8 +27,7 @@ function OnMenuClicked(itemText) {
 		options.putValue("showServicePack", !value);
 		break;
     case strHelp:
-		var wsh = new ActiveXObject( "WScript.Shell" );
-		wsh.Run( "http://www.googledesktopgadgets.com/os/" ); 
+		framework.openUrl( "http://www.desktop-gadgets.net/os/" ); 
 		break;
   }
   drawGadget();

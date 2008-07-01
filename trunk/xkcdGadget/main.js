@@ -38,7 +38,7 @@ function OnMenuClicked(itemText) {
 		framework.openUrl("http://www.xkcd.com");
 	}
 	else if (itemText == strHelp) {
-		framework.openUrl("http://www.googledesktopgadgets.com/xkcd/");
+		framework.openUrl("http://www.desktop-gadgets.net/xkcd/");
 	}
   else {
     var trans = itemText.substring(0, itemText.indexOf("%"));
@@ -127,11 +127,10 @@ function displayItem(index) {
 }
 
 function displayItemAnim() {
-	beginAnimation("comicImg.opacity = event.value;", 0, (255/100)*options.getValue("trans"), 400);
-	var item = feedItems[currentIndex];
+  var item = feedItems[currentIndex];
   var summary = item["summary"];
   var imgSrc = summary.match("\"([^\"]*)\"")[1];
-	var imgAlt = summary.match("alt=\"([^\"]*)\"")[1];
+  var imgAlt = summary.match("alt=\"([^\"]*)\"")[1];
   comicImg.src = loadPicture(imgSrc);
   comicImg.x = 0;
   comicImg.y = 0;
@@ -154,8 +153,10 @@ function loadPicture(url) {
   var req = new XMLHttpRequest();
   req.open('GET', url, false); 
   req.send(null);
-  if(req.status == 200)
+  if(req.status == 200) {
+    beginAnimation("comicImg.opacity = event.value;", 0, (255/100)*options.getValue("trans"), 400);
     return req.responseStream;
+  }
 }
 
 function setTrans(trans) {

@@ -65,7 +65,7 @@ function OnSetTimezone(timezone) {
 
 function OnMenuClicked(itemText) {
 	if (itemText == strHelp) {
-		framework.openUrl( "http://www.googledesktopgadgets.com/digitalclock/" ); 
+		framework.openUrl( "http://www.desktop-gadgets.net/digitalclock/" ); 
 	}
 	else if (itemText == strFormat12) {
 		options.putValue("format", 12);
@@ -120,7 +120,9 @@ function view_onOpen() {
 	options.putDefaultValue("displayZone", false);
 	options.putDefaultValue("daylight", isDaylightSaving(nd));
 
-	plugin.onAddCustomMenuItems = AddCustomMenuItems;
+	if (typeof(plugin) != "undefined") {
+		plugin.onAddCustomMenuItems = AddCustomMenuItems;
+	}
 	options.putDefaultValue("format", 24);
 	setInterval("animClock();", 1000);
 

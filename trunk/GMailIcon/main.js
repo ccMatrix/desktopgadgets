@@ -32,7 +32,7 @@ function OnMenuClicked(itemText) {
     checkMail();
   }
   if (itemText == strHelp) {
-    framework.openUrl( "http://www.googledesktopgadgets.com/gmailicon/" ); 
+    framework.openUrl( "http://www.desktop-gadgets.net/gmailicon/" ); 
   }
 }
 
@@ -163,6 +163,7 @@ function checkMail() {
 				newMailCount.innerText = "!";
 				divTitle.visible = true;
 				labelTitle.innerText = "no connection";
+				labelTitle.tooltip = "return code "+req.status;
 				setGadgetSize();
         debug.error("Error loading page\n");
       }

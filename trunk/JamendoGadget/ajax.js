@@ -20,6 +20,10 @@ function ajaxPicture(url)
   var req = new XMLHttpRequest();
   req.open('GET', url, false); 
   req.send(null);
-  if(req.status == 200)
+  if(req.status == 200) {
+		if (req.getResponseHeader("Content-Type").match(/image/gi)) {
+			debug.trace("Valid image");
+		}
     return req.responseStream;
+	}
 }

@@ -24,6 +24,8 @@ function HTMLRender() {
 	/* FollowLinks internally and try to render */
 	this.FollowLink = false;
 
+	this.boundingEdit = view.appendElement("<edit />");
+
 	/* Convert page to mobile using GWT */
 	this.MobilePages = false;
 	this.mobileBase = "http://www.google.com/gwt/n?u=";
@@ -36,6 +38,14 @@ function HTMLRender() {
  */
 HTMLRender.prototype.setParent = function(p) {
 	this.parent = p;
+}
+
+/**
+ * Set edit which will be used for size calculation
+ */
+HTMLRender.prototype.setBoundingEdit = function(e) {
+	this.boundingEdit = e;
+	this.boundingEdit.focus();
 }
 
 /**
@@ -252,7 +262,12 @@ HTMLRender.prototype.renderDOM = function() {
 	this.htmlDiv.height = this.parent.height;
 	this.htmlDiv.x = 0;
 	this.htmlDiv.y = 0;
-	this.htmlDiv.name = "htmlDiv";
+	try {
+		this.htmlDiv.name = "htmlDiv";
+	}
+	catch (E) {
+		debug.error("Weird error");
+	}
 
 	this.renderElement( this.htmlDOM, this.parent );
 
@@ -297,7 +312,6 @@ HTMLRender.prototype.renderDOM = function() {
  */
 HTMLRender.prototype.renderElement = function(element, parent) {
 	//debug.trace( "Rendering: "+element.tagName );
-
 	// Check for images in this tag
 	var setImg = false;
 	for (var i=0; i < element.subElements.length; i++) {
@@ -399,6 +413,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 				}
 
 				this.setElementSize( tmpEle, element );
+				this.left += tmpEle.width;
 				break;
 
 		case "h1":
@@ -515,6 +530,7 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 					}
 					else {
 						tmpEle.height = tmpEle.srcHeight;
+						tmpEle.width = tmpEle.height * (tmpEle.srcWidth / tmpEle.srcHeight);
 					}
 				}
 				if ( (this.left + tmpEle.width) > this.htmlDiv.width) {
@@ -674,6 +690,9 @@ HTMLRender.prototype.renderElement = function(element, parent) {
 		case "br":
 				if (this.left > 0) {
 					this.left = 0;
+					this.top += this.lastHeight;
+				}
+				else {
 					this.top += this.lastHeight;
 				}
 				this.lastHeight = this.baseHeight;
@@ -1050,12 +1069,12 @@ HTMLRender.prototype.getImageFromUrl = function(url) {
 			url = this.baseUrl + url;
 		}
 	}
-	debug.trace("Requesting Image: "+url);
+	//debug.trace("Requesting Image: "+url);
 	var req = new XMLHttpRequest();
 	req.open('GET', url, false); 
 	req.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows; Google Desktop) HTMLRender/0.0.6");
 	req.send();
-	debug.trace("Server response: "+req.status);
+	//debug.trace("Server response: "+req.status);
 	if (req.status == 200) {
 		return req.responseStream;
 	}
@@ -1078,7 +1097,7 @@ HTMLRender.prototype.getImageHeight = function( url ) {
  * Output debugging code to verify layout
  */
 HTMLRender.prototype.debugDOM = function() {
-	debug.trace( this.htmlDOM.toJSONString() );
+	// debug.trace( this.htmlDOM.toJSONString() );
 }
 
 /**
@@ -1087,7 +1106,7 @@ HTMLRender.prototype.debugDOM = function() {
 HTMLRender.prototype.isSingleTag = function(tagName, tagComplete) {
 	tagName = tagName.toLowerCase();
 	if (tagComplete.charAt( tagComplete.length-2 ) == "/" ) {
-		debug.trace("Tag: "+tagComplete+" ends with />");
+		// debug.trace("Tag: "+tagComplete+" ends with />");
 		return true;
 	}
 
@@ -1107,19 +1126,19 @@ HTMLRender.prototype.isSingleTag = function(tagName, tagComplete) {
  */
 HTMLRender.prototype.basicCalcWidth = function(str, ele) {
 
-	var edit = view.appendElement("<edit />");
-	edit.visible = false;
-	edit.width = 1000;
-	edit.height = this.baseHeight;
-	edit.value = str;
-	edit.font = ele.font;
-	edit.size = ele.size;
-	edit.bold = ele.bold;
-	edit.italic = ele.italic;
-	edit.underline = ele.underline;
-	var idealRect = edit.idealBoundingRect;
+	this.boundingEdit.visible = false;
+	this.boundingEdit.width = 1000;
+	this.boundingEdit.height = this.baseHeight;
+	this.boundingEdit.value = str;
+	this.boundingEdit.font = ele.font;
+	this.boundingEdit.size = ele.size;
+	this.boundingEdit.bold = ele.bold;
+	this.boundingEdit.italic = ele.italic;
+	this.boundingEdit.underline = ele.underline;
+	this.boundingEdit.wordwrap = false;
+	this.boundingEdit.multiline = false;
+	var idealRect = this.boundingEdit.idealBoundingRect;
 	// debug.trace("ideal width would be: "+idealRect.width);
-	view.removeElement(edit);
 	var newWidth = idealRect.width-4;
 	return newWidth;
 }
@@ -1128,9 +1147,27 @@ HTMLRender.prototype.basicCalcWidth = function(str, ele) {
  * Calculate height of element based on a string
  */
 HTMLRender.prototype.basicCalcHeight = function(ele, maxWidth) {
+	// Workaround until edit is fixed;
 	var aproxHeight = Math.ceil( ele.width / maxWidth + .5 ) * (ele.size*1.8);
-
 	return aproxHeight;
+
+
+	this.boundingEdit.visible = false;
+	this.boundingEdit.width = maxWidth;
+	this.boundingEdit.height = this.baseHeight;
+	this.boundingEdit.value = ele.innerText;
+	this.boundingEdit.font = ele.font;
+	this.boundingEdit.size = ele.size;
+	this.boundingEdit.bold = ele.bold;
+	this.boundingEdit.italic = ele.italic;
+	this.boundingEdit.underline = ele.underline;
+	this.boundingEdit.wordwrap = true;
+	this.boundingEdit.multiline = true;
+	var idealRect = this.boundingEdit.idealBoundingRect;
+	// debug.trace("ideal width would be: "+idealRect.width);
+	var newHeight = idealRect.height-4;
+	debug.trace("Ideal Height for "+this.boundingEdit.value+" is "+newHeight+" (width is "+idealRect.width+")");
+	return newHeight;
 }
 
 /**

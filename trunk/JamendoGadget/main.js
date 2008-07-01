@@ -26,12 +26,10 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strHelp) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.imagine-interactive.de/jamendogadget/" ); 
+    framework.openUrl( "http://www.desktop-gadgets.net/jamendo/" ); 
   }
   if (itemText == strJamendo) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.jamendo.com/" ); 
+    framework.openUrl( "http://www.jamendo.com/" ); 
   }
 }
 

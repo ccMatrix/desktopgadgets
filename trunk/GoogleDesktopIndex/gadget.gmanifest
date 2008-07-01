@@ -5,9 +5,10 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.2.0.0</version>
+		<version>1.3.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/indexstats/</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/indexstats/</authorWebsite>
 		<id>AC24E4F2-0CA5-4FC8-9C93-C79DE8997109</id>
-		<copyright>Ã‚Â©2008 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>©2008 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail></about>
 </gadget>

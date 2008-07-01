@@ -5,9 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.1.0.0</version>
+		<version>1.2.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/thesaurus/</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/thesaurus/</authorWebsite>
 		<id>4B230D4E-C2F8-4105-9B09-B9649AB78B5F</id>
-		<copyright>Â©2008 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Â©2008 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
 </gadget>

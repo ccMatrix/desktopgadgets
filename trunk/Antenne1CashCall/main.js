@@ -16,7 +16,7 @@ function OnMenuClicked(itemText) {
 
 function getCurrentCashCall() {
   //var url = "http://www.radiogames.de/Hit-Radio-Antenne1-Cash-Call/";
-  var url = "http://www.googledesktopgadgets.com/scripts/cashcall.rss.xml";
+  var url = "http://www.desktop-gadgets.net/scripts/cashcall.rss.xml";
   var date = new Date();
   var tmpdate = "?ver="+Math.random();
   url = url + tmpdate;

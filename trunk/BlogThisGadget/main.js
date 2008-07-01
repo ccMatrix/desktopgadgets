@@ -1,5 +1,6 @@
 ﻿var bloggerIE = null;
 var ReadyStateInterval = null;
+var detailOpen = false;
 
 function view_onOpen() {
   var details = new DetailsView();
@@ -9,6 +10,11 @@ function view_onOpen() {
 }
 
 function openBlogThis(data) {
+	if (detailOpen) {
+		detailOpen = false;
+		plugin.closeDetailsView();
+		return;
+	}
   var params = [];
   if (data != null) {
     params = data;
@@ -26,14 +32,17 @@ function openBlogThis(data) {
 
   // Show the details view
   plugin.showDetailsView(bloggerIE, "BlogThis!", gddDetailsViewFlagToolbarOpen, undefined);
-  
+
+	detailOpen = true;
 }
 
 function checkReadyState() {
   try {
     if (bloggerIE != null) {
-			setTimeout("bloggerIE.document.body.scroll = \"no\";", 200);
       if (bloggerIE.ReadyState == 4) {
+				if (bloggerIE.document.body) {
+					setTimeout("bloggerIE.document.body.scroll = \"no\";", 200);
+				}
         clearInterval( ReadyStateInterval );
       }
 			else {

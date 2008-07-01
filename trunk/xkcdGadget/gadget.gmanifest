@@ -5,9 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.1.0.0</version>
+		<version>1.2.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/xkcd/</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/xkcd/</authorWebsite>
 		<id>3E2BA391-99DA-4054-A4D3-96BF999DBD2B</id>
-		<copyright>Â©2007-2008 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Â©2007-2008 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
 </gadget>

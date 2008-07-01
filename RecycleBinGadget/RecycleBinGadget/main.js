@@ -44,8 +44,7 @@ function OnMenuClicked(itemText) {
     trash_dblclick();
   }
   if (itemText == strHelp) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.googledesktopgadgets.com/recyclebin/" ); 
+    framework.openUrl( "http://www.desktop-gadgets.net/recyclebin/" ); 
   }
 }
 

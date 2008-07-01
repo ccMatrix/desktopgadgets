@@ -18,7 +18,7 @@ function OnMenuClicked(itemText) {
     requestFeed();
   }
   if (itemText == strGadgetPage) {
-    openUrl("http://www.imagine-interactive.de/gadgets/index.php?show=atlantis");
+    openUrl("http://www.desktop-gadgets.net/atlantis/");
   }
   if (itemText == strAtlantisPage) {
     openUrl("http://www.scifi.com/atlantis/");

@@ -5,9 +5,11 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.0.1.0</version>
+		<version>1.0.2.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.imagine-interactive.de/gadgets/index.php?show=cashcall</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/cashcall/</authorWebsite>
 		<id>5FD3B4E5-0586-462C-889D-D1470F526D3C</id>
-		<copyright>Â©2007 Imagine Interactive</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>©2007 Imagine Interactive</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
 </gadget>

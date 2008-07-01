@@ -19,7 +19,7 @@ function OnMenuClicked(itemText) {
     displayQuote();
   }
   if (itemText == strHelp) {
-    framework.openUrl( "www.googledesktopgadgets.com/atheistquotes/" );
+    framework.openUrl( "http://www.desktop-gadgets.net/atheistquotes/" );
   }
 }
 
@@ -45,7 +45,7 @@ function displayQuote() {
 
 	fitQuote();
 
-	updateInterval = setInterval("displayQuote();", 30000);
+	updateInterval = setInterval("displayQuote();", 120000);
 }
 
 function view_onSize() {

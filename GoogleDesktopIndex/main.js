@@ -12,7 +12,7 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strHelp) {
-    framework.openUrl( "www.googledesktopgadgets.com/indexstats/" );
+    framework.openUrl( "http://www.desktop-gadgets.net/indexstats/" );
   }
 }
 

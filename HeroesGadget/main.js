@@ -15,7 +15,7 @@ function OnMenuClicked(itemText) {
     requestFeed();
   }
   if (itemText == strGadgetPage) {
-    openUrl("http://www.imagine-interactive.de/heroesgadget/");
+    openUrl("http://www.desktop-gadgets.net/heroes/");
   }
   if (itemText == strHeroesPage) {
     openUrl("http://www.nbc.com/Heroes/");
@@ -136,6 +136,5 @@ function displayNextOn() {
 function openUrl(url) {
   gadget.debug.trace("Opening URL: "+url);
   if (url == "") url = "/Heroes";
-  var wsh = new ActiveXObject( "WScript.Shell" );
-  wsh.Run( url ); 
+  framework.openUrl( url ); 
 }

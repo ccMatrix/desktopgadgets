@@ -5,9 +5,10 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.0.0.0</version>
+		<version>1.1.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/christmastree</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/christmastree/</authorWebsite>
 		<id>D94FE712-788D-4B5E-A699-6CC2BAEBDCAE</id>
-		<copyright>Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Â©2007 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail></about>
 </gadget>

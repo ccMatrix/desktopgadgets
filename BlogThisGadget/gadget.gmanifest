@@ -5,9 +5,10 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.0.0.0</version>
+		<version>1.2.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.imagine-interactive.de/gadgets/index.php?show=blogthis</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/blogthis/</authorWebsite>
 		<id>88476ABB-6B80-47EE-9E6F-65566D987A4A</id>
-		<copyright>Ã‚Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>Â©2007 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail></about>
 </gadget>

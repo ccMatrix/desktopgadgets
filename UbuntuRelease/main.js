@@ -7,7 +7,7 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strGadgetPage) {
-    openUrl("http://www.googledesktopgadgets.com/ubunturelease/");
+    framework.openUrl("http://www.googledesktopgadgets.com/ubunturelease/");
   }
 }
 

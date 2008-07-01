@@ -12,8 +12,7 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strHelp) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.googledesktopgadgets.com/volumecontrol/" ); 
+    framework.openUrl( "http://www.desktop-gadgets.net/volumecontrol/" ); 
   }
 }
 

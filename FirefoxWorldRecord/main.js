@@ -11,7 +11,7 @@ function OnMenuClicked(itemText) {
     getPledgeCount();
   }
   if (itemText == strGadgetPage) {
-    framework.openUrl("http://www.googledesktopgadgets.com/firefoxrecord/");
+    framework.openUrl("http://www.desktop-gadgets.net/firefoxrecord/");
   }
 }
 

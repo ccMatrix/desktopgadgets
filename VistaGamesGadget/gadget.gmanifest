@@ -5,11 +5,13 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.2.1.0</version>
+		<version>1.2.3.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.imagine-interactive.de/vistagamesgadget/</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/vistagames/</authorWebsite>
 		<id>5CA87B3F-8ECF-418f-9F06-09105BE9D1B1</id>
-		<copyright>Ã‚Â©2007 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>©2007 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+	</about>
 	<install>
 		<object name="VistaGamesObj" clsid="1A48B013-647C-425D-BADD-97308E78A886" src="VistaGamesDLL.dll"/>
 	</install>

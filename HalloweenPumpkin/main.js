@@ -23,8 +23,7 @@ function OnMenuClicked(itemText) {
     }
   }
   if (itemText == strGadget) {
-    var wsh = new ActiveXObject( "WScript.Shell" );
-    wsh.Run( "http://www.googledesktopgadgets.com" );     
+    framework.openUrl( "http://www.desktop-gadgets.net/pumpkin/" );     
   }
 }
 

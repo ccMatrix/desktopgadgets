@@ -5,9 +5,9 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.2.0.0</version>
+		<version>1.3.0.0</version>
 		<author>Benjamin Schirmer</author>
-		<authorWebsite>http://www.googledesktopgadgets.com/atheistquotes/</authorWebsite>
+		<authorWebsite>http://www.desktop-gadgets.net/atheistquotes/</authorWebsite>
 		<id>6100E6B1-7349-4C2C-8FC5-CE24A9E516B1</id>
 		<copyright>Â©2007 Benjamin Schirmer</copyright>
 		<authorEmail>codename.matrix@gmail.com</authorEmail>

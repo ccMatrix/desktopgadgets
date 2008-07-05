@@ -55,7 +55,7 @@ Thesaurus.prototype.lookup = function(word) {
 			this.lookupReg = new RegExp("<li>([^\r\n]*)", "gi");
 			break;
 		case LANG_ENGLISH:
-			lookupUrl = "http://www.googledesktopgadgets.com/scripts/aiksaurus.php?lookup=%s";
+			lookupUrl = "http://www.desktop-gadgets.net/scripts/aiksaurus.php?lookup=%s";
 			this.lookupReg = new RegExp("([^$]*)", "gi");
 			break;
 	}

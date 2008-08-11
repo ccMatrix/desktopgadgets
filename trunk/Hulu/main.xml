@@ -1,0 +1,6 @@
+﻿<view height="385" showCaptionAlways="true" width="200" onopen="view_onOpen()"
+ >
+  <script src="main.js" />
+  <script src="hulu.js" />
+  <script src="options.js" />
+</view>

@@ -1,0 +1,11 @@
+﻿<strings>
+  <GADGET_NAME>Hulu.com</GADGET_NAME>
+  <GADGET_DESCRIPTION>Browse your favorite show from hulu.com</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Hulu.com
+©2008 Benjamin Schirmer
+Browse your favorite show from hulu.com.
+
+This gadget is an inofficial fan gadget and was not created by hulu.com</GADGET_ABOUT_TEXT>
+
+	<strSeries>Choose series:</strSeries>
+</strings>

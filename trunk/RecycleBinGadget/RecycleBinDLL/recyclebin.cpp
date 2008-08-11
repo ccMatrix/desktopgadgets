@@ -147,19 +147,27 @@ STDMETHODIMP Crecyclebin::moveToBin(BSTR* filename)
 
 void Crecyclebin::logError(char* str) 
 {
-	char* tmp = new char[255];
-	memset(tmp, '\0', 255);
-	GetTempPath( 255, tmp );
-	char* tmpFile = new char[500];
-	memset(tmpFile, '\0', 500);
-	sprintf_s(tmpFile, 500, "%s\\RecycleBin.log", tmp);
-	FILE* fp;
-	fopen_s(&fp,  tmpFile, "a");
-	if (fp != NULL)
+	try
 	{
-		fputs(str, fp);
-		fclose(fp);
+		char* tmp = new char[255];
+		memset(tmp, '\0', 255);
+		GetTempPath( 255, tmp );
+		char* tmpFile = new char[500];
+		memset(tmpFile, '\0', 500);
+		sprintf(tmpFile, "%s\\RecycleBin.log", tmp);
+		FILE* fp;
+		fp = fopen(tmpFile, "a");
+		if (fp != NULL)
+		{
+			fputs(str, fp);
+			fputc('\n', fp);
+			fclose(fp);
+		}
+		delete tmp;
+		delete tmpFile;
 	}
-	delete tmp;
-	delete tmpFile;
+	catch (char* str) 
+	{
+		// Totall lost
+	}
 }

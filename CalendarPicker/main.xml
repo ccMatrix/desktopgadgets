@@ -12,5 +12,6 @@
      />
   </div>
   <script src="main.js" />
-  <script src="calendarPicker.js" />
+  <script src="gdkit_calendarPicker.js" />
+  <script src="gdkit_effects.js" />
 </view>

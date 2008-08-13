@@ -1,11 +1,11 @@
 ﻿<strings>
-  <GADGET_NAME>Tetris</GADGET_NAME>
-  <GADGET_DESCRIPTION>Play Tetris in your sidebar or on your desktop</GADGET_DESCRIPTION>
-  <GADGET_ABOUT_TEXT>Tetris game
-Copyright 2007 Imagine Interactive
+  <GADGET_NAME>Tetramino Game</GADGET_NAME>
+  <GADGET_DESCRIPTION>Play Tetramino Game in your sidebar or on your desktop</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Tetramino Game
+Copyright 2007 Benjamin Schirmer
 Play Tetris in your sidebar or on your desktop.
 
-http://www.googledesktopgadgets.com/tetris/
+http://www.desktop-gadgets.net/tetris/
 
 Instructions:
 Move Left: left Cursor

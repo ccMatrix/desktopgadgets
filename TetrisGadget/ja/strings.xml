@@ -1,9 +1,9 @@
 ﻿<strings>
-<GADGET_NAME>テトリス</GADGET_NAME>
-<GADGET_DESCRIPTION>サイドバーやデスクトップでテトリスをプレイ</GADGET_DESCRIPTION>
-<GADGET_ABOUT_TEXT>テトリス ゲーム: Copyright 2007 Imagine Interactive。サイドバーやデスクトップでテトリスをプレイできます。
+<GADGET_NAME>Tetramino Game</GADGET_NAME>
+<GADGET_DESCRIPTION>サイドバーやデスクトップでTetramino Gameをプレイ</GADGET_DESCRIPTION>
+<GADGET_ABOUT_TEXT>Tetramino Game ゲーム: Copyright 2007 Benjamin Schirmer。サイドバーやデスクトップでTetramino Gameをプレイできます。
 
-http://www.googledesktopgadgets.com/tetris/
+http://www.desktop-gadgets.net/tetris/
 
 手順: 
 左に移動:  左矢印キー
@@ -16,7 +16,7 @@ http://www.googledesktopgadgets.com/tetris/
 
 ブロックの画像: Bijoy Thangaraj 作。 この場をお借りして感謝いたします。
 
-テトリスの音楽: Nikolai Alekseevich Nekrasov 作。 Wikipedia の下記 URL から入手しました。
+Tetramino Gameの音楽: Nikolai Alekseevich Nekrasov 作。 Wikipedia の下記 URL から入手しました。
 http://upload.wikimedia.org/wikipedia/en/f/fe/Korobeiniki.mid</GADGET_ABOUT_TEXT>
 <strOptionControls>ゲーム コントロール:</strOptionControls>
 <strOptionLeft>左</strOptionLeft>
@@ -24,7 +24,7 @@ http://upload.wikimedia.org/wikipedia/en/f/fe/Korobeiniki.mid</GADGET_ABOUT_TEXT
 <strOptionRotate>回転</strOptionRotate>
 <strOptionDown>下</strOptionDown>
 <strOptionFall>落下</strOptionFall>
-<strOptionMusic>テトリスの音楽を再生</strOptionMusic>
+<strOptionMusic>Tetramino Gameの音楽を再生</strOptionMusic>
 <strGameOver>ゲームオーバー</strGameOver>
 <strMenuNew>ゲームスタート</strMenuNew>
 <strStart>開始</strStart>

@@ -2,22 +2,20 @@
 
 function getHuluSeries() {
 	var req = new XMLHttpRequest();
-	req.open("GET", "http://www.hulu.com/widgets", false);
+	req.open("GET", "http://r.hulu.com/shows.xml?only=id,name&videos_count_gt=0&type[]=clip&type[]=episode&hide_expired=true&sort=name&items_per_page=500", false);
 	req.send();
 	if (req.status == 200) {
-		var data = req.responseText;
+		var data = req.responseXml;
 
-		var start = data.indexOf('<select id="hulu-tv-movies" class="widget-select-box">');
-		data = data.substr(start);
-		data = data.substr(0, data.indexOf('</select>'));
-
-		var series = data.match(/value="([0-9]+)">([^<]+)<\/option>/gi);
-
-		for (var i=0; i<series.length; i++) {
-			data = series[i].match(/value="([0-9]+)">([^<]+)<\/option>/i);
-			//debug.trace(data);
-			huluSeries[i] = new seriesData(data[1], data[2]);
-		}
+		var shows = data.getElementsByTagName('show');
+    if (shows.length > 0) {
+      for (var i = 0; i < shows.length; ++i) {
+        var show = shows[i];
+        var id = show.childNodes[0].firstChild.nodeValue;
+        var name = show.childNodes[1].firstChild.nodeValue;
+        huluSeries[i] = new seriesData(id, name);
+      }
+    }
 
 	}
 }

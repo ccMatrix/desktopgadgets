@@ -1,0 +1,9 @@
+﻿<strings>
+  <GADGET_NAME>Separator</GADGET_NAME>
+  <GADGET_DESCRIPTION>Separator Gadget</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>Simple Separator Gadget
+Just drop it into place and resize to the size you want.
+
+This gadget will allow you to add blank spaces of any size between gadgets of your sidebar.
+</GADGET_ABOUT_TEXT>
+</strings>

@@ -1,0 +1,4 @@
+﻿<view caption="Test" height="500" resizable="true" width="200" onopen="view_onOpen()">
+    <div enabled="true" name="emptyDiv" onmouseover="fadeIn()" onmouseout="fadeOut()" height="100%" opacity="1" width="100%" background="#C0C0E0"/>
+    <script src="main.js" />
+</view>

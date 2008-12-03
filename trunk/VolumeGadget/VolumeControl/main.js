@@ -2,6 +2,7 @@
 var muted = false;
 var vistaMode = false;
 var vistaFile = null;
+var volumeInterval = null;
 
 plugin.onAddCustomMenuItems = AddCustomMenuItems;
 
@@ -12,43 +13,44 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strHelp) {
-    framework.openUrl( "http://www.desktop-gadgets.net/volumecontrol/" ); 
+    framework.openUrl("http://www.desktop-gadgets.net/volumecontrol/"); 
   }
 }
 
-function view_onOpen()
-{
+function view_onOpen() {
   try {
     volumeControl = new volumeControlObj();
-  } catch (e) {
+  }
+  catch (e) {
     alert("Couldn't load the volumeControl DLL :(");
     event.returnValue = false;
     return;
   }
+
   var timeInterval = 2500;
-  if (volumeControl.isWinVista() == 1)
-  {
+  if (volumeControl.isWinVista() == 1) {
     gadget.debug.trace("Switching to Vista Mode");
     timeInterval = 3500;
     vistaMode = true;
   }
-  else
-  {
+  else {
     vistaMode = false;
   }
 
   refreshGadget();
-  setInterval( "refreshGadget()", timeInterval);
+  var volumeInterval = setInterval("refreshGadget()", timeInterval);
 }
 
-function view_onminimize()
-{
+function view_onminimize() {
   event.returnValue = false;
   return false;
 }
 
-function refreshGadget()
-{
+function view_onclose() {
+  clearInterval(volumeInterval);
+}
+
+function refreshGadget() {
   var mutedPrev = muted;
   muted = getMute();
   var systemCurrent = getVolume();
@@ -57,8 +59,7 @@ function refreshGadget()
 
   // gadget.debug.trace("SysVol: "+systemCurrent+" GadgetVol: "+gadgetCurrent+" with diff: "+diff);
 
-  if (diff > 2 || diff < -2)
-  {
+  if (diff > 2 || diff < -2) {
     // gadget.debug.trace("Setting new volume");
     getVol();
   }
@@ -67,73 +68,58 @@ function refreshGadget()
 
 // Set/Get Volume
 //
-function setVol()
-{
+function setVol() {
   var volume = getVolFromPos();
-  if (!muted)
-  {
-    if (vistaMode)
-    {
+  if (!muted) {
+    if (vistaMode) {
       var wsh = new ActiveXObject( "WScript.Shell" );
-      gadget.debug.trace( "Running file for SetVolume: "+getVistaExe());
-      current = wsh.Run( "\""+getVistaExe()+"\" "+volume, 0, true );
-
+      // gadget.debug.trace( "Running file for SetVolume: "+getVistaExe());
+      current = wsh.Run("\"" + getVistaExe() + "\" " + volume, 0, true );
     }
-    else
-    {
+    else {
       volumeControl.setVolume(volume);
     }
   }
 }
 
-function getVolFromPos()
-{
+function getVolFromPos() {
   return volumeSlider.value;
 }
 
-function getVol()
-{
+function getVol() {
   volumeSlider.value = getVolume();
   setVolumeIcon();
 }
 
-function getVolume()
-{
+function getVolume() {
   var current = 0;
-  if (vistaMode)
-  {
+  if (vistaMode) {
     var wsh = new ActiveXObject( "WScript.Shell" );
-    gadget.debug.trace( "Running file: "+getVistaExe());
-    current = wsh.Run( getVistaExe(), 0, true );
+    //gadget.debug.trace("Running file: "+getVistaExe());
+    current = wsh.Run(getVistaExe(), 0, true);
   }
-  else
-  {
+  else {
     current = volumeControl.getVolume();
   }
   return current;
 }
 
 function getMute() {
-  if (vistaMode)
-  {
+  if (vistaMode) {
     var wsh = new ActiveXObject( "WScript.Shell" );
-    gadget.debug.trace( "Running file: "+getVistaExe());
-    return wsh.Run( "\""+getVistaExe()+"\" mute -1 ", 0, true );
+    //gadget.debug.trace( "Running file: "+getVistaExe());
+    return wsh.Run("\"" + getVistaExe() + "\" mute -1 ", 0, true);
   }
-  else
-  {
+  else {
     return (volumeControl.isMute() == 1);
   }
 }
 
-function setVolumeIcon()
-{
-  if (muted)
-  {
-    soundIcon.src="image\\sound_mute.png";
+function setVolumeIcon() {
+  if (muted) {
+    soundIcon.src = "image\\sound_mute.png";
   }
-  else
-  {
+  else {
     var vol = getVolFromPos();
     soundIcon.src = "image\\sound.png";
     if (vol < 60) soundIcon.src = "image\\sound_low.png";
@@ -141,24 +127,20 @@ function setVolumeIcon()
   }
 }
 
-function mute()
-{
+function mute() {
   muted = !muted;
-  if (vistaMode)
-  {
+  if (vistaMode) {
     var wsh = new ActiveXObject( "WScript.Shell" );
-    gadget.debug.trace( "Running file: "+getVistaExe());
-    wsh.Run( "\""+getVistaExe()+"\" mute "+(muted?1:0), 0, true );
+    // gadget.debug.trace( "Running file: "+getVistaExe());
+    wsh.Run("\"" + getVistaExe() + "\" mute " + (muted ? 1 : 0), 0, true);
   }
-  else
-  {
+  else {
     volumeControl.toggleMute();
   }
   setVolumeIcon();
 }
 
-function jumpVol()
-{
+function jumpVol() {
   setVol();
   setVolumeIcon();
 }
@@ -167,21 +149,27 @@ function redraw() {
   if (view.height != bgleft.height) view.height = bgleft.height;
   if (view.width < 90) view.width = 90;
 
-  bgleft.X = 0;
-  bgright.X = view.width-bgright.width;
-  bgcenter.X = bgleft.width-30;
-  bgcenter.width = view.width-bgright.width-bgleft.width+60;
-  volumeSlider.width = view.width-soundIcon.X-soundIcon.width-20;
+  bgleft.x = 0;
+  bgright.x = view.width - bgright.width;
+  bgcenter.x = bgleft.width - 30;
+  bgcenter.width = view.width - bgright.width - bgleft.width + 60;
+  volumeSlider.width = view.width - soundIcon.x - soundIcon.width - 20;
   if (volumeSlider.width > 500) volumeSlider.width = 500;
 }
 
+function fixedRedraw() {
+  if (event.height != bgleft.height) {
+    event.height = bgleft.height;
+  }
+
+  redraw();
+}
+
 function getVistaExe() {
-  if (vistaFile == null)
-  {
+  if (vistaFile == null) {
     vistaFile = gadget.storage.extract("VolumeControlVista.exe");
   }
-  else if (!framework.system.filesystem.FileExists(vistaFile))
-  {
+  else if (!framework.system.filesystem.FileExists(vistaFile)) {
     vistaFile = gadget.storage.extract("VolumeControlVista.exe");
   }
   return vistaFile;

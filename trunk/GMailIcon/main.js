@@ -24,7 +24,7 @@ function AddCustomMenuItems(menu) {
 function OnSetZoomLevel(zoomText) {
 	zoom = parseInt(zoomText.replace("%", ""));
 	options.putValue("zoom", zoom);
-	displayMail();
+	// displayMail();
 }
 
 function OnMenuClicked(itemText) {
@@ -72,23 +72,23 @@ function view_onOpen() {
 
 function view_onDock() {
 	docked = true;
-	displayMail();
+	// displayMail();
 }
 
 function view_onUnDock() {
 	docked = false;
-	displayMail();
+	// displayMail();
 }
 
 
 function view_onMinimize() {
   minimized = true;
-	displayMail();
+	// displayMail();
 }
 
 function view_onRestore() {
 	minimized = false;
-	displayMail();
+	// displayMail();
 }
 
 function checkMail() {
@@ -146,24 +146,24 @@ function checkMail() {
 						}
 						if (oldSound) {
 							if (options.getValue("notifySoundEnable")) {
-								playNotification( options.getValue("notifySoundFile") );
+								playNotification(options.getValue("notifySoundFile"));
 							}
 						}
 					}
 					catch (E) {
-						debug.error("Crash on check for new mails with reason: \n"+E.description);
+						debug.error("Crash on check for new mails with reason: \n" + E.description);
 					}
 				}
 
 				mails = items;
         displayMail();
       }
+      else if (req.status == 401 || req.status == 403) {
+        showError(strInvalidPW, req.status);
+				setGadgetSize();
+      }
       else {
-				newMails.visible = true;
-				newMailCount.innerText = "!";
-				divTitle.visible = true;
-				labelTitle.innerText = "no connection";
-				labelTitle.tooltip = "return code "+req.status;
+        showError(strNoConnection, req.status);
 				setGadgetSize();
         debug.error("Error loading page\n");
       }
@@ -171,6 +171,14 @@ function checkMail() {
   };
   req.send();
   refreshInterval = setTimeout("checkMail()", options.getValue("interval") );
+}
+
+function showError(msg, code) {
+	newMails.visible = true;
+	newMailCount.innerText = "!";
+	divTitle.visible = true;
+	labelTitle.innerText = msg;
+	labelTitle.tooltip = "return code " + code;
 }
 
 function setGadgetSize() {

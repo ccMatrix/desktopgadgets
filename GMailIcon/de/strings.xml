@@ -22,6 +22,8 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
 	<strAppsFix>Dies ist ein Google Apps Konto</strAppsFix>
 	<strInterval>Aktualisiere alle</strInterval>
 	<strMinutes>Minuten</strMinutes>
+  <strNoConnection>Keine Verbindung</strNoConnection>
+  <strInvalidPW>Passwort</strInvalidPW>
 
 	<strRefresh>Mails abfragen</strRefresh>
 	<strConfig>konfigurieren</strConfig>

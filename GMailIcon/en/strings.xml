@@ -22,8 +22,10 @@ Doubleclick the counter to go to your gmail account.
 	<strAppsFix>This is a Google Apps mail address</strAppsFix>
 	<strInterval>Update every</strInterval>
 	<strMinutes>minutes</strMinutes>
+  <strNoConnection>No Connection</strNoConnection>
+  <strInvalidPW>Password</strInvalidPW>
 
-	<strRefresh>Check Mails</strRefresh>
+	<strRefresh>Check Mail</strRefresh>
 	<strConfig>configure</strConfig>
 	<strNoSubject>no subject</strNoSubject>
 	<strNoSummary>empty mail</strNoSummary>

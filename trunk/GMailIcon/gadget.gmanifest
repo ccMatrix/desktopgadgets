@@ -5,7 +5,7 @@
 		<aboutText>&GADGET_ABOUT_TEXT;</aboutText>
 		<smallIcon>icon_small.png</smallIcon>
 		<icon>icon_large.png</icon>
-		<version>1.5.4.0</version>
+		<version>1.5.5.0</version>
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.desktop-gadgets.net/gmailicon/</authorWebsite>
 		<authorEmail>codename.matrix@gmail.com</authorEmail>

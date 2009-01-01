@@ -1,9 +1,10 @@
-﻿<view height="150" showCaptionAlways="true" width="250" onclose="view_onclose()"
-  onopen="view_onOpen()">
+﻿<view height="150" width="250" onclose="view_onclose()" onopen="view_onOpen()"
+ >
   <img cursor="hand" enabled="true" hitTest="htclient" name="countdownImg"
     tooltip="&visitUbuntuWebsite;" x="0" y="0" onclick="countdownImg_onclick()"
     src="stock_images\background.png"/>
-  <div height="61" name="errorMsg" width="219" x="12" y="15" background="#DD0000">
+  <div height="61" name="errorMsg" width="219" visible="false" x="12"
+    y="15" background="#DD0000">
     <label height="87%" name="errorMsgText" width="87%" x="5" y="5" bold="true"
       color="#FFFFFF" valign="middle" wordwrap="true"/>
   </div>

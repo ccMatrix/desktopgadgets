@@ -7,14 +7,14 @@ function AddCustomMenuItems(menu) {
 
 function OnMenuClicked(itemText) {
   if (itemText == strGadgetPage) {
-    framework.openUrl("http://www.googledesktopgadgets.com/ubunturelease/");
+    framework.openUrl("http://www.desktop-gadgets.net/ubunturelease/");
   }
 }
 
 function view_onOpen() {
   plugin.onAddCustomMenuItems = AddCustomMenuItems;
 
-	errorMsg.visible = true;
+	errorMsg.visible = false;
 	getUbuntuData();
 	updater = setInterval( "getUbuntuData();", 3600000 );
 }
@@ -29,10 +29,10 @@ function getUbuntuData() {
 			var JSdata = req.responseText;
 			JSdata = JSdata.replace(/\/\/([^\n]*)/, "");
 			JSdata = JSdata.replace(/document.write/gi, "//document.write");
-			eval( JSdata );
+			eval(JSdata);
 			var srcPart = JSdata.match("src=\"([^\"]*)\"");
 			var srcEval = "JSdata = '"+srcPart[1]+"';";
-			eval( srcEval );
+			eval(srcEval);
 			countdownImg.src = ajaxPicture(JSdata);
 			countdownImg.mask = ajaxPicture(JSdata);
 			view.width = countdownImg.srcWidth;
@@ -49,8 +49,7 @@ function getUbuntuData() {
 	}
 }
 
-function ajaxPicture(url)
-{
+function ajaxPicture(url) {
   var req = new XMLHttpRequest();
   req.open('GET', url, false); 
   req.send(null);
@@ -63,5 +62,5 @@ function view_onclose() {
 }
 
 function countdownImg_onclick() {
-	framework.openUrl( "http://www.ubuntu.com" );
+	framework.openUrl("http://www.ubuntu.com");
 }

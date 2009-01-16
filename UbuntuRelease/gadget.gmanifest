@@ -9,5 +9,10 @@
 		<author>Benjamin Schirmer</author>
 		<authorWebsite>http://www.desktop-gadgets.net/ubunturelease/</authorWebsite>
 		<id>A9C17C6A-F7E6-4459-8F9F-D6D427BDFBAB</id>
-		<copyright>Ã‚Â©2008 Benjamin Schirmer</copyright><authorEmail>codename.matrix@gmail.com</authorEmail></about>
+		<copyright>©2008 Benjamin Schirmer</copyright>
+		<authorEmail>codename.matrix@gmail.com</authorEmail>
+		<thumbnailUrl>http://www.desktop-gadgets.net/data/gadgets/28/ubunturelease_sm.png</thumbnailUrl>
+		<screenshotUrl>http://www.desktop-gadgets.net/data/gadgets/28/ubunturelease.png</screenshotUrl>
+		<category>technology,tools</category>
+	</about>
 </gadget>

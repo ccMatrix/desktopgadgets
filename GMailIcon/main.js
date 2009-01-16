@@ -138,10 +138,15 @@ function checkMail() {
 							}
 							if (!old) {
 								oldSound = true;
-								var item = new ContentItem();
-								item.heading = stripEntities(items[i].title);
-								item.snippet = stripEntities(items[i].summary);
-								plugin.AddContentItem(item, gddItemDisplayAsNotification);
+                try {
+								  var item = new ContentItem();
+								  item.heading = stripEntities(items[i].title);
+								  item.snippet = stripEntities(items[i].summary);
+								  plugin.AddContentItem(item, gddItemDisplayAsNotification);
+                }
+                catch (E) {
+                  debug.info("Cannot display notification");
+                }
 							}
 						}
 						if (oldSound) {

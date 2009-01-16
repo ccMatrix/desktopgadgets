@@ -1125,7 +1125,9 @@ HTMLRender.prototype.isSingleTag = function(tagName, tagComplete) {
  * Calculate width of an element so that all text fits into it
  */
 HTMLRender.prototype.basicCalcWidth = function(str, ele) {
-
+  //if (!this.boundingEdit) {
+    this.boundingEdit = view.appendElement("<edit />");
+  //}
 	this.boundingEdit.visible = false;
 	this.boundingEdit.width = 1000;
 	this.boundingEdit.height = this.baseHeight;

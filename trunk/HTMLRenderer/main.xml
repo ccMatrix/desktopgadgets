@@ -1,5 +1,7 @@
 ﻿<view height="600" resizable="true" width="800" onopen="view_onOpen()"
  >
+  <edit height="16" name="edit1" width="64" visible="false" x="144"
+    y="89" value="text"/>
   <script src="main.js" />
   <script src="htmlRender.js" />
   <script src="json.js" />

@@ -66,8 +66,8 @@ function view_onOpen() {
 
 	// http://www.google.com/gwt/n can create small pages for any webpage. Use this for real-world tests
 	render.FollowLink = true;
-	render.MobilePages = true;
-	render.RenderUrl( "http://www.googledesktopgadgets.com");
+	render.MobilePages = false;
+	render.RenderUrl( "http://wapedia.mobi/en/Babylon_5");
 	//render.RenderUrl( "http://www.phonifier.com/phonify.php?i=1&m=0&l=0&u=http%3A%2F%2Fwww.googledesktopgadgets.com" );
 }
 

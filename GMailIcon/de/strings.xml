@@ -12,7 +12,7 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
 
 	<strDetailsTitle>Neue Mails in deinem GoogleMail Konto</strDetailsTitle>
 	<strMore>mehr</strMore>
-	<strUsername>Benutzername:</strUsername>
+	<strUsername>E-Mail-Adresse:</strUsername>
 	<strPassword>Passwort:</strPassword>
 	<strAccount>Kontoname:</strAccount>
 	
@@ -25,7 +25,7 @@ Doppelklicke auf den Zähler um dein GoogleMail Konto im Browser zu öffnen.
   <strNoConnection>Keine Verbindung</strNoConnection>
   <strInvalidPW>Passwort</strInvalidPW>
 
-	<strRefresh>Mails abfragen</strRefresh>
+	<strRefresh>Mails abrufen</strRefresh>
 	<strConfig>konfigurieren</strConfig>
 	<strNoSubject>kein Betreff</strNoSubject>
 	<strNoSummary>leere E-Mail</strNoSummary>

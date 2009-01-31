@@ -10,7 +10,7 @@
 		<authorWebsite>http://www.desktop-gadgets.net/gmailicon/</authorWebsite>
 		<authorEmail>codename.matrix@gmail.com</authorEmail>
 		<id>18593C55-0E24-479C-9564-358848CC23F2</id>
-		<copyright>Â©2008 Benjamin Schirmer</copyright>
-		<displayAPI usesNotifier=""></displayAPI>
+		<copyright>©2007-2009 Benjamin Schirmer</copyright>
+		<displayAPI usesNotifier="true"></displayAPI>
 	</about>
 </gadget>

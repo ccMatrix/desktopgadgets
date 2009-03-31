@@ -24,10 +24,11 @@ function getUbuntuData() {
 		var req = new XMLHttpRequest();
 		req.open("GET", "http://www.ubuntu.com/files/countdown/display.js", false);
 		req.send();
+    debug.trace("Req response: " + req.status);
 		if (req.status == 200) {
 			errorMsg.visible = false;
 			var JSdata = req.responseText;
-			JSdata = JSdata.replace(/\/\/([^\n]*)/, "");
+			//JSdata = JSdata.replace(/\/\/([^\n]*)/, "");
 			JSdata = JSdata.replace(/document.write/gi, "//document.write");
 			eval(JSdata);
 			var srcPart = JSdata.match("src=\"([^\"]*)\"");

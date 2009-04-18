@@ -10,4 +10,8 @@ Visit www.ubuntu.com to download the latest release or to learn more about Ubunt
 	<strGadgetPage>Help and more Information</strGadgetPage>
 	<visitUbuntuWebsite>Visit www.ubuntu.com</visitUbuntuWebsite>
 	<errorNoData>Could not retrieve Information. No internet connection?</errorNoData>
+
+  <strStyle>Select style</strStyle>
+  <styleRing>Ring</styleRing>
+  <styleCal>Calendar</styleCal>
 </strings>

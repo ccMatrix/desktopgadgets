@@ -1,0 +1,49 @@
+﻿<strings>
+  <GADGET_NAME>סמל דואר של גוגל.</GADGET_NAME>
+  <GADGET_DESCRIPTION>סמל של ג'ימייל מספק הודעה אקוסטית חזותית מתי שיש דואר חדש בתיבת הג'ימייל שלך או כשיש הודעה באימייל האפליקציות של החשבון של גוגל. אתה יכול להשתמש בזה גם כדי לראות הצגה מוקדמת של הדוארים החדשים שלך. הוסף את המכשיר כמה פעמים כדי לבדוק יותר מחשבון דואר אחד.</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>סמל דואר של גוגל.
+© 2007 יוצר באנגלית על ידי בנג'מין סצ'ירמר.
+תקבל התראת דואר על שולחן העבודה שלך.
+
+הקש על המעטפה ללכת לחשבון הדואר של גוגל שלך.
+הקש על המספר להציג הצגה מוקדמת של הדוארים.
+הקשה כפולה על הסמל כדי ללכת לחשבון הדואר של גוגל שלך.
+© 2009 תורגם על ידי בר זך.
+</GADGET_ABOUT_TEXT>
+
+	<strDetailsTitle>דואר חדש לחשבון שלך</strDetailsTitle>
+	<strMore>עוד</strMore>
+	<strUsername>כתובת דואר:</strUsername>
+	<strPassword>סיסמה:</strPassword>
+	<strAccount>כותרת המשתמש:</strAccount>
+	
+	<strMoreOptions>אפשרויות נוספות:</strMoreOptions>
+	<strShowAccount>הראה כותרת חשבון</strShowAccount>
+	<strAlwaysAccount>הראה את כותרת החשבון כשתיבת הדואר ריקה</strAlwaysAccount>
+	<strAppsFix>זה דואר שלתוכניות של הכתובת של גוגל</strAppsFix>
+	<strInterval>דקות</strInterval>
+	<strMinutes>עדכן כל</strMinutes>
+  <strNoConnection>חיבור לא תקין</strNoConnection>
+  <strInvalidPW>סיסמה</strInvalidPW>
+
+	<strRefresh>תבדוק דואר</strRefresh>
+	<strConfig>ערוך אפשרויות</strConfig>
+	<strNoSubject>אין נושא</strNoSubject>
+	<strNoSummary>דואר ריק</strNoSummary>
+
+	<strZoom>הגדלה</strZoom>
+	<strRedDesign>עיצוב אדום</strRedDesign>
+	<strGrayDesign>עיצוב אפור</strGrayDesign>
+	<strGreenDesign>עיצוב ירוק</strGreenDesign>
+	<strBlueDesign>עיצוב כחול</strBlueDesign>
+	<strDesignEmpty>כשדואר נכנס ריק</strDesignEmpty>
+	<strDesignFull>כשבדואר נכנס יש דואר</strDesignFull>
+
+	<strNotifyAlert>הראה הודעה כאשר יש דואר חדש</strNotifyAlert>
+	<strNotifySound>השמעה מנגינה כאשר יש דואר חדש</strNotifySound>
+	<strMusicFiles>קבצי שמע</strMusicFiles>
+	
+	<strAlertEnableInformation>התראה מכוונת בשימוש שולחן העבודה של גוגל. לך לסרגל הכלים של שולחן העבודה של גוגל (החץ שיורד למטה בקצה הסרגל כלים) ותבחר "ערוך אפשרויות..." בדיאלוג הפעל התראות של סמל תיבת הדואר של גוגל. תשים לב שאתה צריך לסגור את דיאלוג האפשרויות לפני שאתה יכול לפתוח את תפריט סרגל הכלים.</strAlertEnableInformation>
+
+	<strHelp>עזרה ועוד מידע</strHelp>
+</strings>

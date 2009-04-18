@@ -1,0 +1,22 @@
+﻿<strings>
+  <GADGET_NAME>שעון דיגיטלי</GADGET_NAME>
+  <GADGET_DESCRIPTION>שעון דיגיטלי לסרגל הכלים שלך</GADGET_DESCRIPTION>
+  <GADGET_ABOUT_TEXT>שעון דיגיטלי
+© 2007 בנג'מין סצ'ירמר
+.4KDE-שעון דיגיטלי על בסיס השעון הדיגיטלי החדש ב
+.KDE תמונות על ידי פרוייקט
+© 2009 תורגם לעברית על ידי בר זך</GADGET_ABOUT_TEXT>
+
+  <strMonths>ינואר,פברואר,מרץ,אפריל,מאי,יוני,יולי,אוגוסט,ספטמבר,אוקטובר,נובמבר,דצמבר</strMonths>
+  <strDays>ראשון,שני,שלישי,רביעי,חמישי,שישי,שבת,ראשון</strDays>
+  <strFormat12>פורמט 12 שעות</strFormat12>
+  <strFormat24>פורמט 24 שעות</strFormat24>
+  <strTimezone>אזור זמן</strTimezone>
+  <strDisplay>הצג אזור זמן</strDisplay>
+  <strDaylight>כיוון לשעון קיץ</strDaylight>
+  <strBlinkingDot>הראה נקודה מהבהבת</strBlinkingDot>
+  <strPromptCustom>טקסט מותאם אישית על שעון</strPromptCustom>
+  <strCustomMsgTitle>הצג את הכותרת של השעון מותאם אישית שלך</strCustomMsgTitle>
+
+  <strHelp>עזרה ועוד מידע</strHelp>
+</strings>

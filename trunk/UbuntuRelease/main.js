@@ -3,15 +3,27 @@
 // Adds our plugin specific items to the menu
 function AddCustomMenuItems(menu) {
   menu.AddItem(strGadgetPage, 0, OnMenuClicked);
+  var style = menu.AddPopup(strStyle);
+  style.AddItem(styleRing, (options.getValue("STYLE") == styleRing)?gddMenuItemFlagChecked:0, OnMenuClicked);
+  style.AddItem(styleCal, (options.getValue("STYLE") == styleCal)?gddMenuItemFlagChecked:0, OnMenuClicked);
 }
 
 function OnMenuClicked(itemText) {
   if (itemText == strGadgetPage) {
     framework.openUrl("http://www.desktop-gadgets.net/ubunturelease/");
   }
+  else if (itemText == styleRing) {
+    options.putValue("STYLE", styleRing);
+    getUbuntuData();
+  }
+  else if (itemText == styleCal) {
+    options.putValue("STYLE", styleCal);
+    getUbuntuData();
+  }
 }
 
 function view_onOpen() {
+  options.putDefaultValue("STYLE", styleRing);
   plugin.onAddCustomMenuItems = AddCustomMenuItems;
 
 	errorMsg.visible = false;
@@ -22,7 +34,15 @@ function view_onOpen() {
 function getUbuntuData() {
 	try {
 		var req = new XMLHttpRequest();
-		req.open("GET", "http://www.ubuntu.com/files/countdown/display.js", false);
+    var url = "";
+    if (options.getValue("STYLE") == styleRing) {
+      url = "http://www.ubuntu.com/files/countdown/display.js";
+    }
+    else if (options.getValue("STYLE") == styleCal) {
+      url = "http://www.ubuntu.com/files/countdown/display2.js";
+    }
+    debug.trace('URL: ' + url);
+		req.open("GET", url, false);
 		req.send();
     debug.trace("Req response: " + req.status);
 		if (req.status == 200) {

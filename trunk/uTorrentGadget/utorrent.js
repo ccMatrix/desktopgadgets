@@ -1,6 +1,7 @@
 ﻿var active_torrentID=null;
 var interface_cid=null;
 var details;
+var token;
 
 /*
 µTorrent Functions
@@ -16,6 +17,10 @@ function requestData()
     return;
   }
   try {
+	if (token == null) {
+		// Retrieve token first
+		retrieveToken();
+	}
   var req = new XMLHttpRequest();
   req.open('GET', getTorrentInterface()+"&randomTime="+Math.random(), true, interface_username, interface_password);
   req.onreadystatechange = function (aEvt) {
@@ -26,6 +31,9 @@ function requestData()
         interface_cid=resp["torrentc"];
         displayData(resp);
       }
+			else if (req.status == 300) {
+				retrieveToken();
+			}
       else {
         gadget.debug.error("Error loading page\n");
         displayData(null);
@@ -39,8 +47,22 @@ function requestData()
   }
 }
 
+function retrieveToken() {
+	debug.trace("Retrieving Token from token.html");
+  var req = new XMLHttpRequest();
+  req.open('GET', "http://" + interface_ip + ":" + interface_port + "/gui/token.html", false, interface_username, interface_password);
+  req.send();
+	debug.trace("Response: " + req.status);
+	debug.trace(req.responseText);
+  if (req.status == 200) {
+    var resp = req.responseText;
+    resp = resp.replace(/<[^>]+>/gi, '');
+    token = resp;
+  }
+}
+
 function getTorrentData(url) {
-  // gadget.debug.trace("Requesting: "+url);
+  gadget.debug.trace("Requesting: "+url);
   try
   {
     var req = new XMLHttpRequest();
@@ -96,7 +118,11 @@ function getTorrentInterface() {
   
 	if (interface_ip != "" && interface_port != "") {
 		// Create URL based on options data
-		return "http://"+interface_ip+":"+interface_port+"/gui/?list=1";
+		url = "http://"+interface_ip+":"+interface_port+"/gui/?list=1";
+		if (token != null) {
+			url += "&token=" + token;
+		}
+		return url;
 	}
 	else {
 		return null;
